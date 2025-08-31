@@ -7,72 +7,91 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* Base */
-* { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
 html { scroll-behavior: smooth; }
-body { font-family:'Roboto', sans-serif; background:#f0f2f5; color:#333; }
+body { background:#f0f2f5; color:#333; line-height:1.7; }
 
 /* Navigation */
-nav { position:sticky; top:0; background:#222; padding:12px 30px; display:flex; justify-content:center; z-index:1000; box-shadow:0 3px 6px rgba(0,0,0,0.2);}
-nav a { color:#fff; text-decoration:none; margin:0 12px; font-weight:bold; transition:0.3s; }
-nav a:hover { color:#ffb74d; }
+nav { position:sticky; top:0; background:linear-gradient(90deg,#ff6ec4,#7873f5); padding:15px 30px; display:flex; justify-content:center; flex-wrap:wrap; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.2); border-radius:0 0 15px 15px; }
+nav a { color:#fff; text-decoration:none; margin:5px 15px; font-weight:bold; transition:0.3s; }
+nav a:hover { color:#ffe600; transform:scale(1.1); }
 
-/* Collage Header */
-.header-collage { position:relative; height:100vh; display:flex; justify-content:center; align-items:center; color:#fff; overflow:hidden; }
-.collage-container { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
-.collage-container img { position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 2s ease-in-out; }
-.collage-container img.active { opacity:1; }
-.header-content { position:relative; z-index:10; text-align:center; padding:25px; background:rgba(0,0,0,0.4); border-radius:15px; }
-.animated-text { animation:textZoom 3s ease infinite alternate; }
-@keyframes textZoom { 0% { transform: scale(1); text-shadow: 2px 2px 8px rgba(0,0,0,0.4);} 100% { transform: scale(1.05); text-shadow: 4px 4px 15px rgba(0,0,0,0.6);} }
+/* Header */
+header { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+background: linear-gradient(-45deg,#ff6ec4,#7873f5,#1fd1f9,#ffd700); background-size:400% 400%; animation: gradient 15s ease infinite; color:#fff; border-radius:0 0 20px 20px; }
+@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+header h1 { font-size:3.5em; margin-bottom:15px; text-shadow:0 3px 10px rgba(0,0,0,0.4);}
+header p { font-size:1.5em; margin-bottom:15px; text-shadow:0 2px 8px rgba(0,0,0,0.3);}
+#datetime { font-size:1.2em; margin-bottom:15px; font-weight:bold; text-shadow:0 1px 5px rgba(0,0,0,0.3);}
+.btn { display:inline-block; padding:14px 35px; background:#fff; color:#ff6ec4; font-weight:bold; border-radius:30px; transition:0.3s; }
+.btn:hover { background:#ffe6f0; transform:translateY(-4px); }
 
 /* Sections */
-section { padding:50px 20px; max-width:1100px; margin:0 auto 50px; border-radius:15px; background:linear-gradient(120deg,#fff,#fefefe); box-shadow:0 8px 20px rgba(0,0,0,0.1); scroll-margin-top:70px; }
-section h2 { text-align:center; font-size:1.9em; margin-bottom:30px; color:#333; }
+section { padding:60px 20px; max-width:1100px; margin:50px auto; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.5s; }
+section:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.15); }
+section h2 { text-align:center; font-size:2em; margin-bottom:35px; color:#ff6ec4; text-shadow:0 1px 5px rgba(0,0,0,0.2); }
+section p, section li { font-size:1.15em; }
+ul { padding-left:20px; }
 
 /* About */
-.about { display:flex; flex-wrap:wrap; align-items:center; gap:25px; }
-.about img { width:220px; height:220px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
-.about div p { margin-bottom:15px; font-size:1.15em; line-height:1.7; }
+.about { background:linear-gradient(120deg,#fef9f9,#ffe6f0); display:flex; flex-wrap:wrap; align-items:center; gap:30px; }
+.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 6px 20px rgba(0,0,0,0.2);}
+.about div p { margin-bottom:15px; }
 
 /* Achievements */
-.achievements ul, .list-section ul { list-style:disc inside; padding-left:15px; }
-.achievements li, .list-section li { margin-bottom:12px; font-size:1.1em; transition:0.3s; }
-.achievements li:hover, .list-section li:hover { color:#d32f2f; font-weight:bold; }
+.achievements { background:linear-gradient(120deg,#e0f7fa,#b2ebf2); }
+.achievements ul { list-style:none; padding-left:15px; }
+.achievements li { background:#ffffffaa; padding:18px; margin-bottom:15px; border-left:6px solid #00acc1; border-radius:12px; }
+.achievements li ul { margin-top:10px; border-left:2px dashed #00acc1; padding-left:15px; }
 
 /* Skills */
-.skills ul { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; }
-.skills li { background:#f3f0ff; padding:12px 18px; border-radius:8px; font-weight:500; transition:0.3s; }
-.skills li:hover { transform:translateY(-3px); box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+.skills { background:linear-gradient(120deg,#fff9c4,#fff59d); }
+.skills ul { list-style:circle inside; }
 
-/* Seminars, Workshops & Conferences Tabs */
-.seminars .tabs, .workshops .tabs { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:25px; }
-.tablinks { padding:10px 25px; cursor:pointer; background:#333; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
-.tablinks:hover { background:#555; }
-.tablinks.active { background:#ff5722; }
-.tabcontent { display:none; animation:fadeIn 0.5s ease; }
+/* Research & Workshops */
+.list-section { background:#fff8e1; }
+.tabs { display:flex; justify-content:center; gap:15px; margin-bottom:25px; flex-wrap:wrap; }
+.tablinks { padding:10px 25px; cursor:pointer; background:#ff6ec4; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
+.tablinks:hover { background:#ffb3e6; }
+.tablinks.active { background:#7873f5; }
+
+/* Tab content */
+.tabcontent { display:none; animation:fadeIn 0.6s ease; }
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-.tabcontent ul { list-style:disc inside; }
-.tabcontent li { margin-bottom:10px; padding:10px 12px; border-radius:8px; background:#f9f9f9; transition:0.3s; }
-.tabcontent li:hover { transform:translateX(3px); box-shadow:0 6px 12px rgba(0,0,0,0.1); }
+.tabcontent ul li { background:#ffffffaa; padding:15px; margin-bottom:12px; border-radius:12px; transition:0.3s; }
+.tabcontent ul li:hover { transform:translateX(5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+
+/* Shastrartha / Vakyartha */
+.shastrartha { background:linear-gradient(120deg,#d1c4e9,#b39ddb); }
+.shastrartha ul li { background:#ffffffaa; padding:15px; margin-bottom:12px; border-radius:12px; }
 
 /* Gallery */
-.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; }
-.gallery-grid img { width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); transition:0.3s; }
+.gallery { background:linear-gradient(120deg,#c8e6c9,#a5d6a7); }
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.gallery-grid img { width:100%; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.2); transition:0.3s; }
 .gallery-grid img:hover { transform:scale(1.05); }
 
+/* Publications */
+.publications { background:linear-gradient(120deg,#ffe0b2,#ffcc80); }
+.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.publications li { background:#ffffffaa; padding:20px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
+.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+.publications a { color:#ff6ec4; }
+
 /* Contact */
-.contact a { display:inline-block; margin:8px 12px; padding:10px 22px; background:#388e3c; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; }
-.contact a:hover { background:#1b5e20; transform:translateY(-3px); }
+.contact { background:linear-gradient(120deg,#f48fb1,#f06292); text-align:center; }
+.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#fff; color:#f06292; border-radius:30px; font-weight:bold; transition:0.3s; }
+.contact a:hover { background:#ffe6f0; transform:translateY(-3px); }
 
 /* Footer */
-footer { text-align:center; padding:35px 20px; background:#222; color:#fff; }
+footer { text-align:center; padding:40px 20px; background:#7873f5; color:#fff; font-size:1em; }
 
 /* Responsive */
-@media(max-width:768px){ .about { flex-direction:column; text-align:center; } .about img { margin:0 0 20px 0; } .gallery-grid { grid-template-columns:1fr; } }
-
-/* Multilingual toggle button */
-#langBtn { position:fixed; bottom:20px; right:20px; padding:10px 20px; background:#ff9800; color:#fff; border:none; border-radius:25px; cursor:pointer; font-weight:bold; z-index:1000; }
-#langBtn:hover { background:#e65100; }
+@media(max-width:768px){
+  .about { flex-direction:column; text-align:center; }
+  .about img { margin:0 0 20px 0; }
+  .gallery-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
@@ -81,162 +100,140 @@ footer { text-align:center; padding:35px 20px; background:#222; color:#fff; }
 <nav>
 <a href="#home">Home</a>
 <a href="#about">About Me</a>
-<a href="#achievements">Awards & Achievements</a>
-<a href="#skills">Skills & Expertise</a>
+<a href="#achievements">Achievements</a>
+<a href="#skills">Skills</a>
 <a href="#research">Research & Projects</a>
 <a href="#workshops">Workshops</a>
-<a href="#seminars">Seminars & Conferences</a>
-<a href="#shastrartha">Shastrartha / Vakyartha</a>
+<a href="#seminars">Seminars</a>
+<a href="#shastrartha">Shastrartha/Vakyartha</a>
 <a href="#publications">Publications</a>
+<a href="#gallery">Gallery</a>
+<a href="#additional">Additional Info</a>
 <a href="#contact">Contact</a>
 </nav>
 
 <!-- Header -->
-<header id="home" class="header-collage">
-<div class="collage-container">
-<img src="photo1.jpg" class="collage-img active" alt="Sudarshan Gautam">
-<img src="photo2.jpg" class="collage-img" alt="Sudarshan Gautam">
-<img src="photo3.jpg" class="collage-img" alt="Sudarshan Gautam">
-</div>
-<div class="header-content">
-<h1 class="animated-text"><span class="en">Sudarshan Gautam</span><span class="sa">सुदर्शन गौतम</span></h1>
-<p class="animated-text"><span class="en">Researcher in Linguistics & NLP</span><span class="sa">भाषाविज्ञान तथा कम्प्यूटेशनल भाषा अनुसन्धानकः</span></p>
-<a href="CV.pdf" class="btn animated-text" target="_blank"><span class="en">Download CV</span><span class="sa">अध्ययनपत्र डाउनलोड्</span></a>
-<p id="datetime" style="margin-top:15px;font-weight:bold;"></p>
-</div>
+<header id="home">
+<h1>Sudarshan Gautam</h1>
+<p>Researcher in Linguistics & Natural Language Processing</p>
+<p id="datetime"></p>
+<a href="CV.pdf" class="btn" target="_blank">Download CV</a>
 </header>
 
 <!-- About Me -->
 <section id="about" class="about">
-<img src="yourphoto.jpg" alt="Sudarshan Gautam">
+<img src="randomphoto1.jpg" alt="Sudarshan Gautam">
 <div>
-<h2><span class="en">About Me</span><span class="sa">परिचय</span></h2>
-<p><span class="en">Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.</span><span class="sa">सुदर्शन गौतम भाषाविज्ञान, कम्प्यूटेशनल भाषा तथा बहुभाषिक अनुसन्धान में विशेषज्ञः अस्ति।</span></p>
-<p><strong><span class="en">Education:</span></strong> <span class="sa">शिक्षा:</span> PhD/MSc in Linguistics, University Name</p>
-<p><strong><span class="en">Research Interests:</span></strong> <span class="sa">अनुसन्धान क्षेत्र:</span> Paninian Grammar, Universal Semantic Representation, Multilingual NLP</p>
-<p><strong><span class="en">Professional Experience:</span></strong> <span class="sa">व्यावसायिक अनुभव:</span> Teaching, research, or professional positions.</p>
+<h2><span class="en">About Me</span> / <span class="sa">मेरे विषय में (About Me)</span></h2>
+<p>Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.
+<span class="sa">मैं सुदर्शन गौतम हूँ, भाषाविज्ञान (Linguistics), प्राकृतिक भाषा प्रसंस्करण (NLP), और बहुभाषी संगणकीय रूपरेखाओं (multilingual computational frameworks) में विशेषज्ञ शोधकर्ता।</span></p>
+<p><strong>Education:</strong> PhD/MSc in Linguistics, University Name
+<span class="sa">शिक्षा: भाषाविज्ञान में PhD/MSc, विश्वविद्यालय का नाम</span></p>
+<p><strong>Research Interests:</strong> Paninian Grammar (Pāṇinian Vyākaraṇa), Universal Semantic Representation (Vishvavyāpī Arthavyākhyāna), Multilingual NLP
+<span class="sa">अनुसंधान रुचियाँ: पाणिनीय व्याकरण (Paninian Grammar), वैश्विकार्थ प्रतिनिधित्व (Universal Semantic Representation), बहुभाषी NLP</span></p>
+<p><strong>Professional Experience:</strong> Teaching, research, or professional positions
+<span class="sa">पेशेवर अनुभव: शिक्षण, अनुसंधान या पेशेवर पद</span></p>
 </div>
 </section>
 
-<!-- Awards & Achievements -->
+<!-- Achievements -->
 <section id="achievements" class="achievements">
-<h2><span class="en">Awards & Achievements</span><span class="sa">पुरस्काराः एवं उपलब्धयः</span></h2>
+<h2>Achievements / पुरस्कार (Awards)</h2>
 <ul>
-<li><strong>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021</strong>
+<li>UGC NET JRF Award (2022) / <span class="sa">UGC NET JRF पुरस्कार (2022)</span></li>
+<li>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021 / <span class="sa">आचार्य (M.A) – व्याकरण (Sanskrit Grammar) में स्वर्ण पदक, 2021</span>
 <ul>
-<li>Sampurnanand Sanskrit University Gold Medal</li>
-<li>Pt. Brahmadatta Dwivedi Gold Medal</li>
-<li>Shri Vimal Kumar Poddar Gold Medal</li>
-<li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
-<li>Mahanta Rameshwar Puri Gold Medal</li>
+<li>Sampurnanand Sanskrit University Gold Medal / <span class="sa">सम्पूर्णानंद संस्कृत विश्वविद्यालय स्वर्ण पदक</span></li>
+<li>Pt. Brahmadatta Dwivedi Gold Medal / <span class="sa">पं. ब्रह्मदत्त द्विवेदी स्वर्ण पदक</span></li>
+<li>Shri Vimal Kumar Poddar Gold Medal / <span class="sa">श्री विमल कुमार पोद्दार स्वर्ण पदक</span></li>
+<li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal / <span class="sa">महामंडलेश्वर पवाहारी स्वामी बालकृष्ण यती जी महाराज स्वर्ण पदक</span></li>
+<li>Mahanta Rameshwar Puri Gold Medal / <span class="sa">महंत रमेश्वर पुरी स्वर्ण पदक</span></li>
 </ul>
 </li>
-<li>UGC NET JRF Award (2022)</li>
-<li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
-<li>Top positions in multiple Shastrartha (philosophical debates) and Vakyartha (interpretative discussions)</li>
+<li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022) / <span class="sa">ऑल इंडिया शालक प्रतियोगिता में मीमांसा स्वर्ण पदक (2019 & 2022)</span></li>
+<li>Actively participated and secured top positions in multiple Shastrartha (philosophical debates) and Vakyartha (interpretative discussions) / <span class="sa">अनेकों शास्त्रार्थ (philosophical debates) और वाक्यार्थ (interpretative discussions) में सक्रिय भागीदारी और शीर्ष स्थान</span></li>
 </ul>
 </section>
 
-<!-- Skills & Expertise -->
+<!-- Skills -->
 <section id="skills" class="skills">
-<h2><span class="en">Skills & Expertise</span><span class="sa">कौशल एवं विशेषज्ञता</span></h2>
+<h2>Skills & Expertise / कौशल और विशेषज्ञता</h2>
 <ul>
-<li>Paninian Grammar</li>
-<li>Semantics</li>
-<li>Syntax</li>
-<li>Nyāya Darśana (Indian Logic)</li>
-<li>Mīmāṁsā Darśana (Vedic Interpretation)</li>
-<li>Śrauta Yajña (Vedic Rituals)</li>
-<li>Indian Knowledge Tradition</li>
+<li>Paninian Grammar (पाणिनीय व्याकरण)</li>
+<li>Semantics (अर्थशास्त्र / Semantics)</li>
+<li>Syntax (वाक्य संरचना / Syntax)</li>
+<li>Nyāya Darśana (Indian Logic / न्याय दर्शन)</li>
+<li>Mīmāṁsā Darśana (Vedic Interpretation / मीमांसा दर्शन)</li>
+<li>Śrauta Yajña (Vedic Rituals / श्रौत यज्ञ)</li>
+<li>Indian Knowledge Tradition / भारतीय ज्ञान परंपरा</li>
 </ul>
 </section>
 
 <!-- Research & Projects -->
 <section id="research" class="list-section">
-<h2><span class="en">Research & Projects</span><span class="sa">अनुसन्धान एवं परियोजनाः</span></h2>
+<h2>Research & Projects / अनुसंधान एवं परियोजनाएँ</h2>
 <ul>
-<li>"Kātiya-Darśapaurṇamāsīyādhvaryava-Prayogaḥ" – 2-month project internship under the Indian Knowledge System, Government of India (2022)</li>
-<li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – Vedic Science Centre, BHU, Varanasi (2024)</li>
-<li>Mentor, Summer School on "Orienting Ph.D. Scholars for Research in Sanskrit Wisdom-based Computational Linguistics" – IIIT Hyderabad (June 2024)</li>
+<li>"Kātiya-Darśapaurṇamāsīyādhvaryava-Prayogaḥ" – 2-month project internship under the Indian Knowledge System, Government of India (2022) / <span class="sa">"कातिय-दर्शनपूर्णमासीयाध्वर्यव-प्रयोगः" – भारतीय ज्ञान प्रणाली, भारत सरकार के अंतर्गत 2 महीने की परियोजना इंटर्नशिप (2022)</span></li>
 </ul>
 </section>
 
-<!-- Workshops -->
-<section id="workshops" class="workshops">
-<h2><span class="en">Workshops & Training</span><span class="sa">कार्यशालाः एवं प्रशिक्षण</span></h2>
+<!-- Workshops & Training -->
+<section id="workshops" class="list-section">
+<h2>Workshops & Training / कार्यशालाएँ और प्रशिक्षण</h2>
 <div class="tabs">
-<button class="tablinks" onclick="openTab(event,'IntWorkshop')">International</button>
-<button class="tablinks" onclick="openTab(event,'NatWorkshop')">National</button>
+<button class="tablinks" onclick="openTab(event,'WInternational')">International</button>
+<button class="tablinks" onclick="openTab(event,'WNational')">National</button>
 </div>
-
-<div id="IntWorkshop" class="tabcontent">
+<div id="WInternational" class="tabcontent">
 <ul>
-<li>International Workshop on "Computational Linguistics & Sanskrit" – Central Sanskrit University, Prayagraj (2023)</li>
+<li>International Workshop on Sanskrit & Computational Linguistics – IIT Hyderabad (2024) / <span class="sa">अंतरराष्ट्रीय कार्यशाला संस्कृत एवं संगणकीय भाषाविज्ञान – आईआईटी हैदराबाद (2024)</span></li>
 </ul>
 </div>
-
-<div id="NatWorkshop" class="tabcontent">
+<div id="WNational" class="tabcontent">
 <ul>
-<li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – BHU, Varanasi (2024)</li>
+<li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – BHU, Varanasi (2024) / <span class="sa">राष्ट्रीय कार्यशाला "संस्कृत और कंप्यूटर विज्ञान के विभिन्न आयाम" – बनारस हिंदू विश्वविद्यालय (2024)</span></li>
+<li>Mentor, Summer School on "Orienting Ph.D. Scholars for Research in Sanskrit Wisdom-based Computational Linguistics" – IIIT Hyderabad (2024) / <span class="sa">मेंटर, समर स्कूल "संस्कृत ज्ञान आधारित संगणकीय भाषाविज्ञान में पीएचडी शोधकर्ताओं के लिए मार्गदर्शन" – आईआईटी हैदराबाद (2024)</span></li>
 </ul>
 </div>
 </section>
 
-<!-- Seminars & Conferences -->
-<section id="seminars" class="seminars">
-<h2><span class="en">Seminars & Conferences</span><span class="sa">संगोष्ठी एवं परिषद्</span></h2>
+<!-- Seminars -->
+<section id="seminars" class="list-section">
+<h2>Seminars / संगोष्ठियाँ</h2>
 <div class="tabs">
-<button class="tablinks" onclick="openTab(event,'IntSeminar')">International</button>
-<button class="tablinks" onclick="openTab(event,'NatSeminar')">National</button>
+<button class="tablinks" onclick="openTab(event,'SInternational')">International</button>
+<button class="tablinks" onclick="openTab(event,'SNational')">National</button>
 </div>
-
-<div id="IntSeminar" class="tabcontent">
+<div id="SInternational" class="tabcontent">
 <ul>
-<li>International Conference on Linguistics, 2022</li>
-<li>Paninian Grammar Applications Seminar, 2023</li>
+<li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Paninian Grammar and Its Application, Central Sanskrit University (2023)
+<span class="sa">"श्रौत-यज्ञेषु पाणिनीयोपकारः" – पाणिनीय व्याकरण और उसका अनुप्रयोग, केंद्रीय संस्कृत विश्वविद्यालय (2023)</span></li>
 </ul>
 </div>
-
-<div id="NatSeminar" class="tabcontent">
+<div id="SNational" class="tabcontent">
 <ul>
-<li>National Seminar on Computational Linguistics, 2023</li>
-<li>National Conference on Paninian Grammar, 2021</li>
+<li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, BHU (2023)
+<span class="sa">"पाणिनीय समास-सिद्धांत-विमर्शः" – अखिल भारतीय पतंजलि संगोष्ठी, BHU (2023)</span></li>
+<li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)
+<span class="sa">अंतरराष्ट्रीय सम्मेलन "आयुर्वेद, धनुर्वेद, अर्थशास्त्र, और शास्त्रवाक्यार्थ गुरुकुल शिक्षा में" – सम्पूर्णानंद संस्कृत विश्वविद्यालय, वाराणसी (2019)</span></li>
 </ul>
 </div>
 </section>
 
 <!-- Shastrartha / Vakyartha -->
-<section id="shastrartha" class="list-section">
-<h2><span class="en">Shastrartha / Vakyartha</span><span class="sa">शास्त्रार्थ / वाक्यार्थ</span></h2>
+<section id="shastrartha" class="shastrartha">
+<h2>Shastrartha / Vakyartha / शास्त्रार्थ / वाक्यार्थ</h2>
 <ul>
-<li>Participated and secured top positions in multiple philosophical debates (Shastrartha) and interpretative discussions (Vakyartha)</li>
-<li>International & National Shastrartha competitions</li>
+<li>Participated in philosophical debates & interpretative discussions nationally & internationally
+<span class="sa">अंतरराष्ट्रीय एवं राष्ट्रीय शास्त्रार्थ और वाक्यार्थ में भागीदारी</span></li>
+<li>Secured top positions in multiple Shastrartha (Philosophical debates) & Vakyartha (Interpretative discussions)
+<span class="sa">कई शास्त्रार्थ और वाक्यार्थ में शीर्ष स्थान प्राप्त किया</span></li>
 </ul>
-</section>
-
-<!-- Additional Information -->
-<section id="additional" class="list-section">
-<h2><span class="en">Additional Information</span><span class="sa">अतिरिक्त जानकारी</span></h2>
-<ul>
-<li>Early education through traditional Gurukul system</li>
-<li>Specialised studies in Vyākaraṇa (Pāṇinian Grammar) under classical Kashi tradition</li>
-<li>Comprehensive training in Nyāya, Mīmāṁsa, Vedānta, and Vedic Śrauta Yajñas (theory & practical)</li>
-</ul>
-</section>
-
-<!-- Gallery -->
-<section id="gallery" class="gallery">
-<h2><span class="en">Gallery</span><span class="sa">दृश्य-संग्रह</span></h2>
-<div class="gallery-grid">
-<img src="image1.jpg" alt="Event 1">
-<img src="image2.jpg" alt="Event 2">
-<img src="image3.jpg" alt="Event 3">
-</div>
 </section>
 
 <!-- Publications -->
-<section id="publications" class="list-section">
-<h2><span class="en">Publications</span><span class="sa">प्रकाशन</span></h2>
+<section id="publications" class="publications">
+<h2>Publications / प्रकाशन</h2>
 <ul>
 <li>Title of Paper 1 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
 <li>Title of Paper 2 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
@@ -244,9 +241,28 @@ footer { text-align:center; padding:35px 20px; background:#222; color:#fff; }
 </ul>
 </section>
 
+<!-- Gallery -->
+<section id="gallery" class="gallery">
+<h2>Gallery / छायाचित्र</h2>
+<div class="gallery-grid">
+<img src="randomphoto2.jpg" alt="Event 1">
+<img src="randomphoto3.jpg" alt="Event 2">
+<img src="randomphoto4.jpg" alt="Event 3">
+</div>
+</section>
+
+<!-- Additional Information -->
+<section id="additional" class="list-section">
+<h2>Additional Information / अतिरिक्त जानकारी</h2>
+<p>Early education was completed through the traditional Gurukul system, followed by specialised studies in Vyākaraṇa (Pāṇinian Grammar) under the classical Kashi tradition.
+<span class="sa">प्रारंभिक शिक्षा पारंपरिक गुरुकुल प्रणाली के माध्यम से पूरी हुई, उसके बाद पाणिनीय व्याकरण (Vyākaraṇa) में विशेष अध्ययन किया गया।</span></p>
+<p>Comprehensive training in Nyāya, Mīmāṁsa, Vedānta, and Vedic Śrauta Yajñas, both theoretical and practical applications.
+<span class="sa">न्याय, मीमांसा, वेदांत, और वैदिक श्रौत यज्ञ में व्यापक प्रशिक्षण, सैद्धांतिक और व्यवहारिक दोनों रूपों में।</span></p>
+</section>
+
 <!-- Contact -->
 <section id="contact" class="contact">
-<h2><span class="en">Contact</span><span class="sa">संपर्क</span></h2>
+<h2>Contact / संपर्क</h2>
 <a href="mailto:your-email@example.com">Email Me</a>
 <a href="https://orcid.org/" target="_blank">ORCID</a>
 <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
@@ -258,40 +274,33 @@ footer { text-align:center; padding:35px 20px; background:#222; color:#fff; }
 © 2025 Sudarshan Gautam. All Rights Reserved.
 </footer>
 
-<!-- Multilingual toggle button -->
-<button id="langBtn">Sanskrit / English</button>
-
+<!-- JS for Tabs & DateTime -->
 <script>
-// Collage slider
-document.addEventListener("DOMContentLoaded", function(){
-const images = document.querySelectorAll(".collage-img");
-let current=0;
-setInterval(()=>{ images[current].classList.remove("active"); current=(current+1)%images.length; images[current].classList.add("active"); },4000);
-});
-
-// Tabs
-function openTab(evt, tabName){
-const tabcontent=document.getElementsByClassName("tabcontent");
-for(let i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
-const tablinks=document.getElementsByClassName("tablinks");
-for(let i=0;i<tablinks.length;i++){ tablinks[i].className=tablinks[i].className.replace(" active",""); }
-document.getElementById(tabName).style.display="block";
-evt.currentTarget.className+=" active";
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i=0;i<tablinks.length;i++){ tablinks[i].className = tablinks[i].className.replace(" active",""); }
+  document.getElementById(tabName).style.display="block";
+  evt.currentTarget.className += " active";
 }
-document.addEventListener("DOMContentLoaded",function(){ document.getElementsByClassName("tablinks")[0].click(); });
+document.addEventListener("DOMContentLoaded", function(){ 
+  var firstTabs = document.getElementsByClassName("tablinks");
+  for(var i=0;i<firstTabs.length;i++){
+    if(i%2===0){firstTabs[i].click();}
+  }
+});
 
 // Live Date & Time
-function updateDateTime(){ const dt=new Date(); document.getElementById("datetime").innerText=dt.toLocaleString(); }
-setInterval(updateDateTime,1000); updateDateTime();
-
-// Multilingual toggle
-let isEn=true;
-document.getElementById("langBtn").addEventListener("click",function(){
-document.querySelectorAll(".en").forEach(e=>e.style.display=isEn?"none":"inline");
-document.querySelectorAll(".sa").forEach(e=>e.style.display=isEn?"inline":"none");
-isEn=!isEn;
-});
-document.querySelectorAll(".sa").forEach(e=>e.style.display="none");
+function updateDateTime(){
+  const now = new Date();
+  const options = {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
+  document.getElementById('datetime').textContent = now.toLocaleDateString('en-US', options);
+}
+setInterval(updateDateTime,1000);
+updateDateTime();
 </script>
+
 </body>
 </html>
