@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudarshan Gautam | Academic Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Reset & base */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Roboto', sans-serif; background:#f4f6f8; color:#333; }
+
+  /* Navigation */
+  nav { position:sticky; top:0; background:#1a73e8; padding:15px 30px; display:flex; justify-content:center; z-index:1000; }
+  nav a { color:#fff; text-decoration:none; margin:0 15px; font-weight:bold; transition:0.3s; }
+  nav a:hover { color:#ffeb3b; }
+
+  /* Header */
+  header { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+    background: linear-gradient(-45deg,#1a73e8,#4285f4,#0b59d1,#1a73e8); background-size:400% 400%; animation: gradient 15s ease infinite; color:#fff; }
+  @keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  header h1 { font-size:3em; margin-bottom:15px; }
+  header p { font-size:1.3em; margin-bottom:25px; }
+  .btn { display:inline-block; padding:12px 30px; background:#fff; color:#1a73e8; font-weight:bold; border-radius:30px; transition:0.3s; }
+  .btn:hover { background:#e0e7ff; transform:translateY(-3px); }
+
+  /* Sections */
+  section { padding:80px 20px; max-width:1100px; margin:0 auto; }
+  section h2 { text-align:center; font-size:2.5em; margin-bottom:50px; color:#1a73e8; }
+
+  /* About */
+  .about { background:#fff; border-radius:15px; padding:50px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.1); display:flex; flex-wrap:wrap; align-items:center; }
+  .about img { width:250px; height:250px; border-radius:50%; object-fit:cover; margin-right:40px; flex-shrink:0; }
+  .about div { flex:1 1 400px; }
+  .about p { margin-bottom:20px; }
+
+  /* Publications */
+  .publications { background:#fff; border-radius:15px; padding:50px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.1); }
+  .publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+  .publications li { background:#f1f5f9; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
+  .publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+  .publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#1a73e8; }
+
+  /* Contact */
+  .contact { background:#fff; border-radius:15px; padding:50px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.1); text-align:center; }
+  .contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#1a73e8; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; }
+  .contact a:hover { background:#155ab6; transform:translateY(-3px); }
+
+  /* Footer */
+  footer { text-align:center; padding:40px 20px; background:#1a73e8; color:#fff; }
+
+  /* Responsive */
+  @media(max-width:768px){
+    .about { flex-direction:column; text-align:center; }
+    .about img { margin:0 0 30px 0; }
+    .publications ul { flex-direction:column; align-items:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About Me</a>
+  <a href="#publications">Publications</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- Header -->
+<header id="home">
+  <h1>Sudarshan Gautam</h1>
+  <p>Researcher in Linguistics & Natural Language Processing</p>
+  <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
+</header>
+
+<!-- About Me -->
+<section id="about" class="about">
+  <img src="yourphoto.jpg" alt="Sudarshan Gautam">
+  <div>
+    <h2>About Me</h2>
+    <p>Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, Natural Language Processing, and multilingual computational frameworks. My work focuses on Paninian grammar, compound word semantics, and universal semantic representation.</p>
+    <p><strong>Education:</strong> PhD/MSc in Linguistics, University Name</p>
+    <p><strong>Research Interests:</strong> Paninian Grammar, Universal Semantic Representation, Multilingual NLP</p>
+    <p><strong>Professional Experience:</strong> List your teaching, research, or professional positions here.</p>
+  </div>
+</section>
+
+<!-- Publications -->
+<section id="publications" class="publications">
+  <h2>Publications</h2>
+  <ul>
+    <li>
+      Title of Paper 1 – Journal/Conference, Year
+      <a href="#">[PDF/DOI]</a>
+    </li>
+    <li>
+      Title of Paper 2 – Journal/Conference, Year
+      <a href="#">[PDF/DOI]</a>
+    </li>
+    <li>
+      Title of Paper 3 – Journal/Conference, Year
+      <a href="#">[PDF/DOI]</a>
+    </li>
+  </ul>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <a href="mailto:your-email@example.com">Email Me</a>
+  <a href="https://orcid.org/" target="_blank">ORCID</a>
+  <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+  <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+</section>
+
+<!-- Footer -->
+<footer>
+  © 2025 Sudarshan Gautam. All Rights Reserved.
+</footer>
+
+</body>
+</html>
