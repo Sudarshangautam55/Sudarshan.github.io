@@ -11,9 +11,13 @@
 html { scroll-behavior: smooth; }
 body { font-family:'Roboto', sans-serif; background:#f5f7fa; color:#333; }
 
+/* Top Bar */
+#topbar { text-align:center; background:#1e3a8a; color:#fff; padding:5px; font-weight:bold; }
+#lang-toggle { position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold; }
+
 /* Header */
 header { 
-  height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
   background: linear-gradient(-45deg, #ff6b6b, #f8e16c, #6bc1ff, #a8ff78);
   background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
 }
@@ -24,7 +28,7 @@ header p { font-size:1.3em; margin-bottom:25px; }
 .btn:hover { background:#ffecec; transform:translateY(-3px); }
 
 /* Navigation */
-nav { position:sticky; top:0; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
+nav { position:sticky; top:35px; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
 .nav-links { display:flex; gap:15px; }
 .nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
 .nav-links a:hover { color:#ffdd57; }
@@ -51,8 +55,6 @@ section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a
 .skills { background:#f0fff4; padding:40px; }
 .skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
 .skills li { background:#dcfce7; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; }
-<img src="profile.jpg" alt="Sudarshan Gautam" 
-     style="width:250px; height:250px; border-radius:50%; object-fit:cover; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
 
 /* Workshops & Training */
 .workshops { background:#fff7ed; padding:40px; }
@@ -107,21 +109,27 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 </head>
 <body>
 
+<!-- Top bar with live date -->
+<div id="topbar">
+  <span id="datetime">Loading Date & Time...</span>
+  <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
+</div>
+
 <!-- Navigation -->
 <nav>
   <div class="logo" style="color:#fff; font-weight:bold;">Sudarshan Gautam</div>
   <div class="nav-links" id="navLinks">
-    <a href="#home">Home</a>
-    <a href="#about">About Me</a>
-    <a href="#achievements">Awards & Achievements</a>
-    <a href="#skills">Skills & Expertise</a>
-    <a href="#workshops">Workshops</a>
-    <a href="#seminars">Seminars/Conferences</a>
-    <a href="#lectures">Lectures</a>
-    <a href="#publications">Publications</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#additional">Additional Info</a>
-    <a href="#contact">Contact</a>
+    <a href="#home" data-en="Home" data-sa="मुख्यपृष्ठ">Home</a>
+    <a href="#about" data-en="About Me" data-sa="मेरे बारे में">About Me</a>
+    <a href="#achievements" data-en="Awards & Achievements" data-sa="पुरस्कार और उपलब्धियाँ">Awards & Achievements</a>
+    <a href="#skills" data-en="Skills & Expertise" data-sa="कौशल और विशेषज्ञता">Skills & Expertise</a>
+    <a href="#workshops" data-en="Workshops" data-sa="कार्यशालाएँ">Workshops</a>
+    <a href="#seminars" data-en="Seminars/Conferences" data-sa="सम्मेलन/संगोष्ठियाँ">Seminars/Conferences</a>
+    <a href="#lectures" data-en="Lectures" data-sa="व्याख्यान">Lectures</a>
+    <a href="#publications" data-en="Publications" data-sa="प्रकाशन">Publications</a>
+    <a href="#gallery" data-en="Gallery" data-sa="गैलरी">Gallery</a>
+    <a href="#additional" data-en="Additional Info" data-sa="अतिरिक्त जानकारी">Additional Info</a>
+    <a href="#contact" data-en="Contact" data-sa="संपर्क करें">Contact</a>
   </div>
   <div class="hamburger" onclick="toggleMenu()">
     <div></div><div></div><div></div>
@@ -130,148 +138,12 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 
 <!-- Header -->
 <header id="home">
-  <img src="yourphoto.jpg" alt="Sudarshan Gautam" style="...">
-  <h1>Sudarshan Gautam</h1>
-  <p>Researcher in Linguistics & NLP</p>
-  <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
-  <p id="datetime" style="margin-top:20px; font-size:1.1em;"></p>
+  <h1 data-en="Sudarshan Gautam" data-sa="सुदर्शन गौतम">Sudarshan Gautam</h1>
+  <p data-en="Researcher in Linguistics & NLP" data-sa="भाषाविज्ञान और एनएलपी में शोधकर्ता">Researcher in Linguistics & NLP</p>
+  <a href="CV.pdf" class="btn" target="_blank" data-en="Download CV" data-sa="CV डाउनलोड करें">Download CV</a>
 </header>
 
-
-<!-- About -->
-<section id="about" class="about">
-<img src="yourphoto.jpg" alt="Sudarshan Gautam" 
-     style="width:250px; height:250px; border-radius:50%; object-fit:cover; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
-  <div>
-    <h2>About Me</h2>
-    <p>Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.</p>
-    <p><strong>Education:</strong> PhD/MSc in Linguistics, University Name</p>
-    <p><strong>Interest (रुचि):</strong> Paninian Grammar, Semantic Analysis, Indian Knowledge Traditions</p>
-    <p><strong>Introduction:</strong> Comprehensive training in Vyākaraṇa (Pāṇinian Grammar), Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas both in theory and practice.</p>
-  </div>
-</section>
-
-<!-- Awards & Achievements -->
-<section id="achievements" class="achievements">
-  <h2>Awards & Achievements</h2>
-  <ul>
-    <li><strong>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021:</strong>
-      <ul>
-        <li>Sampurnanand Sanskrit University Gold Medal</li>
-        <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
-        <li>Shri Vimal Kumar Poddar Gold Medal</li>
-        <li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
-        <li>Mahanta Rameshwar Puri Gold Medal</li>
-      </ul>
-    </li>
-    <li>UGC NET JRF Award (2022)</li>
-    <li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
-    <li>Top positions in multiple Shastrartha (philosophical debates) and Vakyartha (interpretative discussions)</li>
-  </ul>
-</section>
-
-<!-- Skills -->
-<section id="skills" class="skills">
-  <h2>Skills & Expertise</h2>
-  <ul>
-    <li>Paninian Grammar</li>
-    <li>Semantics</li>
-    <li>Syntax</li>
-    <li>Nyāya Darśana (Indian Logic)</li>
-    <li>Mīmāṁsā Darśana (Vedic Interpretation)</li>
-    <li>Śrauta Yajña (Vedic Rituals)</li>
-    <li>Indian Knowledge Tradition</li>
-  </ul>
-</section>
-
-<!-- Workshops & Training -->
-<section id="workshops" class="workshops">
-  <h2>Workshops & Training</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'WorkshopInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'WorkshopNational')">National</button>
-  </div>
-  <div id="WorkshopInternational" class="tabcontent">
-    <ul>
-      <li>International Workshop Example 1 – 2023</li>
-      <li>International Workshop Example 2 – 2024</li>
-    </ul>
-  </div>
-  <div id="WorkshopNational" class="tabcontent">
-    <ul>
-      <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – Vedic Science Centre, BHU, Varanasi (2024)</li>
-      <li>National Workshop Example 2 – 2023</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Seminars & Conferences -->
-<section id="seminars" class="seminars">
-  <h2>Seminars & Conferences</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'SeminarInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'SeminarNational')">National</button>
-  </div>
-  <div id="SeminarInternational" class="tabcontent">
-    <ul>
-      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Paninian Grammar and Its Application, Central Sanskrit University, Prayagraj (2023)</li>
-    </ul>
-  </div>
-  <div id="SeminarNational" class="tabcontent">
-    <ul>
-      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, BHU, Varanasi (2023)</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Lectures -->
-<section id="lectures" class="lectures">
-  <h2>Lectures</h2>
-  <ul>
-    <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)</li>
-  </ul>
-</section>
-
-<!-- Publications -->
-<section id="publications" class="publications">
-  <h2>Publications</h2>
-  <ul>
-    <li>Title of Paper 1 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
-    <li>Title of Paper 2 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
-    <li>Title of Paper 3 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
-  </ul>
-</section>
-
-<!-- Gallery -->
-<section id="gallery" class="gallery">
-  <h2>Gallery</h2>
-  <div class="gallery-grid">
-    <img src="https://via.placeholder.com/300" alt="Event 1">
-    <img src="https://via.placeholder.com/300" alt="Event 2">
-    <img src="https://via.placeholder.com/300" alt="Event 3">
-  </div>
-</section>
-
-<!-- Additional Info -->
-<section id="additional" class="additional">
-  <h2>Additional Information</h2>
-  <p>Early education was completed through the traditional Gurukul system, followed by specialised studies in Vyākaraṇa (Pāṇinian Grammar) under the classical Kashi tradition.</p>
-  <p>Comprehensive training in Nyāya, Mīmāṁsa, Vedānta, and Vedic Śrauta Yajñas, both in theoretical and practical applications.</p>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="contact">
-  <h2>Contact</h2>
-  <a href="mailto:your-email@example.com">Email Me</a>
-  <a href="https://orcid.org/" target="_blank">ORCID</a>
-  <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
-  <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-</section>
-
-<!-- Footer -->
-<footer>
-  © 2025 Sudarshan Gautam. All Rights Reserved.
-</footer>
+<!-- More sections will follow here like About, Awards, Skills, etc., with data-en and data-sa attributes for multilingual support -->
 
 <script>
 // Hamburger toggle
@@ -289,10 +161,6 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display="block";
   evt.currentTarget.className += " active";
 }
-document.addEventListener("DOMContentLoaded", function(){ 
-  var tabs = document.getElementsByClassName("tablinks");
-  if(tabs.length>0){ tabs[0].click(); }
-});
 
 // Scroll animation
 const sections = document.querySelectorAll("section");
@@ -305,13 +173,26 @@ window.addEventListener("scroll", function(){
   });
 });
 
-// Live Date & Time
+// Live Date & Time (Gregorian + Vikram Samvat)
 function updateDateTime(){
   const now = new Date();
-  document.getElementById("datetime").innerText = now.toLocaleString();
+  const options = {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
+  let greg = now.toLocaleString('en-US', options);
+  let vikramSamvatYear = now.getFullYear() + 57; // Approximate
+  let vikramSamvat = `वि.सं. ${vikramSamvatYear} / ${now.toLocaleDateString()}`;
+  document.getElementById("datetime").innerText = `${greg} | ${vikramSamvat}`;
 }
 setInterval(updateDateTime,1000);
 updateDateTime();
+
+// Multilingual toggle
+let currentLang = 'en';
+function toggleLanguage(){
+  currentLang = currentLang === 'en' ? 'sa' : 'en';
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    el.innerText = el.getAttribute(`data-${currentLang}`);
+  });
+}
 </script>
 
 </body>
