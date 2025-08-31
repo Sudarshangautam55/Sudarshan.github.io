@@ -1,201 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sudarshan Gautam | Academic Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* Base Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body { font-family:'Roboto', sans-serif; background:#f5f7fa; color:#333; }
-
-/* Top Bar */
-#topbar { text-align:center; background:#1e3a8a; color:#fff; padding:5px; font-weight:bold; position:relative; }
-#lang-toggle { position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold; }
-
-/* Header */
-header { 
-  height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background: linear-gradient(-45deg, #ff6b6b, #f8e16c, #6bc1ff, #a8ff78);
-  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
-}
-@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-header h1 { font-size:3em; text-shadow:0 2px 5px rgba(0,0,0,0.3); margin-bottom:15px; }
-header p { font-size:1.3em; margin-bottom:25px; }
-.btn { display:inline-block; padding:12px 30px; background:#fff; color:#ff6b6b; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
-.btn:hover { background:#ffecec; transform:translateY(-3px); }
-
-/* Navigation */
-nav { position:sticky; top:35px; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
-.nav-links { display:flex; gap:15px; }
-.nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
-.nav-links a:hover { color:#ffdd57; }
-.hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
-.hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
-
-/* Sections */
-section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; }
-section h2 { text-align:center; font-size:1.8em; margin-bottom:40px; color:#1e3a8a; }
-.show { opacity:1; transform:translateY(0); }
-
-/* About */
-.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#fff8f0; padding:40px; }
-.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-.about div p { margin-bottom:15px; line-height:1.6; }
-
-/* Awards & Achievements */
-.achievements { background:#f0f4f8; padding:40px; }
-.achievements ul { list-style:none; padding:0; }
-.achievements li { background:#ffefef; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
-.achievements li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.1); }
-
-/* Skills & Expertise */
-.skills { background:#f0fff4; padding:40px; }
-.skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
-.skills li { background:#dcfce7; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; }
-
-/* Workshops & Training */
-.workshops { background:#fff7ed; padding:40px; }
-.tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
-.tablinks { padding:10px 25px; cursor:pointer; background:#1e3a8a; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
-.tablinks:hover { background:#3b82f6; }
-.tablinks.active { background:#ff6b6b; }
-.tabcontent { display:none; }
-.tabcontent ul { list-style:none; padding:0; }
-.tabcontent li { background:#f3f4f6; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
-
-/* Seminars/Conferences */
-.seminars { background:#fef9ff; padding:40px; }
-
-/* Lectures */
-.lectures { background:#f9fff0; padding:40px; }
-
-/* Gallery */
-.gallery { background:#f0f0ff; padding:40px; }
-.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.gallery-item { border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); padding:10px; background:#fff; }
-.gallery-item img { width:100%; border-radius:10px; }
-.gallery-item h4 { margin-top:10px; font-size:1.1em; }
-.gallery-item p { font-size:0.95em; }
-
-/* Publications */
-.publications { background:#fff8f8; padding:40px; }
-.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:0; }
-.publications li { background:#ffecec; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
-.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#ff4d4d; }
-
-/* Additional Info */
-.additional { background:#f5f5f5; padding:40px; }
-
-/* Contact */
-.contact { background:#fff7ed; text-align:center; padding:40px; }
-.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#d97706; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
-.contact a:hover { background:#b45309; transform:translateY(-3px); }
-
-/* Footer */
-footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
-
-/* Responsive */
-@media(max-width:768px){
-  .about { flex-direction:column; text-align:center; }
-  .about img { margin-bottom:20px; }
-  .gallery-grid { grid-template-columns:1fr; }
-  .nav-links { display:none; flex-direction:column; background:#1e3a8a; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
-  .nav-links.show { display:flex; }
-  .hamburger { display:flex; }
-}
-</style>
-</head>
-<body>
-
-<!-- Top bar with live date -->
-<div id="topbar">
-  <span id="datetime">Loading Date & Time...</span>
-  <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
-</div>
-
-<!-- Navigation -->
-<nav>
-  <div class="logo" style="color:#fff; font-weight:bold;">Sudarshan Gautam</div>
-  <div class="nav-links" id="navLinks">
-    <a href="#home" data-en="Home" data-sa="मुख्यपृष्ठ">Home</a>
-    <a href="#about" data-en="About Me" data-sa="मेरे बारे में">About Me</a>
-    <a href="#achievements" data-en="Awards & Achievements" data-sa="पुरस्कार और उपलब्धियाँ">Awards & Achievements</a>
-    <a href="#skills" data-en="Skills & Expertise" data-sa="कौशल और विशेषज्ञता">Skills & Expertise</a>
-    <a href="#workshops" data-en="Workshops" data-sa="कार्यशालाएँ">Workshops</a>
-    <a href="#seminars" data-en="Seminars/Conferences" data-sa="सम्मेलन/संगोष्ठियाँ">Seminars/Conferences</a>
-    <a href="#lectures" data-en="Lectures" data-sa="व्याख्यान">Lectures</a>
-    <a href="#publications" data-en="Publications" data-sa="प्रकाशन">Publications</a>
-    <a href="#gallery" data-en="Gallery" data-sa="गैलरी">Gallery</a>
-    <a href="#additional" data-en="Additional Info" data-sa="अतिरिक्त जानकारी">Additional Info</a>
-    <a href="#contact" data-en="Contact" data-sa="संपर्क करें">Contact</a>
+<!-- Workshops Section -->
+<section id="workshops" class="workshops">
+  <h2 data-en="Workshops" data-sa="कार्यशालाः">Workshops</h2>
+  <div class="tabs">
+    <button class="tablinks" onclick="openTab(event, 'NLP')">NLP</button>
+    <button class="tablinks" onclick="openTab(event, 'Linguistics')">Linguistics</button>
   </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div><div></div><div></div>
+  <div id="NLP" class="tabcontent">
+    <ul>
+      <li data-en="Advanced NLP Workshop, IIT Delhi, 2023" data-sa="उन्नत NLP कार्यशाला, IIT दिल्ली, २०२३">Advanced NLP Workshop, IIT Delhi, 2023</li>
+      <li data-en="Deep Learning for NLP, AICTE, 2022" data-sa="एनएलपी हेतु डीप लर्निंग, AICTE, २०२२">Deep Learning for NLP, AICTE, 2022</li>
+    </ul>
   </div>
-</nav>
-
-<!-- Header -->
-<header id="home">
-  <h1 data-en="Sudarshan Gautam" data-sa="सुदर्शन गौतम">Sudarshan Gautam</h1>
-  <p data-en="Researcher in Linguistics & NLP" data-sa="भाषाविज्ञान और एनएलपी में शोधकर्ता">Researcher in Linguistics & NLP</p>
-  <a href="CV.pdf" class="btn" target="_blank" data-en="Download CV" data-sa="CV डाउनलोड करें">Download CV</a>
-</header>
-
-<!-- About -->
-<section id="about" class="about">
-  <img src="profile.jpg" alt="Sudarshan Gautam">
-  <div>
-    <h2 data-en="About Me" data-sa="मेरे बारे में">About Me</h2>
-    <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks." data-sa="नमस्ते! मैं सुदर्शन गौतम हूँ, भाषाविज्ञान, एनएलपी और बहुभाषीय कम्प्यूटेशनल फ्रेमवर्क में शोधकर्ता।">
-    Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.</p>
-    <p><strong data-en="Education" data-sa="शिक्षा">Education:</strong> PhD/MSc in Linguistics, University Name</p>
-    <p><strong data-en="Interest" data-sa="रुचि">Interest:</strong> Paninian Grammar, Semantic Analysis, Indian Knowledge Traditions</p>
-    <p data-en="Introduction" data-sa="परिचय"><strong>Introduction:</strong> Comprehensive training in Vyākaraṇa (Pāṇinian Grammar), Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas both in theory and practice.</p>
+  <div id="Linguistics" class="tabcontent">
+    <ul>
+      <li data-en="Semantics and Syntax Workshop, University of Mumbai, 2023" data-sa="अर्थ एवं वाक्यशास्त्र कार्यशाला, मुंबई विश्वविद्यालय, २०२३">Semantics and Syntax Workshop, University of Mumbai, 2023</li>
+    </ul>
   </div>
 </section>
 
-<!-- Continue with Awards, Skills, Workshops, Seminars, Lectures, Publications, Gallery, Additional Info, Contact -->
-
-<!-- Gallery Example -->
-<section id="gallery" class="gallery">
-  <h2 data-en="Gallery" data-sa="गैलरी">Gallery</h2>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="gallery1.jpg" alt="Event 1">
-      <h4>Event 1</h4>
-      <p>Description/Status of Event 1</p>
-    </div>
-    <div class="gallery-item">
-      <img src="gallery2.jpg" alt="Event 2">
-      <h4>Event 2</h4>
-      <p>Description/Status of Event 2</p>
-    </div>
-    <div class="gallery-item">
-      <img src="gallery3.jpg" alt="Event 3">
-      <h4>Event 3</h4>
-      <p>Description/Status of Event 3</p>
-    </div>
-  </div>
-</section>
-
-<!-- Publications Example -->
-<section id="publications" class="publications">
-  <h2 data-en="Publications" data-sa="प्रकाशन">Publications</h2>
+<!-- Seminars Section -->
+<section id="seminars" class="seminars">
+  <h2 data-en="Seminars/Conferences" data-sa="सम्मेलनाः / संगोष्ठयः">Seminars/Conferences</h2>
   <ul>
-    <li>Title of Paper 1 – Journal/Conference, Year <a href="link1.pdf" target="_blank">[PDF/DOI]</a></li>
-    <li>Title of Paper 2 – Journal/Conference, Year <a href="link2.pdf" target="_blank">[PDF/DOI]</a></li>
-    <li>Title of Paper 3 – Journal/Conference, Year <a href="link3.pdf" target="_blank">[PDF/DOI]</a></li>
+    <li data-en="International Conference on Indian Linguistics, 2024" data-sa="अंतर्राष्ट्रीय सम्मेलनः भारतीय भाषाविज्ञानम्, २०२४">International Conference on Indian Linguistics, 2024</li>
+    <li data-en="Workshop on Computational Semantics, 2023" data-sa="संगणकीय अर्थशास्त्र कार्यशाला, २०२३">Workshop on Computational Semantics, 2023</li>
   </ul>
 </section>
 
-<!-- Scripts -->
+<!-- Lectures Section -->
+<section id="lectures" class="lectures">
+  <h2 data-en="Lectures" data-sa="व्याख्यानानि">Lectures</h2>
+  <ul>
+    <li data-en="Guest Lecture: Paninian Grammar, University of Delhi, 2023" data-sa="अतिथि व्याख्यानम्: पाणिनीय व्याकरणम्, दिल्ली विश्वविद्यालय, २०२३">Guest Lecture: Paninian Grammar, University of Delhi, 2023</li>
+  </ul>
+</section>
+
+<!-- Publications Section -->
+<section id="publications" class="publications">
+  <h2 data-en="Publications" data-sa="प्रकाशनानि">Publications</h2>
+  <ul>
+    <li>
+      <p data-en="Compounding in Universal Semantic Representation" data-sa="सर्वभाषिकार्थ प्रतिनिधित्वे संधि">Compounding in Universal Semantic Representation</p>
+      <a href="https://example.com/paper1" target="_blank" data-en="View Paper" data-sa="पत्रं पश्यतु">View Paper</a>
+    </li>
+    <li>
+      <p data-en="Paninian Grammar in Computational Linguistics" data-sa="संगणकीय भाषाविज्ञाने पाणिनीय व्याकरणम्">Paninian Grammar in Computational Linguistics</p>
+      <a href="https://example.com/paper2" target="_blank" data-en="View Paper" data-sa="पत्रं पश्यतु">View Paper</a>
+    </li>
+  </ul>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="gallery">
+  <h2 data-en="Gallery" data-sa="चित्रशाला">Gallery</h2>
+  <div class="gallery-grid">
+    <figure>
+      <img src="gallery1.jpg" alt="Research Workshop">
+      <figcaption data-en="Research Workshop" data-sa="अनुसन्धान कार्यशाला">Research Workshop</figcaption>
+      <p data-en="Workshop on NLP Techniques, 2023" data-sa="NLP तकनीकायाः कार्यशाला, २०२३">Workshop on NLP Techniques, 2023</p>
+    </figure>
+    <figure>
+      <img src="gallery2.jpg" alt="Conference Presentation">
+      <figcaption data-en="Conference Presentation" data-sa="सम्मेलन प्रस्तुतीकरणम्">Conference Presentation</figcaption>
+      <p data-en="Presented paper at International Conference, 2024" data-sa="अंतर्राष्ट्रीय सम्मेलनमध्ये पत्रं प्रस्तुता, २०२४">Presented paper at International Conference, 2024</p>
+    </figure>
+  </div>
+</section>
+
+<!-- Additional Info Section -->
+<section id="additional" class="additional">
+  <h2 data-en="Additional Info" data-sa="अतिरिक्त जानकारी">Additional Info</h2>
+  <p data-en="Trained in Vedic rituals, Nyaya, Mimamsa, and Vedanta" data-sa="वैदिक संस्कारेषु, न्याये, मीमांसायां च वेदान्ते प्रशिक्षितः">Trained in Vedic rituals, Nyaya, Mimamsa, and Vedanta</p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <h2 data-en="Contact" data-sa="संपर्कः">Contact</h2>
+  <a href="mailto:sudarshan@example.com" data-en="Email Me" data-sa="मम ईमेल कुरु">Email Me</a>
+  <a href="tel:+911234567890" data-en="Call Me" data-sa="मम सम्पर्क कुरु">Call Me</a>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p data-en="© 2025 Sudarshan Gautam. All rights reserved." data-sa="© २०२५ सुदर्शन गौतम। सर्वाधिकाराः सुरक्षिताः।">© 2025 Sudarshan Gautam. All rights reserved.</p>
+</footer>
+
 <script>
 // Hamburger toggle
-function toggleMenu() { document.getElementById("navLinks").classList.toggle("show"); }
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("show");
+}
 
 // Tabs
 function openTab(evt, tabName) {
@@ -213,28 +107,27 @@ const sections = document.querySelectorAll("section");
 window.addEventListener("scroll", function(){
   sections.forEach(section=>{
     const rect = section.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){ section.classList.add("show"); }
+    if(rect.top < window.innerHeight - 100){
+      section.classList.add("show");
+    }
   });
 });
 
-// Live Date & Time with corrected Vikram Samvat
-function updateDateTime() {
-    const now = new Date();
-    const timeOptions = { hour:'2-digit', minute:'2-digit', second:'2-digit' };
-    let time = now.toLocaleTimeString('en-US', timeOptions);
-
-    let gregorianDate = now.getFullYear() + '-' +
-                        (now.getMonth()+1).toString().padStart(2,'0') + '-' +
-                        now.getDate().toString().padStart(2,'0');
-
-    let vsYear = now.getFullYear() + (now.getMonth() >= 3 ? 56 : 57); // Apr-Dec: +56, Jan-Mar: +57
-    let vsMonth = now.getMonth() + 1;
-    let vsDay = now.getDate();
-    let vikramSamvatDate = `वि.सं. ${vsYear}-${vsMonth}-${vsDay}`;
-
-    document.getElementById("datetime").innerText = `${vikramSamvatDate} | Gregorian: ${gregorianDate} | ${time}`;
+// Live Date & Time with Gregorian + correct Vikram Samvat
+function updateDateTime(){
+  const now = new Date();
+  const options = {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
+  let greg = now.toLocaleString('en-US', options);
+  
+  // Correct Vikram Samvat calculation
+  let vikramYear = now.getFullYear() + 57;
+  let vikramMonth = now.getMonth() + 1;
+  let vikramDate = now.getDate();
+  let vikram = `वि.सं. ${vikramYear}-${vikramMonth}-${vikramDate}`;
+  
+  document.getElementById("datetime").innerText = `${greg} | ${vikram}`;
 }
-setInterval(updateDateTime, 1000);
+setInterval(updateDateTime,1000);
 updateDateTime();
 
 // Multilingual toggle
