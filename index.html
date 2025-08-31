@@ -1,212 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Sudarshan Gautam</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(90deg, #005bea, #00c6fb);
-      color: white;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 { margin: 0; font-size: 1.5rem; }
-    nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-    nav li { margin: 0 10px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudarshan Gautam | Academic Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Base Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family:'Roboto', sans-serif; background:#f5f7fa; color:#333; }
 
-    /* Hamburger */
-    .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
-    nav ul.mobile-hidden { display: none; flex-direction: column; background: #005bea; position: absolute; top: 60px; right: 10px; border-radius: 5px; padding: 1rem; }
-    nav ul.mobile-hidden li { margin: 10px 0; }
+/* Header */
+header { 
+  height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  background: linear-gradient(-45deg, #ff6b6b, #f8e16c, #6bc1ff, #a8ff78);
+  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
+}
+@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+header h1 { font-size:3em; text-shadow:0 2px 5px rgba(0,0,0,0.3); margin-bottom:15px; }
+header p { font-size:1.3em; margin-bottom:25px; }
+.btn { display:inline-block; padding:12px 30px; background:#fff; color:#ff6b6b; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
+.btn:hover { background:#ffecec; transform:translateY(-3px); }
 
-    section {
-      padding: 2rem;
-      margin: 1rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    section h2 { font-size: 1.4rem; color: #005bea; margin-bottom: 1rem; }
-    section h3 { color: #00a; margin-top: 1rem; }
-    ul { padding-left: 20px; }
+/* Navigation */
+nav { position:sticky; top:0; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
+.nav-links { display:flex; gap:15px; }
+.nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
+.nav-links a:hover { color:#ffdd57; }
+.hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
+.hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
 
-    .gallery img {
-      width: 200px; height: 150px; object-fit: cover;
-      margin: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .lang-switch { background: white; color: #005bea; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer; font-weight: bold; }
+/* Sections */
+section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; }
+section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a; }
+.show { opacity:1; transform:translateY(0); }
 
-    footer {
-      background: #222; color: white; text-align: center; padding: 1rem; margin-top: 2rem;
-    }
+/* About */
+.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#fff8f0; padding:40px; }
+.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+.about div p { margin-bottom:15px; line-height:1.6; }
 
-    /* Responsive */
-    @media(max-width: 768px){
-      nav ul { display: none; }
-      .menu-toggle { display: block; }
-      nav ul.mobile-hidden { display: flex; }
-    }
-  </style>
+/* Awards & Achievements */
+.achievements { background:#f0f4f8; padding:40px; }
+.achievements ul { list-style:none; padding:0; }
+.achievements li { background:#ffefef; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
+.achievements li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.1); }
+
+/* Skills & Expertise */
+.skills { background:#f0fff4; padding:40px; }
+.skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
+.skills li { background:#dcfce7; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; }
+
+/* Workshops & Training */
+.workshops { background:#fff7ed; padding:40px; }
+.tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
+.tablinks { padding:10px 25px; cursor:pointer; background:#1e3a8a; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
+.tablinks:hover { background:#3b82f6; }
+.tablinks.active { background:#ff6b6b; }
+.tabcontent { display:none; }
+.tabcontent ul { list-style:none; padding:0; }
+.tabcontent li { background:#f3f4f6; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
+
+/* Seminars/Conferences */
+.seminars { background:#fef9ff; padding:40px; }
+
+/* Lectures */
+.lectures { background:#f9fff0; padding:40px; }
+
+/* Gallery */
+.gallery { background:#f0f0ff; padding:40px; }
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.gallery-grid img { width:100%; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition:0.3s; }
+.gallery-grid img:hover { transform:scale(1.05); }
+
+/* Publications */
+.publications { background:#fff8f8; padding:40px; }
+.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:0; }
+.publications li { background:#ffecec; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
+.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+.publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#ff4d4d; }
+
+/* Additional Info */
+.additional { background:#f5f5f5; padding:40px; }
+
+/* Contact */
+.contact { background:#fff7ed; text-align:center; padding:40px; }
+.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#d97706; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
+.contact a:hover { background:#b45309; transform:translateY(-3px); }
+
+/* Footer */
+footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
+
+/* Responsive */
+@media(max-width:768px){
+  .about { flex-direction:column; text-align:center; }
+  .about img { margin-bottom:20px; }
+  .gallery-grid { grid-template-columns:1fr; }
+  .nav-links { display:none; flex-direction:column; background:#1e3a8a; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
+  .nav-links.show { display:flex; }
+  .hamburger { display:flex; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1 id="site-title">Portfolio</h1>
-    <div>
-      <button class="lang-switch" onclick="switchLang('en')">English</button>
-      <button class="lang-switch" onclick="switchLang('sa')">संस्कृतम्</button>
-      <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-    </div>
-    <nav>
-      <ul id="menu" class="mobile-hidden">
-        <li><a href="#about">About</a></li>
-        <li><a href="#awards">Awards</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#workshops">Workshops</a></li>
-        <li><a href="#mentorship">Mentorship</a></li>
-        <li><a href="#lectures">Lectures</a></li>
-        <li><a href="#seminars">Seminars</a></li>
-        <li><a href="#shastrartha">शास्त्रार्थ</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#additional">Additional</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section id="about">
+<!-- Navigation -->
+<nav>
+  <div class="logo" style="color:#fff; font-weight:bold;">Sudarshan Gautam</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#achievements">Awards & Achievements</a>
+    <a href="#skills">Skills & Expertise</a>
+    <a href="#workshops">Workshops</a>
+    <a href="#seminars">Seminars/Conferences</a>
+    <a href="#lectures">Lectures</a>
+    <a href="#publications">Publications</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#additional">Additional Info</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
+</nav>
+
+<!-- Header -->
+<header id="home">
+  <h1>Sudarshan Gautam</h1>
+  <p>Researcher in Linguistics & NLP</p>
+  <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
+  <p id="datetime" style="margin-top:20px; font-size:1.1em;"></p>
+</header>
+
+<!-- About -->
+<section id="about" class="about">
+  <img src="https://via.placeholder.com/250" alt="Sudarshan Gautam">
+  <div>
     <h2>About Me</h2>
-    <p id="intro-text">Early education was completed through the traditional Gurukul system, followed by specialised studies in Vyākaraṇa (Paninian Grammar) under the classical Kashi tradition. Comprehensive training in Nyāya (Indian Logic), Mīmāṁsā (Vedic Interpretation), Vedānta, and Vedic Śrauta Yajñas (Rituals), both in theoretical and practical applications.</p>
-    <h3>Interests</h3>
+    <p>Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.</p>
+    <p><strong>Education:</strong> PhD/MSc in Linguistics, University Name</p>
+    <p><strong>Interest (रुचि):</strong> Paninian Grammar, Semantic Analysis, Indian Knowledge Traditions</p>
+    <p><strong>Introduction:</strong> Comprehensive training in Vyākaraṇa (Pāṇinian Grammar), Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas both in theory and practice.</p>
+  </div>
+</section>
+
+<!-- Awards & Achievements -->
+<section id="achievements" class="achievements">
+  <h2>Awards & Achievements</h2>
+  <ul>
+    <li><strong>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021:</strong>
+      <ul>
+        <li>Sampurnanand Sanskrit University Gold Medal</li>
+        <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
+        <li>Shri Vimal Kumar Poddar Gold Medal</li>
+        <li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
+        <li>Mahanta Rameshwar Puri Gold Medal</li>
+      </ul>
+    </li>
+    <li>UGC NET JRF Award (2022)</li>
+    <li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
+    <li>Top positions in multiple Shastrartha (philosophical debates) and Vakyartha (interpretative discussions)</li>
+  </ul>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="skills">
+  <h2>Skills & Expertise</h2>
+  <ul>
+    <li>Paninian Grammar</li>
+    <li>Semantics</li>
+    <li>Syntax</li>
+    <li>Nyāya Darśana (Indian Logic)</li>
+    <li>Mīmāṁsā Darśana (Vedic Interpretation)</li>
+    <li>Śrauta Yajña (Vedic Rituals)</li>
+    <li>Indian Knowledge Tradition</li>
+  </ul>
+</section>
+
+<!-- Workshops & Training -->
+<section id="workshops" class="workshops">
+  <h2>Workshops & Training</h2>
+  <div class="tabs">
+    <button class="tablinks" onclick="openTab(event,'WorkshopInternational')">International</button>
+    <button class="tablinks" onclick="openTab(event,'WorkshopNational')">National</button>
+  </div>
+  <div id="WorkshopInternational" class="tabcontent">
     <ul>
-      <li>Paninian Grammar & Semantic Studies</li>
-      <li>Indian Knowledge Systems</li>
-      <li>Computational Linguistics</li>
-      <li>Traditional Philosophy & Debates</li>
+      <li>International Workshop Example 1 – 2023</li>
+      <li>International Workshop Example 2 – 2024</li>
     </ul>
-  </section>
-
-  <section id="awards">
-    <h2>Awards & Achievements</h2>
+  </div>
+  <div id="WorkshopNational" class="tabcontent">
     <ul>
-      <li>UGC NET JRF Award (2022)</li>
-      <li>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021
-        <ul>
-          <li>Sampurnanand Sanskrit University Gold Medal</li>
-          <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
-          <li>Shri Vimal Kumar Poddar Gold Medal</li>
-          <li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
-          <li>Mahanta Rameshwar Puri Gold Medal</li>
-        </ul>
-      </li>
-      <li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
+      <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – Vedic Science Centre, BHU, Varanasi (2024)</li>
+      <li>National Workshop Example 2 – 2023</li>
     </ul>
-  </section>
+  </div>
+</section>
 
-  <section id="skills">
-    <h2>Skills & Expertise</h2>
+<!-- Seminars & Conferences -->
+<section id="seminars" class="seminars">
+  <h2>Seminars & Conferences</h2>
+  <div class="tabs">
+    <button class="tablinks" onclick="openTab(event,'SeminarInternational')">International</button>
+    <button class="tablinks" onclick="openTab(event,'SeminarNational')">National</button>
+  </div>
+  <div id="SeminarInternational" class="tabcontent">
     <ul>
-      <li>Paninian Grammar</li>
-      <li>Semantics</li>
-      <li>Syntax</li>
-      <li>Nyāya Darśana (Indian Logic)</li>
-      <li>Mīmāṁsā Darśana (Vedic Interpretation)</li>
-      <li>Śrauta Yajña (Vedic Rituals)</li>
-      <li>Indian Knowledge Tradition</li>
+      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Paninian Grammar and Its Application, Central Sanskrit University, Prayagraj (2023)</li>
     </ul>
-  </section>
-
-  <section id="research">
-    <h2>Research & Projects</h2>
-    <p>"Kātiya-Darśapaurṇamāsīyādhvaryava-Prayogaḥ" – 2-month project internship under the Indian Knowledge System, Government of India (2022).</p>
-  </section>
-
-  <section id="workshops">
-    <h2>Workshops & Training</h2>
-    <h3>National</h3>
+  </div>
+  <div id="SeminarNational" class="tabcontent">
     <ul>
-      <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – Vedic Science Centre, Banaras Hindu University, Varanasi (2024)</li>
+      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, BHU, Varanasi (2023)</li>
     </ul>
-    <h3>International</h3>
-    <ul>
-      <li>—</li>
-    </ul>
-  </section>
+  </div>
+</section>
 
-  <section id="mentorship">
-    <h2>Mentorship</h2>
-    <p>Mentor, Summer School on "Orienting Ph.D. Scholars for Research in Sanskrit Wisdom-based Computational Linguistics" – International Institute of Information Technology, Hyderabad (June 2024).</p>
-  </section>
+<!-- Lectures -->
+<section id="lectures" class="lectures">
+  <h2>Lectures</h2>
+  <ul>
+    <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)</li>
+  </ul>
+</section>
 
-  <section id="lectures">
-    <h2>Lectures</h2>
-    <h3>International</h3>
-    <ul>
-      <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019).</li>
-    </ul>
-  </section>
+<!-- Publications -->
+<section id="publications" class="publications">
+  <h2>Publications</h2>
+  <ul>
+    <li>Title of Paper 1 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
+    <li>Title of Paper 2 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
+    <li>Title of Paper 3 – Journal/Conference, Year <a href="#">[PDF/DOI]</a></li>
+  </ul>
+</section>
 
-  <section id="seminars">
-    <h2>Seminars / Conferences</h2>
-    <h3>National</h3>
-    <ul>
-      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, Department of Vyakarana, Banaras Hindu University, Varanasi (2023).</li>
-    </ul>
-    <h3>International</h3>
-    <ul>
-      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Three-Day International Seminar, Central Sanskrit University, Prayagraj (2023).</li>
-    </ul>
-  </section>
+<!-- Gallery -->
+<section id="gallery" class="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="https://via.placeholder.com/300" alt="Event 1">
+    <img src="https://via.placeholder.com/300" alt="Event 2">
+    <img src="https://via.placeholder.com/300" alt="Event 3">
+  </div>
+</section>
 
-  <section id="shastrartha">
-    <h2>शास्त्रार्थ / Vākyārtha</h2>
-    <p>Actively participated and secured top positions in multiple Shastrartha (philosophical debates) and Vakyartha (interpretative discussions).</p>
-  </section>
+<!-- Additional Info -->
+<section id="additional" class="additional">
+  <h2>Additional Information</h2>
+  <p>Early education was completed through the traditional Gurukul system, followed by specialised studies in Vyākaraṇa (Pāṇinian Grammar) under the classical Kashi tradition.</p>
+  <p>Comprehensive training in Nyāya, Mīmāṁsa, Vedānta, and Vedic Śrauta Yajñas, both in theoretical and practical applications.</p>
+</section>
 
-  <section id="gallery" class="gallery">
-    <h2>Gallery</h2>
-    <img src="https://via.placeholder.com/200x150" alt="Gallery Image 1">
-    <img src="https://via.placeholder.com/200x150" alt="Gallery Image 2">
-    <img src="https://via.placeholder.com/200x150" alt="Gallery Image 3">
-  </section>
+<!-- Contact -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <a href="mailto:your-email@example.com">Email Me</a>
+  <a href="https://orcid.org/" target="_blank">ORCID</a>
+  <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+  <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+</section>
 
-  <section id="additional">
-    <h2>Additional Information</h2>
-    <p>Early education was completed through the traditional Gurukul system, followed by specialised studies in Vyākaraṇa (Pāṇinian Grammar) under the classical Kashi tradition. Comprehensive training in Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas, both in theoretical and practical applications.</p>
-  </section>
+<!-- Footer -->
+<footer>
+  © 2025 Sudarshan Gautam. All Rights Reserved.
+</footer>
 
-  <footer>
-    <p>&copy; 2025 Sudarshan Gautam. All rights reserved.</p>
-  </footer>
+<script>
+// Hamburger toggle
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("show");
+}
 
-  <script>
-    function toggleMenu(){
-      const menu = document.getElementById('menu');
-      menu.classList.toggle('mobile-hidden');
+// Tabs
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i=0;i<tablinks.length;i++){ tablinks[i].className = tablinks[i].className.replace(" active",""); }
+  document.getElementById(tabName).style.display="block";
+  evt.currentTarget.className += " active";
+}
+document.addEventListener("DOMContentLoaded", function(){ 
+  var tabs = document.getElementsByClassName("tablinks");
+  if(tabs.length>0){ tabs[0].click(); }
+});
+
+// Scroll animation
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", function(){
+  sections.forEach(section=>{
+    const rect = section.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+      section.classList.add("show");
     }
+  });
+});
 
-    function switchLang(lang){
-      if(lang === 'sa'){
-        document.getElementById('site-title').innerText = 'पोर्टफोलियो';
-        document.getElementById('intro-text').innerText = 'प्रारम्भिकशिक्षा गुरुकुलपद्धत्याः माध्यमेन सम्पन्ना। ततः वाराणस्यां परम्परागतकाशीपद्धत्यां विशेषाध्ययनं व्याकरणे (Pāṇinian Grammar) कृतम्। न्याय (Indian Logic), मीमांसा (Vedic Interpretation), वेदान्त तथा वैदिकश्रौतयज्ञानां (Rituals) सैद्धान्तिकव्यावहारिकच प्रशिक्षणम्।';
-      } else {
-        document.getElementById('site-title').innerText = 'Portfolio';
-        document.getElementById('intro-text').innerText = 'Early education was completed through the traditional Gurukul system, followed by specialised studies in Vyākaraṇa (Paninian Grammar) under the classical Kashi tradition. Comprehensive training in Nyāya (Indian Logic), Mīmāṁsā (Vedic Interpretation), Vedānta, and Vedic Śrauta Yajñas (Rituals), both in theoretical and practical applications.';
-      }
-    }
-  </script>
+// Live Date & Time
+function updateDateTime(){
+  const now = new Date();
+  document.getElementById("datetime").innerText = now.toLocaleString();
+}
+setInterval(updateDateTime,1000);
+updateDateTime();
+</script>
+
 </body>
 </html>
