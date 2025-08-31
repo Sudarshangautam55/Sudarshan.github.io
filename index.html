@@ -14,15 +14,15 @@ body { font-family:'Roboto', sans-serif; background:#F9FAFB; color:#333; }
 /* Navigation */
 nav { position:sticky; top:0; background:#4F46E5; padding:15px 30px; display:flex; justify-content:center; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
 nav a { color:#fff; text-decoration:none; margin:0 15px; font-weight:600; transition:0.3s; }
-nav a:hover { color:#A5B4FC; }
+nav a:hover { color:#FBBF24; }
 
 /* Header */
 header { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-    background: linear-gradient(-45deg,#4F46E5,#6366F1,#4F46E5,#A5B4FC); background-size:400% 400%; animation: gradient 15s ease infinite; color:#fff; position:relative; }
+    background: linear-gradient(-45deg,#4F46E5,#8B5CF6,#EC4899,#F59E0B); background-size:400% 400%; animation: gradient 15s ease infinite; color:#fff; position:relative; }
 @keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 header h1 { font-family:'Poppins', sans-serif; font-size:3.5em; margin-bottom:15px; text-shadow:0 3px 10px rgba(0,0,0,0.3);}
 header p { font-size:1.4em; margin-bottom:25px; text-shadow:0 2px 5px rgba(0,0,0,0.2);}
-.btn { display:inline-block; padding:12px 30px; background:linear-gradient(45deg,#A5B4FC,#6366F1); color:#fff; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none;}
+.btn { display:inline-block; padding:12px 30px; background:linear-gradient(45deg,#8B5CF6,#EC4899); color:#fff; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none;}
 .btn:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.2); }
 
 /* Live date/time */
@@ -40,6 +40,8 @@ section h2 { text-align:center; font-size:2.8em; margin-bottom:50px; color:#4F46
 /* Achievements */
 .achievements ul { list-style:none; padding:0; display:flex; flex-direction:column; gap:15px; }
 .achievements li { background:#EFF6FF; padding:20px; border-left:6px solid #6366F1; border-radius:12px; transition:0.3s; font-weight:500; }
+.achievements li:nth-child(2){ background:#FDE2FF; border-left-color:#EC4899; }
+.achievements li:nth-child(3){ background:#FEF3C7; border-left-color:#F59E0B; }
 .achievements li:hover { transform:translateX(5px); box-shadow:0 8px 20px rgba(0,0,0,0.1); }
 
 /* Gallery */
@@ -50,8 +52,8 @@ section h2 { text-align:center; font-size:2.8em; margin-bottom:50px; color:#4F46
 /* Seminars & Conferences Tabs */
 .seminars .tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
 .tablinks { padding:10px 25px; cursor:pointer; background:#6366F1; color:#fff; border:none; border-radius:30px; font-weight:600; transition:0.3s; }
-.tablinks:hover { background:#A5B4FC; }
-.tablinks.active { background:#4F46E5; }
+.tablinks:hover { background:#EC4899; }
+.tablinks.active { background:#F59E0B; }
 .tabcontent { display:none; animation:fadeIn 0.5s ease; }
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 .tabcontent ul { list-style:none; padding:0; }
@@ -60,16 +62,23 @@ section h2 { text-align:center; font-size:2.8em; margin-bottom:50px; color:#4F46
 /* Publications */
 .publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
 .publications li { background:#DCFCFF; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
+.publications li:nth-child(2){ background:#FDE2FF; }
+.publications li:nth-child(3){ background:#FEF3C7; }
 .publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
 .publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#0C4A6E; }
 
+/* Vākyaartha/Śāstrārth Accordion */
+.accordion { background:#EFF6FF; border-radius:12px; cursor:pointer; padding:18px; margin-bottom:10px; font-weight:600; transition:0.3s; }
+.accordion:hover { background:#6366F1; color:#fff; }
+.panel { padding:0 18px; display:none; background-color:#F9FAFB; overflow:hidden; border-radius:0 0 12px 12px; }
+
 /* Contact */
 .contact { text-align:center; }
-.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:linear-gradient(45deg,#6366F1,#4F46E5); color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
+.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:linear-gradient(45deg,#8B5CF6,#EC4899); color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
 .contact a:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.2); }
 
 /* Footer */
-footer { text-align:center; padding:40px 20px; background:#4F46E5; color:#fff; font-weight:500; }
+footer { text-align:center; padding:40px 20px; background:linear-gradient(45deg,#4F46E5,#8B5CF6); color:#fff; font-weight:500; }
 
 /* Responsive */
 @media(max-width:768px){
@@ -89,6 +98,7 @@ footer { text-align:center; padding:40px 20px; background:#4F46E5; color:#fff; f
   <a href="#gallery">Gallery</a>
   <a href="#seminars">Seminars & Conferences</a>
   <a href="#publications">Publications</a>
+  <a href="#vakyartha">वाक्यार्थ/शास्त्रार्थ</a>
   <a href="#contact">Contact</a>
 </nav>
 
@@ -165,6 +175,15 @@ footer { text-align:center; padding:40px 20px; background:#4F46E5; color:#fff; f
   </ul>
 </section>
 
+<!-- Vākyaartha/Śāstrārth Accordion -->
+<section id="vakyartha">
+  <h2>वाक्यार्थ/शास्त्रार्थ</h2>
+  <button class="accordion">Topic 1: Example Discussion</button>
+  <div class="panel"><p>Details about topic 1 in वाक्यार्थ/शास्त्रार्थ.</p></div>
+  <button class="accordion">Topic 2: Example Discussion</button>
+  <div class="panel"><p>Details about topic 2 in वाक्यार्थ/शास्त्रार्थ.</p></div>
+</section>
+
 <!-- Contact -->
 <section id="contact" class="contact">
   <h2>Contact</h2>
@@ -179,7 +198,7 @@ footer { text-align:center; padding:40px 20px; background:#4F46E5; color:#fff; f
   © 2025 Sudarshan Gautam. All Rights Reserved.
 </footer>
 
-<!-- JS for Tabs + Live Date/Time -->
+<!-- JS -->
 <script>
 // Tabs
 function openTab(evt, tabName) {
@@ -193,6 +212,17 @@ function openTab(evt, tabName) {
 }
 document.addEventListener("DOMContentLoaded", function(){ document.getElementsByClassName("tablinks")[0].click(); });
 
+// Accordion
+var acc = document.getElementsByClassName("accordion");
+for (var i=0;i<acc.length;i++){
+  acc[i].addEventListener("click", function(){
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if(panel.style.display==="block"){ panel.style.display="none"; }
+    else{ panel.style.display="block"; }
+  });
+}
+
 // Live Date & Time
 function updateDateTime() {
   const now = new Date();
@@ -202,6 +232,5 @@ function updateDateTime() {
 setInterval(updateDateTime, 1000);
 updateDateTime();
 </script>
-
 </body>
 </html>
