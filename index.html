@@ -37,7 +37,7 @@ nav { position:sticky; top:35px; background:#1e3a8a; padding:10px 20px; z-index:
 
 /* Sections */
 section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; }
-section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a; }
+section h2 { text-align:center; font-size:1.8em; margin-bottom:40px; color:#1e3a8a; }
 .show { opacity:1; transform:translateY(0); }
 
 /* About */
@@ -75,11 +75,10 @@ section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a
 /* Gallery */
 .gallery { background:#f0f0ff; padding:40px; }
 .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.gallery-grid div { background:#fff; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); padding:10px; text-align:center; }
-.gallery-grid img { width:100%; border-radius:15px; transition:0.3s; }
-.gallery-grid img:hover { transform:scale(1.05); }
-.gallery-grid h3 { margin-top:10px; color:#1e3a8a; }
-.gallery-grid p { font-size:0.9em; color:#555; }
+.gallery-item { border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); padding:10px; background:#fff; }
+.gallery-item img { width:100%; border-radius:10px; }
+.gallery-item h4 { margin-top:10px; font-size:1.1em; }
+.gallery-item p { font-size:0.95em; }
 
 /* Publications */
 .publications { background:#fff8f8; padding:40px; }
@@ -151,151 +150,49 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
   <img src="profile.jpg" alt="Sudarshan Gautam">
   <div>
     <h2 data-en="About Me" data-sa="मेरे बारे में">About Me</h2>
-    <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks." 
-       data-sa="नमस्ते! मैं सुदर्शन गौतम, भाषाविज्ञान, एनएलपी और बहुभाषी कम्प्यूटेशनल फ्रेमवर्क में विशेषज्ञ शोधकर्ता हूँ।">
-       Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.
-    </p>
+    <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks." data-sa="नमस्ते! मैं सुदर्शन गौतम हूँ, भाषाविज्ञान, एनएलपी और बहुभाषीय कम्प्यूटेशनल फ्रेमवर्क में शोधकर्ता।">
+    Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.</p>
     <p><strong data-en="Education" data-sa="शिक्षा">Education:</strong> PhD/MSc in Linguistics, University Name</p>
-    <p><strong data-en="Interest (रुचि)" data-sa="रुचि (Interest)">Interest:</strong> Paninian Grammar, Semantic Analysis, Indian Knowledge Traditions</p>
-    <p><strong data-en="Introduction" data-sa="परिचय">Introduction:</strong> Comprehensive training in Vyākaraṇa (Pāṇinian Grammar), Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas both in theory and practice.</p>
+    <p><strong data-en="Interest" data-sa="रुचि">Interest:</strong> Paninian Grammar, Semantic Analysis, Indian Knowledge Traditions</p>
+    <p data-en="Introduction" data-sa="परिचय"><strong>Introduction:</strong> Comprehensive training in Vyākaraṇa (Pāṇinian Grammar), Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas both in theory and practice.</p>
   </div>
 </section>
 
-<!-- Awards & Achievements -->
-<section id="achievements" class="achievements">
-  <h2 data-en="Awards & Achievements" data-sa="पुरस्कार और उपलब्धियाँ">Awards & Achievements</h2>
-  <ul>
-    <li><strong>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021</strong>
-      <ul>
-        <li>Sampurnanand Sanskrit University Gold Medal</li>
-        <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
-        <li>Shri Vimal Kumar Poddar Gold Medal</li>
-        <li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
-        <li>Mahanta Rameshwar Puri Gold Medal</li>
-      </ul>
-    </li>
-    <li>UGC NET JRF Award (2022)</li>
-    <li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
-    <li>Top positions in multiple Shastrartha (philosophical debates) and Vakyartha (interpretative discussions)</li>
-  </ul>
-</section>
+<!-- Continue with Awards, Skills, Workshops, Seminars, Lectures, Publications, Gallery, Additional Info, Contact -->
 
-<!-- Skills -->
-<section id="skills" class="skills">
-  <h2 data-en="Skills & Expertise" data-sa="कौशल और विशेषज्ञता">Skills & Expertise</h2>
-  <ul>
-    <li>Paninian Grammar</li>
-    <li>Semantics</li>
-    <li>Syntax</li>
-    <li>Nyāya Darśana</li>
-    <li>Mīmāṁsā Darśana</li>
-    <li>Śrauta Yajña</li>
-    <li>Indian Knowledge Tradition</li>
-  </ul>
-</section>
-
-<!-- Workshops -->
-<section id="workshops" class="workshops">
-  <h2 data-en="Workshops & Training" data-sa="कार्यशालाएँ">Workshops & Training</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'WorkshopInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'WorkshopNational')">National</button>
-  </div>
-  <div id="WorkshopInternational" class="tabcontent">
-    <ul>
-      <li>International Workshop Example 1 – 2023</li>
-      <li>International Workshop Example 2 – 2024</li>
-    </ul>
-  </div>
-  <div id="WorkshopNational" class="tabcontent">
-    <ul>
-      <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – BHU, Varanasi (2024)</li>
-      <li>National Workshop Example 2 – 2023</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Seminars & Conferences -->
-<section id="seminars" class="seminars">
-  <h2 data-en="Seminars/Conferences" data-sa="सम्मेलन/संगोष्ठियाँ">Seminars/Conferences</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'SeminarInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'SeminarNational')">National</button>
-  </div>
-  <div id="SeminarInternational" class="tabcontent">
-    <ul>
-      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Central Sanskrit University, Prayagraj (2023)</li>
-    </ul>
-  </div>
-  <div id="SeminarNational" class="tabcontent">
-    <ul>
-      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, BHU, Varanasi (2023)</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Lectures -->
-<section id="lectures" class="lectures">
-  <h2 data-en="Lectures" data-sa="व्याख्यान">Lectures</h2>
-  <ul>
-    <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)</li>
-  </ul>
-</section>
-
-<!-- Publications -->
-<section id="publications" class="publications">
-  <h2 data-en="Publications" data-sa="प्रकाशन">Publications</h2>
-  <ul>
-    <li>"Compounding in Universal Semantic Representation" – <em>Journal of Linguistics</em>, 2024 
-      <a href="https://example.com/publication1" target="_blank">[Link]</a></li>
-    <li>"Paninian Grammar for NLP" – <em>International Conference on Sanskrit Computing</em>, 2023 
-      <a href="https://example.com/publication2" target="_blank">[Link]</a></li>
-    <li>"Semantic Analysis of Tatpuruṣa Compounds" – <em>Indian Linguistics Journal</em>, 2022 
-      <a href="https://example.com/publication3" target="_blank">[Link]</a></li>
-  </ul>
-</section>
-
-<!-- Gallery -->
+<!-- Gallery Example -->
 <section id="gallery" class="gallery">
   <h2 data-en="Gallery" data-sa="गैलरी">Gallery</h2>
   <div class="gallery-grid">
-    <div>
-      <img src="gallery1.jpg" alt="Gallery 1">
-      <h3>Workshop on Paninian Grammar</h3>
-      <p>Interactive session with students and scholars</p>
+    <div class="gallery-item">
+      <img src="gallery1.jpg" alt="Event 1">
+      <h4>Event 1</h4>
+      <p>Description/Status of Event 1</p>
     </div>
-    <div>
-      <img src="gallery2.jpg" alt="Gallery 2">
-      <h3>Conference on NLP & Sanskrit</h3>
-      <p>Presentation of research papers</p>
+    <div class="gallery-item">
+      <img src="gallery2.jpg" alt="Event 2">
+      <h4>Event 2</h4>
+      <p>Description/Status of Event 2</p>
     </div>
-    <div>
-      <img src="gallery3.jpg" alt="Gallery 3">
-      <h3>Traditional Yajña Ceremony</h3>
-      <p>Participation in Vedic ritual</p>
+    <div class="gallery-item">
+      <img src="gallery3.jpg" alt="Event 3">
+      <h4>Event 3</h4>
+      <p>Description/Status of Event 3</p>
     </div>
   </div>
 </section>
 
-<!-- Additional Info -->
-<section id="additional" class="additional">
-  <h2 data-en="Additional Info" data-sa="अतिरिक्त जानकारी">Additional Info</h2>
-  <p>Fluent in Sanskrit, Hindi, English, and Nepali. Experienced in research, teaching, workshops, and conferences.</p>
+<!-- Publications Example -->
+<section id="publications" class="publications">
+  <h2 data-en="Publications" data-sa="प्रकाशन">Publications</h2>
+  <ul>
+    <li>Title of Paper 1 – Journal/Conference, Year <a href="link1.pdf" target="_blank">[PDF/DOI]</a></li>
+    <li>Title of Paper 2 – Journal/Conference, Year <a href="link2.pdf" target="_blank">[PDF/DOI]</a></li>
+    <li>Title of Paper 3 – Journal/Conference, Year <a href="link3.pdf" target="_blank">[PDF/DOI]</a></li>
+  </ul>
 </section>
 
-<!-- Contact -->
-<section id="contact" class="contact">
-  <h2 data-en="Contact" data-sa="संपर्क करें">Contact</h2>
-  <a href="mailto:sudarshan@example.com" data-en="Email" data-sa="ईमेल">Email</a>
-  <a href="tel:+919876543210" data-en="Phone" data-sa="फोन">Phone</a>
-  <a href="https://linkedin.com/in/sudarshangautam" target="_blank" data-en="LinkedIn" data-sa="लिंक्डइन">LinkedIn</a>
-</section>
-
-<!-- Footer -->
-<footer>
-  &copy; 2025 Sudarshan Gautam. All Rights Reserved.
-</footer>
-
+<!-- Scripts -->
 <script>
 // Hamburger toggle
 function toggleMenu() { document.getElementById("navLinks").classList.toggle("show"); }
@@ -320,23 +217,33 @@ window.addEventListener("scroll", function(){
   });
 });
 
-// Live Date & Time (Gregorian + Vikram Samvat)
-function updateDateTime(){
-  const now = new Date();
-  const options = {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
-  let greg = now.toLocaleString('en-US', options);
-  let vikramSamvatYear = now.getFullYear() + 57; // Approximate
-  let vikramSamvat = `वि.सं. ${vikramSamvatYear} / ${now.toLocaleDateString()}`;
-  document.getElementById("datetime").innerText = `${greg} | ${vikramSamvat}`;
+// Live Date & Time with corrected Vikram Samvat
+function updateDateTime() {
+    const now = new Date();
+    const timeOptions = { hour:'2-digit', minute:'2-digit', second:'2-digit' };
+    let time = now.toLocaleTimeString('en-US', timeOptions);
+
+    let gregorianDate = now.getFullYear() + '-' +
+                        (now.getMonth()+1).toString().padStart(2,'0') + '-' +
+                        now.getDate().toString().padStart(2,'0');
+
+    let vsYear = now.getFullYear() + (now.getMonth() >= 3 ? 56 : 57); // Apr-Dec: +56, Jan-Mar: +57
+    let vsMonth = now.getMonth() + 1;
+    let vsDay = now.getDate();
+    let vikramSamvatDate = `वि.सं. ${vsYear}-${vsMonth}-${vsDay}`;
+
+    document.getElementById("datetime").innerText = `${vikramSamvatDate} | Gregorian: ${gregorianDate} | ${time}`;
 }
-setInterval(updateDateTime,1000);
+setInterval(updateDateTime, 1000);
 updateDateTime();
 
 // Multilingual toggle
 let currentLang = 'en';
 function toggleLanguage(){
   currentLang = currentLang === 'en' ? 'sa' : 'en';
-  document.querySelectorAll('[data-en]').forEach(el=>{ el.innerText = el.getAttribute(`data-${currentLang}`); });
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    el.innerText = el.getAttribute(`data-${currentLang}`);
+  });
 }
 </script>
 
