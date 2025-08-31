@@ -4,93 +4,82 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sudarshan Gautam | Academic Profile</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* Base */
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
-body { font-family:'Roboto', sans-serif; background:#F3F4F6; color:#333; overflow-x:hidden; }
+body { font-family:'Roboto', sans-serif; background:#f4f4f9; color:#333; }
 
 /* Navigation */
-nav { position:sticky; top:0; background:linear-gradient(90deg,#6366F1,#EC4899); padding:15px 30px; display:flex; justify-content:center; gap:15px; z-index:1000; box-shadow:0 4px 12px rgba(0,0,0,0.15);}
-nav a, .lang-btn { color:#fff; text-decoration:none; font-weight:600; padding:8px 18px; border-radius:25px; transition:0.3s; cursor:pointer; }
-nav a:hover, .lang-btn:hover { background:#FBBF24; color:#111; }
-.lang-btn.active { background:#F59E0B; color:#fff; }
+nav { position:sticky; top:0; background:#6d28d9; padding:15px 30px; display:flex; justify-content:center; gap:20px; z-index:1000; box-shadow:0 3px 6px rgba(0,0,0,0.1);}
+nav a, nav button { color:#fff; text-decoration:none; font-weight:bold; padding:8px 15px; border:none; border-radius:25px; cursor:pointer; transition:0.3s; background:transparent; }
+nav a:hover, nav button:hover { background:#d8b4fe; color:#6b21a8; }
+
+/* Language Buttons */
+.lang-btn { background:#fff; color:#6d28d9; }
+.lang-btn.active { background:#d8b4fe; color:#6b21a8; }
 
 /* Header */
 header { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background: linear-gradient(-45deg,#4F46E5,#8B5CF6,#EC4899,#F59E0B); background-size:400% 400%; animation: gradient 15s ease infinite; color:#fff; position:relative; }
+    background: linear-gradient(-45deg,#6d28d9,#a855f7,#c084fc,#6d28d9); background-size:400% 400%; animation: gradient 15s ease infinite; color:#fff; position:relative;}
 @keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-header h1 { font-family:'Poppins', sans-serif; font-size:3.5em; margin-bottom:15px; text-shadow:0 3px 10px rgba(0,0,0,0.3);}
-header p { font-size:1.4em; margin-bottom:25px; text-shadow:0 2px 5px rgba(0,0,0,0.2);}
-.btn { display:inline-block; padding:12px 30px; background:linear-gradient(45deg,#8B5CF6,#EC4899); color:#fff; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none;}
-.btn:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.2); }
+header h1 { font-size:3em; margin-bottom:15px; text-shadow:0 2px 10px rgba(0,0,0,0.4);}
+header p { font-size:1.3em; margin-bottom:20px; }
+.btn { display:inline-block; padding:12px 30px; background:#fff; color:#6d28d9; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
+.btn:hover { background:#e9d5ff; transform:translateY(-3px); }
 
-/* Live date/time */
-#datetime { position:absolute; top:15px; right:20px; font-size:1em; background:rgba(255,255,255,0.2); padding:5px 12px; border-radius:20px; color:#fff; font-weight:bold; }
+/* Live DateTime */
+#datetime { position:absolute; top:15px; right:30px; font-weight:bold; }
 
 /* Section Styles */
-section { padding:80px 20px; max-width:1100px; margin:0 auto 50px auto; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.05); transition: all 0.8s ease; opacity:0; transform:translateY(50px);}
-section.visible { opacity:1; transform:translateY(0);}
-section h2 { text-align:center; font-size:2.8em; margin-bottom:50px; color:#4F46E5; font-family:'Poppins', sans-serif; }
-
-/* Section Backgrounds */
-#about{background:#FDF6F0;}
-#achievements{background:#F0FFF4;}
-#gallery{background:#FFF8F0;}
-#seminars{background:#F3F0FF;}
-#publications{background:#FEF3C7;}
-#vakyartha{background:#FFF0F6;}
-#contact{background:#E0F7FA;}
+section { padding:60px 20px; max-width:1100px; margin:0 auto 50px auto; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.08); background:linear-gradient(135deg,#f5f3ff,#ede9fe); }
+section h2 { text-align:center; font-size:2.5em; margin-bottom:30px; color:#6d28d9; }
 
 /* About */
 .about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; }
-.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 6px 20px rgba(0,0,0,0.1);}
-.about div p { margin-bottom:15px; line-height:1.6; font-size:1.1em; }
+.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.2);}
+.about div p { margin-bottom:12px; line-height:1.6; }
 
-/* Achievements */
-.achievements ul { list-style:none; padding:0; display:flex; flex-direction:column; gap:15px; }
-.achievements li { padding:20px; border-radius:12px; transition:0.3s; font-weight:500; }
-.achievements li:nth-child(1){ background:#DCFCFF; }
-.achievements li:nth-child(2){ background:#FDE2FF; }
-.achievements li:nth-child(3){ background:#FEF3C7; }
-.achievements li:hover { transform:translateX(5px); box-shadow:0 8px 20px rgba(0,0,0,0.1); }
+/* Awards & Achievements */
+.achievements ul { list-style:none; padding:0; display:flex; flex-direction:column; gap:12px; }
+.achievements li { background:#f3e8ff; padding:15px 20px; border-left:5px solid #7c3aed; border-radius:10px; transition:0.3s; }
+.achievements li:hover { transform:translateX(5px); box-shadow:0 6px 15px rgba(0,0,0,0.1); }
 
-/* Gallery */
-.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.gallery-grid img { width:100%; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition:0.3s; }
-.gallery-grid img:hover { transform:scale(1.05); filter:brightness(1.05); }
+/* Skills & Expertise, Projects, Workshops */
+.skills, .projects, .workshops { background:#fff0f5; padding:40px; border-radius:15px; margin-bottom:30px; }
+.skills ul, .projects ul, .workshops ul { list-style:none; padding-left:15px; }
+.skills li, .projects li, .workshops li { margin-bottom:10px; }
 
 /* Seminars & Conferences Tabs */
-.seminars .tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
-.tablinks { padding:10px 25px; cursor:pointer; border:none; border-radius:30px; font-weight:600; color:#fff; background:#6366F1; transition:0.3s; }
-.tablinks:hover { background:#EC4899; }
-.tablinks.active { background:#F59E0B; }
+.seminars { background:#ede9fe; }
+.tabs { display:flex; justify-content:center; gap:15px; margin-bottom:20px; flex-wrap:wrap; }
+.tablinks { padding:10px 20px; cursor:pointer; background:#6d28d9; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
+.tablinks:hover { background:#a78bfa; }
+.tablinks.active { background:#d8b4fe; color:#6b21a8; }
 .tabcontent { display:none; animation:fadeIn 0.5s ease; }
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 .tabcontent ul { list-style:none; padding:0; }
-.tabcontent li { background:#F3F4F6; margin-bottom:15px; padding:20px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.05); font-weight:500; }
+.tabcontent li { background:#f5f3ff; margin-bottom:10px; padding:15px; border-radius:10px; box-shadow:0 3px 8px rgba(0,0,0,0.05); }
 
-/* Vākyaartha/Śāstrārth Accordion */
-.accordion { background:#EFF6FF; border-radius:12px; cursor:pointer; padding:18px; margin-bottom:10px; font-weight:600; transition:0.3s; }
-.accordion:hover { background:#6366F1; color:#fff; }
-.panel { padding:0 18px; display:none; background-color:#F9FAFB; overflow:hidden; border-radius:0 0 12px 12px; }
+/* Gallery */
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; }
+.gallery-grid img { width:100%; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition:0.3s; }
+.gallery-grid img:hover { transform:scale(1.05); }
 
 /* Publications */
-.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-.publications li { padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
-.publications li:nth-child(1){ background:#DCFCFF; }
-.publications li:nth-child(2){ background:#FDE2FF; }
-.publications li:nth-child(3){ background:#FEF3C7; }
-.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#0C4A6E; }
+.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; justify-content:center; }
+.publications li { background:#f0fdf4; padding:20px; border-radius:15px; flex:1 1 280px; transition:0.3s; }
+.publications li:hover { transform:translateY(-5px); box-shadow:0 8px 15px rgba(0,0,0,0.1); }
+.publications a { color:#15803d; font-weight:bold; text-decoration:none; }
 
 /* Contact */
-.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:linear-gradient(45deg,#8B5CF6,#EC4899); color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
-.contact a:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.2); }
+.contact { text-align:center; background:#fff7ed; }
+.contact a { display:inline-block; margin:10px 10px; padding:10px 20px; background:#d97706; color:#fff; border-radius:25px; font-weight:bold; transition:0.3s; text-decoration:none; }
+.contact a:hover { background:#b45309; transform:translateY(-3px); }
 
 /* Footer */
-footer { text-align:center; padding:40px 20px; background:linear-gradient(45deg,#4F46E5,#8B5CF6); color:#fff; font-weight:500; }
+footer { text-align:center; padding:30px 20px; background:#6d28d9; color:#fff; }
 
 /* Responsive */
 @media(max-width:768px){
@@ -106,76 +95,167 @@ footer { text-align:center; padding:40px 20px; background:linear-gradient(45deg,
 <nav>
   <a href="#home">Home</a>
   <a href="#about">About Me</a>
-  <a href="#achievements">Achievements</a>
+  <a href="#achievements">Awards</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Research</a>
+  <a href="#workshops">Workshops</a>
+  <a href="#seminars">Seminars</a>
   <a href="#gallery">Gallery</a>
-  <a href="#seminars">Seminars & Conferences</a>
   <a href="#publications">Publications</a>
-  <a href="#vakyartha">वाक्यार्थ/शास्त्रार्थ</a>
   <a href="#contact">Contact</a>
-  <span class="lang-btn active" onclick="setLanguage('en')">English</span>
-  <span class="lang-btn" onclick="setLanguage('sa')">Sanskrit</span>
+  <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+  <button class="lang-btn" onclick="switchLanguage('sa')">संस्कृतम्</button>
 </nav>
 
 <!-- Header -->
 <header id="home">
-  <h1 class="en">Sudarshan Gautam</h1>
-  <h1 class="sa" style="display:none;">सुदर्शन गौतमः</h1>
-  <p class="en">Researcher in Linguistics & NLP</p>
-  <p class="sa" style="display:none;">भाषाविज्ञानक्षेत्रे NLP विषये च शोधार्थी</p>
-  <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
   <div id="datetime"></div>
+  <h1><span class="en">Sudarshan Gautam</span><span class="sa">सुदर्शन गौतम</span></h1>
+  <p><span class="en">Researcher in Linguistics & NLP</span><span class="sa">भाषाविज्ञान तथा कम्प्यूटेशनल भाषा अनुसन्धानकः</span></p>
+  <a href="CV.pdf" class="btn" target="_blank"><span class="en">Download CV</span><span class="sa">अध्ययनपत्र डाउनलोड्</span></a>
+  <img src="profile.jpg" alt="Profile" style="width:180px;height:180px;border-radius:50%;margin-top:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
 </header>
 
-<!-- Sections will continue here with the same pattern (About, Achievements, Gallery, Seminars, Publications, Vākyaartha, Contact) -->
+<!-- About Me -->
+<section id="about" class="about">
+  <img src="about.jpg" alt="About Image">
+  <div>
+    <h2><span class="en">About Me</span><span class="sa">मम परिचयः</span></h2>
+    <p><span class="en">Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.</span>
+       <span class="sa">नमः। अहं सुदर्शन गौतमः भाषाविज्ञान, कम्प्यूटेशनल भाषा, तथा बहुभाषिक तन्त्रज्ञशास्त्रेषु शोधकः।</span></p>
+    <p><span class="en"><strong>Education:</strong> PhD/MSc in Linguistics, University Name</span>
+       <span class="sa"><strong>शिक्षा:</strong> व्याकरणे PhD/MSc, विश्वविद्यालयः</span></p>
+    <p><span class="en"><strong>Professional Experience:</strong> Teaching, research, or professional positions.</span>
+       <span class="sa"><strong>व्यावसायिक अनुभवः:</strong> शिक्षणं, अनुसन्धानं वा अन्य पदानि।</span></p>
+  </div>
+</section>
 
+<!-- Awards & Achievements -->
+<section id="achievements" class="achievements">
+  <h2><span class="en">Awards & Achievements</span><span class="sa">पुरस्काराः च उपलम्भाः</span></h2>
+  <ul>
+    <li><span class="en">UGC NET JRF Award (2022)</span><span class="sa">यूजीसी नेट जे.आर.एफ् पुरस्कारः (२०२२)</span></li>
+    <li><span class="en">Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021</span><span class="sa">आचार्य (M.A.) मध्ये सुवर्णपदकः – व्याकरण (२०२१)</span></li>
+    <li><span class="en">Sampurnanand Sanskrit University Gold Medal</span><span class="sa">संपूर्णानन्द संस्कृत विश्वविद्यालय सुवर्णपदकः</span></li>
+    <li><span class="en">All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</span><span class="sa">अखिल भारतीय शालक प्रतियोगिता – मीमांसा सुवर्णपदकः (२०१९ & २०२२)</span></li>
+  </ul>
+</section>
+
+<!-- Skills & Expertise -->
+<section id="skills" class="skills">
+  <h2><span class="en">Skills & Expertise</span><span class="sa">कौशलं तथा निपुणता</span></h2>
+  <ul>
+    <li><span class="en">Paninian Grammar</span><span class="sa">पाणिनीय व्याकरणम्</span></li>
+    <li><span class="en">Semantics</span><span class="sa">अर्थशास्त्रम्</span></li>
+    <li><span class="en">Syntax</span><span class="sa">वाक्यविन्यासः</span></li>
+    <li><span class="en">Nyāya Darśana</span><span class="sa">न्यायदर्शनम्</span></li>
+    <li><span class="en">Mīmāṁsā Darśana</span><span class="sa">मीमांसा दर्शनम्</span></li>
+    <li><span class="en">Śrauta Yajña</span><span class="sa">श्रौता यज्ञः</span></li>
+  </ul>
+</section>
+
+<!-- Research & Projects -->
+<section id="projects" class="projects">
+  <h2><span class="en">Research & Projects</span><span class="sa">अनुसन्धानं तथा परियोजनाः</span></h2>
+  <ul>
+    <li><span class="en">"Kātiya-Darśapaurṇamāsīyādhvaryava-Prayogaḥ" – 2-month project internship, Govt. of India (2022)</span>
+        <span class="sa">"कातीय-दर्शपौर्णमासीयाध्वर्यव-प्रयोगः" – २ मास परियोजना, भारत सरकार (२०२२)</span></li>
+  </ul>
+</section>
+
+<!-- Workshops & Mentorship -->
+<section id="workshops" class="workshops">
+  <h2><span class="en">Workshops & Mentorship</span><span class="sa">कार्यशालाः एवं मार्गदर्शनम्</span></h2>
+  <ul>
+    <li><span class="en">National Workshop on "Sanskrit & Computer Science", BHU, 2024</span><span class="sa">राष्ट्रीय कार्यशाला "संस्कृतं च कम्प्यूटर विज्ञान", बीएचयू, २०२४</span></li>
+    <li><span class="en">Mentor, Summer School on "Sanskrit Computational Linguistics", IIIT Hyderabad, 2024</span><span class="sa">मार्गदर्शकः, ग्रीष्म विद्यालयं "संस्कृत कम्प्यूटेशनल भाषाविज्ञान", IIIT हैदराबाद, २०२४</span></li>
+  </ul>
+</section>
+
+<!-- Seminars & Conferences Tabs -->
+<section id="seminars" class="seminars">
+  <h2><span class="en">Seminars & Conferences</span><span class="sa">संस्मारकाणि एवं परिषदाः</span></h2>
+  <div class="tabs">
+    <button class="tablinks" onclick="openTab(event,'International')"><span class="en">International</span><span class="sa">अन्तर्राष्ट्रीय</span></button>
+    <button class="tablinks" onclick="openTab(event,'National')"><span class="en">National</span><span class="sa">राष्ट्रीय</span></button>
+  </div>
+
+  <div id="International" class="tabcontent">
+    <ul>
+      <li><span class="en">International Seminar on NLP – Topic: वाक्यार्थ/शास्त्रार्थ, 2023</span><span class="sa">अन्तर्राष्ट्रीय संगोष्ठी NLP – विषयः वाक्यार्थ/शास्त्रार्थ, २०२३</span></li>
+    </ul>
+  </div>
+
+  <div id="National" class="tabcontent">
+    <ul>
+      <li><span class="en">National Seminar on Computational Linguistics, 2023</span><span class="sa">राष्ट्रीय संगोष्ठी कम्प्यूटेशनल भाषाविज्ञान, २०२३</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="gallery">
+  <h2><span class="en">Gallery</span><span class="sa">दृश्यावलिः</span></h2>
+  <div class="gallery-grid">
+    <img src="image1.jpg" alt="Event 1">
+    <img src="image2.jpg" alt="Event 2">
+    <img src="image3.jpg" alt="Event 3">
+    <img src="image4.jpg" alt="Event 4">
+  </div>
+</section>
+
+<!-- Publications -->
+<section id="publications" class="publications">
+  <h2><span class="en">Publications</span><span class="sa">प्रकाशनानि</span></h2>
+  <ul>
+    <li><span class="en">Title of Paper 1 – Journal/Conference, Year</span><span class="sa">प्रबन्ध शीर्षकम् 1 – जर्नल/परिषद्, वर्ष</span> <a href="#">[PDF]</a></li>
+  </ul>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <h2><span class="en">Contact</span><span class="sa">संपर्क</span></h2>
+  <a href="mailto:your-email@example.com">Email</a>
+  <a href="https://orcid.org/" target="_blank">ORCID</a>
+  <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+  <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+</section>
+
+<!-- Footer -->
+<footer>
+  © 2025 Sudarshan Gautam. All Rights Reserved.
+</footer>
+
+<!-- JS -->
 <script>
-// Language Toggle
-function setLanguage(lang){
-  const en = document.querySelectorAll('.en');
-  const sa = document.querySelectorAll('.sa');
-  const btns = document.querySelectorAll('.lang-btn');
-  btns.forEach(b=>b.classList.remove('active'));
-  if(lang=='en'){ btns[0].classList.add('active'); en.forEach(e=>e.style.display='block'); sa.forEach(s=>s.style.display='none'); }
-  else{ btns[1].classList.add('active'); en.forEach(e=>e.style.display='none'); sa.forEach(s=>s.style.display='block'); }
-}
-
 // Tabs
 function openTab(evt, tabName){
-  const tabs = document.getElementsByClassName('tabcontent');
-  for(let t of tabs) t.style.display='none';
-  const btns = document.getElementsByClassName('tablinks');
-  for(let b of btns) b.classList.remove('active');
-  document.getElementById(tabName).style.display='block';
-  evt.currentTarget.classList.add('active');
+  var i, tabcontent, tablinks;
+  tabcontent=document.getElementsByClassName("tabcontent");
+  for(i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
+  tablinks=document.getElementsByClassName("tablinks");
+  for(i=0;i<tablinks.length;i++){ tablinks[i].className=tablinks[i].className.replace(" active",""); }
+  document.getElementById(tabName).style.display="block";
+  evt.currentTarget.className+=" active";
 }
+document.addEventListener("DOMContentLoaded", function(){ document.getElementsByClassName("tablinks")[0].click(); });
 
-// Accordion
-const acc = document.getElementsByClassName("accordion");
-for (let a of acc){
-  a.addEventListener("click", function(){
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    panel.style.display = (panel.style.display === "block")?"none":"block";
-  });
+// Multilingual
+function switchLanguage(lang){
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.classList.remove('active'));
+  if(lang==='en'){ document.querySelectorAll('.en').forEach(el=>el.style.display='inline'); document.querySelectorAll('.sa').forEach(el=>el.style.display='none'); document.querySelector(".lang-btn[onclick*='en']").classList.add('active'); }
+  else { document.querySelectorAll('.en').forEach(el=>el.style.display='none'); document.querySelectorAll('.sa').forEach(el=>el.style.display='inline'); document.querySelector(".lang-btn[onclick*='sa']").classList.add('active'); }
 }
+switchLanguage('en');
 
 // Live Date & Time
 function updateDateTime(){
-  const now = new Date();
-  const options = {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
-  document.getElementById('datetime').innerText = now.toLocaleDateString('en-US', options);
+  var now=new Date();
+  var options={weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
+  document.getElementById('datetime').innerText=now.toLocaleDateString('en-US', options);
 }
-setInterval(updateDateTime, 1000);
+setInterval(updateDateTime,1000);
 updateDateTime();
-
-// Scroll animations
-const sections = document.querySelectorAll('section');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){ entry.target.classList.add('visible'); }
-  });
-},{threshold:0.2});
-sections.forEach(s=>observer.observe(s));
 </script>
 </body>
 </html>
