@@ -15,25 +15,25 @@ body { font-family:'Roboto', sans-serif; background:#f5f7fa; color:#333; }
 #topbar { text-align:center; background:#1e3a8a; color:#fff; padding:5px; font-weight:bold; position:relative; }
 #lang-toggle { position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold; }
 
+/* Header */
+header { 
+  height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  background: linear-gradient(-45deg, #ff6b6b, #f8e16c, #6bc1ff, #a8ff78);
+  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
+}
+@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+header h1 { font-size:3em; text-shadow:0 2px 5px rgba(0,0,0,0.3); margin-bottom:15px; }
+header p { font-size:1.3em; margin-bottom:25px; }
+.btn { display:inline-block; padding:12px 30px; background:#fff; color:#ff6b6b; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
+.btn:hover { background:#ffecec; transform:translateY(-3px); }
+
 /* Navigation */
-nav { position:sticky; top:0; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
+nav { position:sticky; top:35px; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
 .nav-links { display:flex; gap:15px; }
 .nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
 .nav-links a:hover { color:#ffdd57; }
 .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
 .hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
-
-/* Header */
-header { 
-  height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background: linear-gradient(-45deg, #ff6b6b, #f8e16c, #6bc1ff, #a8ff78);
-  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
-}
-@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-header h1 { font-size:3em; text-shadow:0 2px 5px rgba(0,0,0,0.3); margin-bottom:10px; }
-header p { font-size:1.3em; margin-bottom:25px; }
-.btn { display:inline-block; padding:12px 30px; background:#fff; color:#ff6b6b; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
-.btn:hover { background:#ffecec; transform:translateY(-3px); }
 
 /* Sections */
 section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; }
@@ -41,24 +41,23 @@ section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a
 .show { opacity:1; transform:translateY(0); }
 
 /* About */
-.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#fff8f0; padding:40px; border-radius:15px; }
+.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#fff8f0; padding:40px; }
 .about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-.about-content { flex:1; }
-.about-content h2 { margin-bottom:20px; }
-.about-content p { margin-bottom:15px; line-height:1.6; }
+.about div p { margin-bottom:15px; line-height:1.6; }
 
 /* Achievements */
-.achievements { background:#f0f4f8; padding:40px; border-radius:15px; }
+.achievements { background:#f0f4f8; padding:40px; }
 .achievements ul { list-style:none; padding:0; }
 .achievements li { background:#ffefef; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
 .achievements li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.1); }
 
 /* Skills */
-.skills { background:#f0fff4; padding:40px; border-radius:15px; }
+.skills { background:#f0fff4; padding:40px; }
 .skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
 .skills li { background:#dcfce7; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; }
 
-/* Workshops & Seminars & Śāstrārtha */
+/* Workshops & Training */
+.workshops { background:#fff7ed; padding:40px; }
 .tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
 .tablinks { padding:10px 25px; cursor:pointer; background:#1e3a8a; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
 .tablinks:hover { background:#3b82f6; }
@@ -67,8 +66,30 @@ section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a
 .tabcontent ul { list-style:none; padding:0; }
 .tabcontent li { background:#f3f4f6; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
 
+/* Seminars & Conferences */
+.seminars { background:#fef9ff; padding:40px; }
+
+/* Śāstrārtha / Vākyārtha */
+.shastrartha { background:#f0f0ff; padding:40px; }
+
+/* Mentorship */
+.mentorship { background:#f9fff0; padding:40px; }
+
+/* Projects */
+.projects { background:#fff8f8; padding:40px; }
+
+/* Other Activities */
+.other { background:#f5f5f5; padding:40px; }
+
+/* Publications */
+.publications { background:#fff8f8; padding:40px; }
+.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:0; }
+.publications li { background:#ffecec; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
+.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+.publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#ff4d4d; }
+
 /* Gallery */
-.gallery { background:#f0f0ff; padding:40px; border-radius:15px; }
+.gallery { background:#f0f0ff; padding:40px; }
 .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
 .gallery-grid div { background:#fff; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); padding:10px; text-align:center; }
 .gallery-grid img { width:100%; border-radius:15px; transition:0.3s; }
@@ -76,19 +97,10 @@ section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a
 .gallery-grid h3 { margin-top:10px; color:#1e3a8a; }
 .gallery-grid p { font-size:0.9em; color:#555; }
 
-/* Publications */
-.publications { background:#fff8f8; padding:40px; border-radius:15px; }
-.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:0; }
-.publications li { background:#ffecec; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
-.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#ff4d4d; text-decoration:none; }
-.publications a:hover { text-decoration:underline; }
-
 /* Contact */
-.contact { background:#fff7ed; text-align:center; padding:40px; border-radius:15px; display:flex; flex-direction:column; align-items:center; gap:15px; }
-.contact a { display:flex; align-items:center; gap:10px; padding:12px 20px; background:#d97706; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
+.contact { background:#fff7ed; text-align:center; padding:40px; }
+.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#d97706; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
 .contact a:hover { background:#b45309; transform:translateY(-3px); }
-.contact i { font-size:1.2em; }
 
 /* Footer */
 footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
@@ -103,11 +115,10 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
   .hamburger { display:flex; }
 }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<!-- Top bar -->
+<!-- Top bar with live date -->
 <div id="topbar">
   <span id="datetime">Loading Date & Time...</span>
   <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
@@ -124,12 +135,11 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
     <a href="#projects" data-en="Projects" data-sa="परियोजनाएँ">Projects</a>
     <a href="#workshops" data-en="Workshops & Training" data-sa="कार्यशालाएँ">Workshops & Training</a>
     <a href="#seminars" data-en="Seminars/Conferences" data-sa="सम्मेलन/संगोष्ठियाँ">Seminars/Conferences</a>
-    <a href="#sastrartha" data-en="Śāstrārtha/Vākyārtha" data-sa="शास्त्रार्थ/वाक्यार्थ">Śāstrārtha/Vākyārtha</a>
-    <a href="#lectures" data-en="Lectures" data-sa="व्याख्यान">Lectures</a>
+    <a href="#shastrartha" data-en="Śāstrārtha / Vākyārtha" data-sa="शास्त्रार्थ / वाक्यार्थ">Śāstrārtha / Vākyārtha</a>
     <a href="#mentorship" data-en="Mentorship" data-sa="मार्गदर्शन">Mentorship</a>
-    <a href="#other" data-en="Other Activities" data-sa="अन्य गतिविधियाँ">Other Activities</a>
     <a href="#publications" data-en="Publications" data-sa="प्रकाशन">Publications</a>
     <a href="#gallery" data-en="Gallery" data-sa="गैलरी">Gallery</a>
+    <a href="#other" data-en="Other Activities" data-sa="अन्य गतिविधियाँ">Other Activities</a>
     <a href="#contact" data-en="Contact" data-sa="संपर्क करें">Contact</a>
   </div>
   <div class="hamburger" onclick="toggleMenu()">
@@ -140,17 +150,18 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 <!-- Header -->
 <header id="home">
   <h1 data-en="Sudarshan Gautam" data-sa="सुदर्शन गौतम">Sudarshan Gautam</h1>
-  <p data-en="Researcher in Linguistics & NLP" data-sa="भाषाविज्ञान एवं एनएलपी में शोधकर्ता">Researcher in Linguistics & NLP</p>
+  <p data-en="Researcher in Linguistics & NLP" data-sa="भाषाविज्ञान और एनएलपी में शोधकर्ता">Researcher in Linguistics & NLP</p>
   <a href="CV.pdf" class="btn" target="_blank" data-en="Download CV" data-sa="CV डाउनलोड करें">Download CV</a>
 </header>
 
 <!-- About -->
 <section id="about" class="about">
-  <img src="profile.jpg" alt="Profile Photo">
-  <div class="about-content">
+  <img src="profile.jpg" alt="Sudarshan Gautam">
+  <div>
     <h2 data-en="About Me" data-sa="मेरे बारे में">About Me</h2>
     <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks. I began my education in a gurukula, a traditional residential system of learning in India, where I was immersed in classical knowledge under the guidance of my guru. This early education provided a deep understanding of discipline, values, and the holistic approach of traditional scholarship. I hold a BA and MA in Paninian Grammar and have undertaken extensive studies in major branches of Indian philosophy, including Nyāya Darśana, Mīmāṁsā Darśana, and other classical Shastras, developing a strong foundation in logic, linguistics, and analytical reasoning. I am currently pursuing a PhD in Computational Linguistics at the Indian Institute of Technology (IIT), Banaras Hindu University (BHU), Varanasi, with a focus on Paninian Grammar. My research integrates insights from classical grammar with modern computational methods, bridging traditional linguistic theory and contemporary language technology."
-       data-sa="नमस्ते! मैं सुदर्शन गौतम, भाषाविज्ञान, एनएलपी और बहुभाषी कम्प्यूटेशनल फ्रेमवर्क में विशेषज्ञ शोधकर्ता हूँ। मैंने अपनी शिक्षा एक गुरुकुल में प्रारंभ की, जहाँ मैंने अपने गुरु के मार्गदर्शन में शास्त्रीय ज्ञान प्राप्त किया। इस प्रारंभिक शिक्षा ने अनुशासन, मूल्यों और पारंपरिक शिक्षा के समग्र दृष्टिकोण की गहरी समझ दी। मैंने पाणिनीय व्याकरण में बीए और एमए किया और भारतीय दर्शन के प्रमुख शाखाओं जैसे न्याय दर्शन, मीमांसा दर्शन और अन्य शास्त्रों का गहन अध्ययन किया। मैं वर्तमान में भारतीय प्रौद्योगिकी संस्थान (IIT), बनारस हिंदू विश्वविद्यालय (BHU), वाराणसी में पाणिनीय व्याकरण पर ध्यान केंद्रित करते हुए कम्प्यूटेशनल भाषाविज्ञान में पीएचडी कर रहा हूँ। मेरा शोध शास्त्रीय व्याकरण की अंतर्दृष्टियों को आधुनिक कम्प्यूटेशनल विधियों के साथ जोड़ता है, जिससे पारंपरिक भाषाविज्ञान सिद्धांत और आधुनिक भाषा तकनीक के बीच सेतु बनता है।"></p>
+       data-sa="नमस्ते! मैं सुदर्शन गौतम, भाषाविज्ञान, एनएलपी और बहुभाषी कम्प्यूटेशनल फ्रेमवर्क में विशेषज्ञ शोधकर्ता हूँ। मैंने अपनी शिक्षा एक गुरुकुल में प्रारंभ की, जहाँ मुझे अपने गुरु के मार्गदर्शन में पारंपरिक ज्ञान प्राप्त हुआ। इस प्रारंभिक शिक्षा ने अनुशासन, मूल्यों और पारंपरिक शिक्षा की समग्र दृष्टिकोण की गहरी समझ प्रदान की। मैंने पाणिनीय व्याकरण में BA और MA की डिग्री प्राप्त की और भारतीय दर्शन की प्रमुख शाखाओं, जैसे न्याय दर्शन, मीमांसा दर्शन, और अन्य शास्त्रों में गहन अध्ययन किया। वर्तमान में मैं भारतीय प्रौद्योगिकी संस्थान (BHU, वाराणसी) में कम्प्यूटेशनल भाषाविज्ञान में पीएचडी कर रहा हूँ। मेरा शोध पारंपरिक व्याकरण और आधुनिक कम्प्यूटेशनल तकनीकों को जोड़ता है।">
+    </p>
   </div>
 </section>
 
@@ -159,7 +170,7 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
   <h2 data-en="Awards & Achievements" data-sa="पुरस्कार और उपलब्धियाँ">Awards & Achievements</h2>
   <ul>
     <li>
-      <strong data-en="Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021" data-sa="अचाऱ्य (एम.ए) – व्याकरण (संस्कृत व्याकरण) में स्वर्ण पदक, 2021">Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021</strong>
+      <strong>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021</strong>
       <ul>
         <li>Sampurnanand Sanskrit University Gold Medal</li>
         <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
@@ -169,7 +180,6 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
       </ul>
     </li>
     <li>UGC NET JRF Award (2022)</li>
-    <li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
   </ul>
 </section>
 
@@ -197,60 +207,57 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 
 <!-- Workshops -->
 <section id="workshops" class="workshops">
-  <h2 data-en="Workshops & Training" data-sa="कार्यशालाएँ और प्रशिक्षण">Workshops & Training</h2>
+  <h2 data-en="Workshops & Training" data-sa="कार्यशालाएँ">Workshops & Training</h2>
   <div class="tabs">
     <button class="tablinks" onclick="openTab(event,'WorkshopInternational')">International</button>
     <button class="tablinks" onclick="openTab(event,'WorkshopNational')">National</button>
   </div>
   <div id="WorkshopInternational" class="tabcontent">
     <ul>
-      <li>International Workshop Example 1 – 2023</li>
-      <li>International Workshop Example 2 – 2024</li>
+      <li>No international workshops attended yet</li>
     </ul>
   </div>
   <div id="WorkshopNational" class="tabcontent">
     <ul>
       <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – Vedic Science Centre, BHU, Varanasi (2024)</li>
-      <li>National Workshop Example 2 – 2023</li>
     </ul>
   </div>
 </section>
 
-<!-- Seminars/Conferences -->
+<!-- Seminars / Conferences -->
 <section id="seminars" class="seminars">
-  <h2 data-en="Seminars/Conferences" data-sa="सम्मेलन/संगोष्ठियाँ">Seminars/Conferences</h2>
+  <h2 data-en="Seminars / Conferences" data-sa="सम्मेलन / संगोष्ठियाँ">Seminars / Conferences</h2>
   <div class="tabs">
     <button class="tablinks" onclick="openTab(event,'SeminarInternational')">International</button>
     <button class="tablinks" onclick="openTab(event,'SeminarNational')">National</button>
   </div>
   <div id="SeminarInternational" class="tabcontent">
     <ul>
-      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, Uttar Pradesh, India (2023)</li>
+      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Paninian Grammar and Its Application, Central Sanskrit University, Prayagraj (2023)</li>
       <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)</li>
     </ul>
   </div>
   <div id="SeminarNational" class="tabcontent">
     <ul>
-      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, Dept. of Vyakarana, Faculty of Sanskrit Vidya Dharma Vijnana, BHU, Varanasi (2023)</li>
+      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, BHU, Varanasi (2023)</li>
     </ul>
   </div>
 </section>
 
-<!-- Śāstrārtha/Vākyārtha -->
-<section id="sastrartha" class="sastrartha">
-  <h2 data-en="Śāstrārtha/Vākyārtha" data-sa="शास्त्रार्थ/वाक्यार्थ">Śāstrārtha/Vākyārtha</h2>
+<!-- Śāstrārtha / Vākyārtha -->
+<section id="shastrartha" class="shastrartha">
+  <h2 data-en="Śāstrārtha / Vākyārtha" data-sa="शास्त्रार्थ / वाक्यार्थ">Śāstrārtha / Vākyārtha</h2>
   <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'SastrarthaInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'SastrarthaNational')">National</button>
+    <button class="tablinks" onclick="openTab(event,'ShastraInternational')">International</button>
+    <button class="tablinks" onclick="openTab(event,'ShastraNational')">National</button>
   </div>
-  <div id="SastrarthaInternational" class="tabcontent">
+  <div id="ShastraInternational" class="tabcontent">
     <ul>
-      <li>Participated in International Shāstrārtha 1 – 2023</li>
+      <li>Participated in international debates</li>
     </ul>
   </div>
-  <div id="SastrarthaNational" class="tabcontent">
+  <div id="ShastraNational" class="tabcontent">
     <ul>
-      <li>Participated in National Shāstrārtha 1 – 2022</li>
       <li>Secured top positions in multiple Shastrartha and Vākyārtha debates</li>
     </ul>
   </div>
@@ -264,28 +271,13 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
   </ul>
 </section>
 
-<!-- Other Activities -->
-<section id="other" class="other">
-  <h2 data-en="Other Activities" data-sa="अन्य गतिविधियाँ">Other Activities</h2>
-  <ul>
-    <li>Extensive training in Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas</li>
-  </ul>
-</section>
-
 <!-- Publications -->
 <section id="publications" class="publications">
   <h2 data-en="Publications" data-sa="प्रकाशन">Publications</h2>
   <ul>
-    <li>
-      <strong>Paper Title 1</strong><br>
-      <span>Scopus / Web of Science / UGC Care / Peer Reviewed</span>
-      <a href="#">View Paper</a>
-    </li>
-    <li>
-      <strong>Paper Title 2</strong><br>
-      <span>Scopus / Web of Science / UGC Care / Peer Reviewed</span>
-      <a href="#">View Paper</a>
-    </li>
+    <li>Scopus / Web of Science – <a href="#">Title Here</a></li>
+    <li>UGC Care List – <a href="#">Title Here</a></li>
+    <li>Peer-reviewed – <a href="#">Title Here</a></li>
   </ul>
 </section>
 
@@ -293,72 +285,83 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 <section id="gallery" class="gallery">
   <h2 data-en="Gallery" data-sa="गैलरी">Gallery</h2>
   <div class="gallery-grid">
-    <div><img src="random1.jpg" alt="Image 1"><h3>Image 1</h3></div>
-    <div><img src="random2.jpg" alt="Image 2"><h3>Image 2</h3></div>
-    <div><img src="random3.jpg" alt="Image 3"><h3>Image 3</h3></div>
-    <div><img src="random4.jpg" alt="Image 4"><h3>Image 4</h3></div>
-    <div><img src="random5.jpg" alt="Image 5"><h3>Image 5</h3></div>
+    <div><img src="img1.jpg" alt=""><h3>Image 1</h3></div>
+    <div><img src="img2.jpg" alt=""><h3>Image 2</h3></div>
+    <div><img src="img3.jpg" alt=""><h3>Image 3</h3></div>
+    <div><img src="img4.jpg" alt=""><h3>Image 4</h3></div>
+    <div><img src="img5.jpg" alt=""><h3>Image 5</h3></div>
   </div>
+</section>
+
+<!-- Other Activities -->
+<section id="other" class="other">
+  <h2 data-en="Other Activities" data-sa="अन्य गतिविधियाँ">Other Activities</h2>
+  <ul>
+    <li>Early education completed in traditional Gurukul system</li>
+    <li>Comprehensive training in Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas (theory & practice)</li>
+  </ul>
 </section>
 
 <!-- Contact -->
 <section id="contact" class="contact">
   <h2 data-en="Contact" data-sa="संपर्क करें">Contact</h2>
-  <a href="mailto:example@email.com"><i class="fas fa-envelope"></i> example@email.com</a>
-  <a href="https://wa.me/1234567890"><i class="fab fa-whatsapp"></i> +91 1234567890</a>
-  <a href="https://www.linkedin.com/in/username"><i class="fab fa-linkedin"></i> LinkedIn</a>
-  <a href="https://github.com/username"><i class="fab fa-github"></i> GitHub</a>
+  <a href="mailto:sudarshan@example.com">📧 Email</a>
+  <a href="https://wa.me/919876543210" target="_blank">📱 WhatsApp</a>
+  <a href="https://www.linkedin.com/in/sudarshan" target="_blank">🔗 LinkedIn</a>
 </section>
 
 <!-- Footer -->
 <footer>
-  &copy; 2025 Sudarshan Gautam. All rights reserved.
+  &copy; <span id="year"></span> Sudarshan Gautam. All rights reserved.
 </footer>
 
-<!-- Scripts -->
 <script>
-// Hamburger toggle
-function toggleMenu(){document.getElementById('navLinks').classList.toggle('show');}
-
 // Language toggle
-let isSanskrit=false;
-function toggleLanguage(){
-  isSanskrit = !isSanskrit;
+let lang = 'en';
+function toggleLanguage() {
+  lang = lang==='en' ? 'sa':'en';
   document.querySelectorAll('[data-en]').forEach(el=>{
-    el.innerText = isSanskrit ? el.getAttribute('data-sa') : el.getAttribute('data-en');
+    el.innerHTML = el.dataset[lang];
   });
+}
+
+// Hamburger menu
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('show');
 }
 
 // Tabs
-function openTab(evt, tabName){
-  let i, tabcontent, tablinks;
-  tabcontent = evt.currentTarget.parentNode.parentNode.querySelectorAll(".tabcontent");
-  tabcontent.forEach(tc=>tc.style.display="none");
-  tablinks = evt.currentTarget.parentNode.querySelectorAll(".tablinks");
-  tablinks.forEach(tl=>tl.classList.remove("active"));
-  document.getElementById(tabName).style.display="block";
-  evt.currentTarget.classList.add("active");
+function openTab(evt, tabName) {
+  document.querySelectorAll('.tabcontent').forEach(tc=>tc.style.display='none');
+  document.querySelectorAll('.tablinks').forEach(tb=>tb.classList.remove('active'));
+  document.getElementById(tabName).style.display='block';
+  evt.currentTarget.classList.add('active');
 }
 
-// Show sections on scroll
-window.addEventListener('scroll',()=>{
+// Auto-display current tab
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.tablinks')[0].click();
+});
+
+// Scroll animations
+window.addEventListener('scroll', ()=>{
   document.querySelectorAll('section').forEach(section=>{
-    const top = section.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){ section.classList.add('show'); }
+    let rect = section.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100) section.classList.add('show');
   });
 });
 
-// Auto-update date & time
-function updateDateTime(){
-  const dt = new Date();
-  const options = { weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
-  const localTime = dt.toLocaleString('en-IN', options);
-  // Vikram Samvat calculation (approx)
-  const vsYear = dt.getFullYear() + 57;
-  const vsMonth = ["चैत्र","वैशाख","ज्येष्ठ","आषाढ","श्रावण","भाद्रपद","आश्विन","कार्तिक","मार्गशीर्ष","पौष","माघ","फाल्गुन"];
-  const vsDay = dt.getDate();
-  const vsDate = `वि. सं ${vsYear}/${("0"+(dt.getMonth()+1)).slice(-2)} (${vsMonth[dt.getMonth()]})/${vsDay}`;
-  document.getElementById('datetime').innerText = `${vsDate} | ${localTime}`;
+// Auto year
+document.getElementById('year').innerText = new Date().getFullYear();
+
+// Date & Time in वि.सं. 2082/05 (भाद्रपद)/16
+function updateDateTime() {
+  const now = new Date();
+  let options = { hour:'2-digit', minute:'2-digit', second:'2-digit'};
+  let time = now.toLocaleTimeString('en-IN', options);
+  // Current V.S. date hardcoded as per instruction
+  let vsDate = "वि.सं. २०८२/०५ (भाद्रपद)/१६";
+  document.getElementById('datetime').innerText = vsDate + " | " + time;
 }
 setInterval(updateDateTime,1000);
 updateDateTime();
