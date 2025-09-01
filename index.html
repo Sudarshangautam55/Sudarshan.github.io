@@ -1,348 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sudarshan Gautam | Academic Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* Base Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body { font-family:'Roboto', sans-serif; background:#f5f7fa; color:#333; }
+import React, { useEffect, useMemo, useState } from "react";
 
-/* Top Bar */
-#topbar { text-align:center; background:#1e3a8a; color:#fff; padding:5px; font-weight:bold; position:relative; }
-#lang-toggle { position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold; }
-
-/* Header */
-header { 
-  height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background: linear-gradient(-45deg, #ff6b6b, #f8e16c, #6bc1ff, #a8ff78);
-  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
-}
-@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-header h1 { font-size:3em; text-shadow:0 2px 5px rgba(0,0,0,0.3); margin-bottom:15px; }
-header p { font-size:1.3em; margin-bottom:25px; }
-.btn { display:inline-block; padding:12px 30px; background:#fff; color:#ff6b6b; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
-.btn:hover { background:#ffecec; transform:translateY(-3px); }
-
-/* Navigation */
-nav { position:sticky; top:35px; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
-.nav-links { display:flex; gap:15px; }
-.nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
-.nav-links a:hover { color:#ffdd57; }
-.hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
-.hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
-
-/* Sections */
-section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; }
-section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a; }
-.show { opacity:1; transform:translateY(0); }
-
-/* About */
-.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#fff8f0; padding:40px; }
-.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-.about div p { margin-bottom:15px; line-height:1.6; }
-
-/* Awards & Achievements */
-.achievements { background:#f0f4f8; padding:40px; }
-.achievements ul { list-style:none; padding:0; }
-.achievements li { background:#ffefef; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
-.achievements li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.1); }
-
-/* Skills & Expertise */
-.skills { background:#f0fff4; padding:40px; }
-.skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
-.skills li { background:#dcfce7; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; }
-
-/* Workshops & Training */
-.workshops { background:#fff7ed; padding:40px; }
-.tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
-.tablinks { padding:10px 25px; cursor:pointer; background:#1e3a8a; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
-.tablinks:hover { background:#3b82f6; }
-.tablinks.active { background:#ff6b6b; }
-.tabcontent { display:none; }
-.tabcontent ul { list-style:none; padding:0; }
-.tabcontent li { background:#f3f4f6; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
-
-/* Seminars/Conferences */
-.seminars { background:#fef9ff; padding:40px; }
-
-/* Lectures */
-.lectures { background:#f9fff0; padding:40px; }
-
-/* Gallery */
-.gallery { background:#f0f0ff; padding:40px; }
-.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.gallery-grid div { background:#fff; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); padding:10px; text-align:center; }
-.gallery-grid img { width:100%; border-radius:15px; transition:0.3s; }
-.gallery-grid img:hover { transform:scale(1.05); }
-.gallery-grid h3 { margin-top:10px; color:#1e3a8a; }
-.gallery-grid p { font-size:0.9em; color:#555; }
-
-/* Publications */
-.publications { background:#fff8f8; padding:40px; }
-.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:0; }
-.publications li { background:#ffecec; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
-.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#ff4d4d; }
-
-/* Additional Info */
-.additional { background:#f5f5f5; padding:40px; }
-
-/* Contact */
-.contact { background:#fff7ed; text-align:center; padding:40px; }
-.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#d97706; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
-.contact a:hover { background:#b45309; transform:translateY(-3px); }
-
-/* Footer */
-footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
-
-/* Responsive */
-@media(max-width:768px){
-  .about { flex-direction:column; text-align:center; }
-  .about img { margin-bottom:20px; }
-  .gallery-grid { grid-template-columns:1fr; }
-  .nav-links { display:none; flex-direction:column; background:#1e3a8a; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
-  .nav-links.show { display:flex; }
-  .hamburger { display:flex; }
-}
-</style>
-</head>
-<body>
-
-<!-- Top bar with live date -->
-<div id="topbar">
-  <span id="datetime">Loading Date & Time...</span>
-  <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
-</div>
-
-<!-- Navigation -->
-<nav>
-  <div class="logo" style="color:#fff; font-weight:bold;">Sudarshan Gautam</div>
-  <div class="nav-links" id="navLinks">
-    <a href="#home" data-en="Home" data-sa="मुख्यपृष्ठम्">Home</a>
-    <a href="#about" data-en="About Me" data-sa="मदीयविषये">About Me</a>
-    <a href="#achievements" data-en="Awards & Achievements" data-sa="पुरस्काराः एवम् उपलब्धयः">Awards & Achievements</a>
-    <a href="#skills" data-en="Skills & Expertise" data-sa="प्रावीण्यं / विशेषज्ञता">Skills & Expertise</a>
-    <a href="#workshops" data-en="Workshops" data-sa="कार्यशालाः">Workshops</a>
-    <a href="#seminars" data-en="Seminars/Conferences" data-sa="सम्मेलनानि/सङ्गोष्ठ्यश्च ">Seminars/Conferences</a>
-    <a href="#lectures" data-en="Lectures" data-sa="व्याख्यानानि">Lectures</a>
-    <a href="#publications" data-en="Publications" data-sa="प्रकाशनानि">Publications</a>
-    <a href="#gallery" data-en="Gallery" data-sa="चित्रपटलम्">Gallery</a>
-    <a href="#additional" data-en="Additional Info" data-sa="अतिरिक्त-प्रमेयाः">Additional Info</a>
-    <a href="#contact" data-en="Contact" data-sa="सम्पर्कः">Contact</a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div><div></div><div></div>
-  </div>
-</nav>
-
-<!-- Header -->
-<header id="home">
-  <h1 data-en="Sudarshan Gautam" data-sa="सुदर्शन गौतम">Sudarshan Gautam</h1>
-  <p data-en="Researcher in Linguistics & NLP" data-sa="भाषाविज्ञानस्य, पारम्परिकवैदिकसंस्कृतसाहित्यस्य, NLP इत्यस्य च शोधार्थी">Researcher in Linguistics, Traditional Vedic Literature, Sanskrit Literature, Indian Knowledge System (IKS) & NLP</p>
-  <a href="CV.pdf" class="btn" target="_blank" data-en="Download CV" data-sa="CV उपादीयताम्">Download CV</a>
-</header>
-
-<!-- About -->
-<section id="about" class="about">
-  <img src="profile.jpg" alt="Sudarshan Gautam">
-  <div>
-    <h2 data-en="About Me" data-sa="मदीयविषये">About Me</h2>
-    <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.  
-       data-sa="नमस्ते! अहं सुदर्शन-गौतमः, भाषाविज्ञाने, NLP एवं बहुभाषीय सङ्गणकीयविषये शोधकर्ता।">
-       Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks.I began my education in a gurukula, a traditional residential system of learning in India, where I was immersed in classical knowledge under the guidance of my guru. This early education provided a deep understanding of discipline, values, and the holistic approach of traditional scholarship.
-
-I hold a BA and MA in Paninian Grammar and have undertaken extensive studies in major branches of Indian philosophy, including Nyāya Darśana, Mīmāṃsā Darśana, and other classical Shastras, developing a strong foundation in logic, linguistics, and analytical reasoning.
-
-I am currently pursuing a PhD in Computational Linguistics at the Indian Institute of Technology (IIT), Banaras Hindu University (BHU), Varanasi), with a focus on Paninian Grammar. My research integrates insights from classical grammar with modern computational methods, bridging traditional linguistic theory and contemporary language technology."
-    </p>
-    <p><strong data-en="Education" data-sa="शिक्षा">Education:</strong> PhD/MSc in Linguistics, University Name</p>
-    <p><strong data-en="Interest (रुचि)" data-sa="अभिरुचिः (Interest)">Interest:</strong> Paninian Grammar, Semantic Analysis, Indian Knowledge Traditions</p>
-    <p><strong data-en="Introduction" data-sa="परिचयः">Introduction:</strong> Comprehensive training in Vyākaraṇa (Pāṇinian Grammar), Nyāya, Mīmāṁsā, Vedānta, and Vedic Śrauta Yajñas both in theory and practice.</p>
-  </div>
-</section>
-
-<!-- Awards & Achievements -->
-<section id="achievements" class="achievements">
-  <h2 data-en="Awards & Achievements" data-sa="पुरस्कार और उपलब्धियाँ">Awards & Achievements</h2>
-  <ul>
-    <li><strong>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021</strong>
-      <ul>
-        <li>Sampurnanand Sanskrit University Gold Medal</li>
-        <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
-        <li>Shri Vimal Kumar Poddar Gold Medal</li>
-        <li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
-        <li>Mahanta Rameshwar Puri Gold Medal</li>
-      </ul>
-    </li>
-    <li>UGC NET JRF Award (2022)</li>
-    <li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
-    <li>Top positions in multiple Shastrartha (philosophical debates) and Vakyartha (interpretative discussions)</li>
-  </ul>
-</section>
-
-<!-- Skills -->
-<section id="skills" class="skills">
-  <h2 data-en="Skills & Expertise" data-sa="कौशल और विशेषज्ञता">Skills & Expertise</h2>
-  <ul>
-    <li>Paninian Grammar</li>
-    <li>Semantics</li>
-    <li>Syntax</li>
-    <li>Nyāya Darśana</li>
-    <li>Mīmāṁsā Darśana</li>
-    <li>Śrauta Yajña</li>
-    <li>Indian Knowledge Tradition</li>
-  </ul>
-</section>
-
-<!-- Workshops -->
-<section id="workshops" class="workshops">
-  <h2 data-en="Workshops & Training" data-sa="कार्यशालाएँ">Workshops & Training</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'WorkshopInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'WorkshopNational')">National</button>
-  </div>
-  <div id="WorkshopInternational" class="tabcontent">
-    <ul>
-      <li>International Workshop Example 1 – 2023</li>
-      <li>International Workshop Example 2 – 2024</li>
-    </ul>
-  </div>
-  <div id="WorkshopNational" class="tabcontent">
-    <ul>
-      <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – BHU, Varanasi (2024)</li>
-      <li>National Workshop Example 2 – 2023</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Seminars & Conferences -->
-<section id="seminars" class="seminars">
-  <h2 data-en="Seminars/Conferences" data-sa="सम्मेलन/संगोष्ठियाँ">Seminars/Conferences</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'SeminarInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'SeminarNational')">National</button>
-  </div>
-  <div id="SeminarInternational" class="tabcontent">
-    <ul>
-      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Central Sanskrit University, Prayagraj (2023)</li>
-    </ul>
-  </div>
-  <div id="SeminarNational" class="tabcontent">
-    <ul>
-      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, BHU, Varanasi (2023)</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Lectures -->
-<section id="lectures" class="lectures">
-  <h2 data-en="Lectures" data-sa="व्याख्यान">Lectures</h2>
-  <ul>
-    <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)</li>
-  </ul>
-</section>
-
-<!-- Publications -->
-<section id="publications" class="publications">
-  <h2 data-en="Publications" data-sa="प्रकाशन">Publications</h2>
-  <ul>
-    <li>"Compounding in Universal Semantic Representation" – <em>Journal of Linguistics</em>, 2024 
-      <a href="https://example.com/publication1" target="_blank">[Link]</a></li>
-    <li>"Paninian Grammar for NLP" – <em>International Conference on Sanskrit Computing</em>, 2023 
-      <a href="https://example.com/publication2" target="_blank">[Link]</a></li>
-    <li>"Semantic Analysis of Tatpuruṣa Compounds" – <em>Indian Linguistics Journal</em>, 2022 
-      <a href="https://example.com/publication3" target="_blank">[Link]</a></li>
-  </ul>
-</section>
-
-<!-- Gallery -->
-<section id="gallery" class="gallery">
-  <h2 data-en="Gallery" data-sa="गैलरी">Gallery</h2>
-  <div class="gallery-grid">
-    <div>
-      <img src="gallery1.jpg" alt="Gallery 1">
-      <h3>Workshop on Paninian Grammar</h3>
-      <p>Interactive session with students and scholars</p>
-    </div>
-    <div>
-      <img src="gallery2.jpg" alt="Gallery 2">
-      <h3>Conference on NLP & Sanskrit</h3>
-      <p>Presentation of research papers</p>
-    </div>
-    <div>
-      <img src="gallery3.jpg" alt="Gallery 3">
-      <h3>Traditional Yajña Ceremony</h3>
-      <p>Participation in Vedic ritual</p>
-    </div>
-  </div>
-</section>
-
-<!-- Additional Info -->
-<section id="additional" class="additional">
-  <h2 data-en="Additional Info" data-sa="अतिरिक्त जानकारी">Additional Info</h2>
-  <p>Fluent in Sanskrit, Hindi, English, and Nepali. Experienced in research, teaching, workshops, and conferences.</p>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="contact">
-  <h2 data-en="Contact" data-sa="संपर्क करें">Contact</h2>
-  <a href="mailto:sudarshan@example.com" data-en="Email" data-sa="ईमेल">Email</a>
-  <a href="tel:+919876543210" data-en="Phone" data-sa="फोन">Phone</a>
-  <a href="https://linkedin.com/in/sudarshangautam" target="_blank" data-en="LinkedIn" data-sa="लिंक्डइन">LinkedIn</a>
-</section>
-
-<!-- Footer -->
-<footer>
-  &copy; 2025 Sudarshan Gautam. All Rights Reserved.
-</footer>
-
-<script>
-// Hamburger toggle
-function toggleMenu() { document.getElementById("navLinks").classList.toggle("show"); }
-
-// Tabs
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i=0;i<tablinks.length;i++){ tablinks[i].className = tablinks[i].className.replace(" active",""); }
-  document.getElementById(tabName).style.display="block";
-  evt.currentTarget.className += " active";
-}
-
-// Scroll animation
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", function(){
-  sections.forEach(section=>{
-    const rect = section.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){ section.classList.add("show"); }
+export default function Portfolio() {
+  const [lang, setLang] = useState<"en" | "sa">("en");
+  const [activeTab, setActiveTab] = useState<{ [k: string]: string }>({
+    workshops: "national",
+    seminars: "national",
   });
-});
+  const [now, setNow] = useState(new Date());
 
-// Live Date & Time (Gregorian + Vikram Samvat)
-function updateDateTime(){
-  const now = new Date();
-  const options = {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
-  let greg = now.toLocaleString('en-US', options);
-  let vikramSamvatYear = now.getFullYear() + 57; // Approximate
-  let vikramSamvat = `वि.सं. ${vikramSamvatYear} / ${now.toLocaleDateString()}`;
-  document.getElementById("datetime").innerText = `${greg} | ${vikramSamvat}`;
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  // --- Date Formats ---
+  const monthsEn = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+
+  const adDate = useMemo(() => {
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = monthsEn[now.getMonth()];
+    const year = now.getFullYear();
+    return `${day}, ${month}, ${year}`;
+  }, [now]);
+
+  const vikramSamvatDate = useMemo(() => {
+    const vsYear = now.getFullYear() + 57; // Approximate
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    return `वि.सं ${vsYear} — वर्ष ${vsYear}, महिना ${month}, दिन ${day}`;
+  }, [now]);
+
+  // --- Multilingual Text ---
+  const t = {
+    en: {
+      name: "Sudarshan Gautam",
+      heroSub: "Researcher in Linguistics, Traditional Vedic Literature, Sanskrit Literature, Indian Knowledge System (IKS) & NLP",
+      nav: {
+        home: "Home", about: "About Me", awards: "Awards & Achievements",
+        skills: "Skills & Expertise", workshops: "Workshops",
+        seminars: "Seminars/Conferences", lectures: "Lectures",
+        publications: "Publications", gallery: "Gallery", contact: "Contact"
+      },
+      buttons: { cv: "Download CV", viewDoc: "View Document" },
+      about: {
+        heading: "About Me",
+        p1: "I began my education in a gurukula, a traditional residential system of learning, where I was immersed in classical knowledge under the guidance of my guru. This early education provided me with a deep understanding of discipline, values, and the holistic approach of traditional scholarship.",
+        p2: "After completing my B.A (Shastri) and M.A (Acharya) in Pāṇinian Grammar, I studied major branches of Indian philosophy, including Nyāya Darśana, Mīmāṃsā Darśana, and other classical Shastras, gaining a strong foundation in logic, linguistics, and analytical reasoning.",
+        p3: "I am currently pursuing a PhD in Computational Linguistics at the Indian Institute of Technology (IIT), Banaras Hindu University (BHU), Varanasi, focusing on Paninian Grammar. My research combines insights from classical grammar with modern computational methods, bridging traditional linguistic theory and contemporary language technology."
+      },
+      awards: "Awards & Achievements",
+      skills: "Skills & Expertise",
+      ws: { heading: "Workshops & Training", national: "National", international: "International" },
+      sem: { heading: "Seminars/Conferences", national: "National", international: "International" },
+      lectures: "Lectures",
+      publications: "Publications",
+      gallery: "Gallery",
+      additional: "Additional Info",
+      contact: "Contact",
+      topbar: { ad: (s: string) => `AD — ${s}` },
+    },
+    sa: {
+      name: "सुदर्शनः गौतमः",
+      heroSub: "भाषाविज्ञानम्, वैदिकपरम्परा, संस्कृतसाहित्यं, भारतीयज्ञानपरम्परा (IKS), च तथा NLP इत्यत्र शोधकर्ता",
+      nav: {
+        home: "मुख्यम्", about: "मदीयविषये", awards: "पुरस्काराः च उपलब्धयः",
+        skills: "कौशलम् विशेषज्ञताच", workshops: "कार्यशालाः", seminars: "सम्मेलनानि/सङ्गोष्ठ्यः",
+        lectures: "व्याख्यानानि", publications: "प्रकाशनानि", gallery: "चित्रसमाहारः", contact: "सम्पर्कः"
+      },
+      buttons: { cv: "जीवनवृत्तम् आदाय", viewDoc: "दस्तावेजं पश्यतु" },
+      about: {
+        heading: "मदीयविषये",
+        p1: "गुरुकुले मम अध्ययनस्य आरम्भः अभवत्—यत्र गुरोः सन्निधौ पारम्परिके शिक्षणप्रणाली उपवसन् अहं शास्त्रीयज्ञानसम्पद् निमग्नः आसम्। अस्य पूर्वस्य शिक्षणस्य परिणामः अनुशासनस्य मूल्यानां च गम्भीरबोधः तथा समग्रविद्यापद्धतेः अवगमः।",
+        p2: "शास्त्री (B.A.) तथा आचार्य (M.A.) इति पाणिनीयव्याकरणविशये अध्ययनं कृत्वा अहं न्यायदर्शनं मीमांसादर्शनं चान्ये च शास्त्रवर्गाः अवगतम्; तेन तर्के, भाषाविज्ञाने, विश्लेषणकौशले च दृढं आधारं प्राप्तम्।",
+        p3: "वरणास्यां भारतीयतन्त्रज्ञानसंस्थाने (IIT-BHU) सङ्गणकभाषाविज्ञानविषये अहं पीएच्.डी. करोमि, पाणिनीयव्याकरणे विशेषदृष्ट्या। मदीयम् अनुसंधानं पारम्परिकव्याकरणतत्त्वानि आधुनिकसङ्गणकीयपद्धतिभिः संयोजयति।"
+      },
+      awards: "पुरस्काराः च उपलब्धयः",
+      skills: "कौशलम् विशेषज्ञताच",
+      ws: { heading: "कार्यशालाः", national: "राष्ट्रीया:", international: "आन्तर्राष्‍ट्रीया:" },
+      sem: { heading: "सम्मेलनानि/सङ्गोष्ठ्यः", national: "राष्ट्रीया:", international: "आन्तर्राष्‍ट्रीया:" },
+      lectures: "व्याख्यानानि",
+      publications: "प्रकाशनानि",
+      gallery: "चित्रसमाहारः",
+      additional: "अतिरिक्त-विवरणम्",
+      contact: "सम्पर्कः",
+      topbar: { ad: (s: string) => `वैश्विक संवत् — ${s}` },
+    },
+  } as const;
+
+  const txt = t[lang];
+
+  const gallery = useMemo(() => [
+    { src: "https://picsum.photos/seed/sg1/800/600", title: "Workshop on Pāṇinian Grammar", caption: "Interactive session with students and scholars." },
+    { src: "https://picsum.photos/seed/sg2/800/600", title: "Conference on NLP & Sanskrit", caption: "Presented research on USR compounding." },
+    { src: "https://picsum.photos/seed/sg3/800/600", title: "Traditional Yajña Ceremony", caption: "Participation in Vedic ritual context." },
+    { src: "https://picsum.photos/seed/sg4/800/600", title: "Seminar at BHU", caption: "Discussion on computational Paninian models." },
+    { src: "https://picsum.photos/seed/sg5/800/600", title: "Lecture on Śābdabodha", caption: "Bridging traditional theory and NLP." },
+    { src: "https://picsum.photos/seed/sg6/800/600", title: "Shāstrārtha Roundtable", caption: "Debate on compound semantics." },
+  ], []);
+
+  const AwardCard: React.FC<{ title: string; bullets?: string[]; docUrl?: string }> = ({ title, bullets = [], docUrl = "#" }) => (
+    <div className="bg-white/70 backdrop-blur rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+      <h4 className="font-semibold text-lg mb-2">{title}</h4>
+      {bullets.length > 0 && (
+        <ul className="list-disc pl-5 space-y-1 text-sm">
+          {bullets.map((b,i) => <li key={i}>{b}</li>)}
+        </ul>
+      )}
+      <div className="mt-4">
+        <a href={docUrl} target="_blank" className="inline-block px-4 py-2 rounded-full bg-rose-600 text-white font-medium hover:bg-rose-700">
+          {txt.buttons.viewDoc}
+        </a>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      {/* Top Bar */}
+      <div className="relative w-full bg-indigo-900 text-white text-sm py-2 px-4 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-0.5 md:flex-row md:gap-4">
+          <span className="font-medium">{txt.topbar.ad(adDate)}</span>
+          <span className="opacity-80">{vikramSamvatDate}</span>
+        </div>
+        <button onClick={() => setLang(l => l === "en" ? "sa" : "en")} 
+          className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg bg-rose-500 hover:bg-rose-600 px-3 py-1 text-xs font-semibold">
+          {lang === "en" ? "संस्कृत / English" : "English / संस्कृत"}
+        </button>
+      </div>
+
+      {/* Header */}
+      <header className="h-[80vh] grid place-items-center text-center text-white"
+        style={{
+          backgroundImage: "linear-gradient(-45deg,#ff6b6b,#f8e16c,#6bc1ff,#a8ff78)",
+          backgroundSize: "400% 400%",
+          animation: "gradientShift 20s ease infinite"
+        }}
+      >
+        <div className="max-w-3xl px-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow">{txt.name}</h1>
+          <p className="mt-4 text-lg md:text-xl opacity-95">{txt.heroSub}</p>
+          <a href="#" className="inline-block mt-8 rounded-full bg-white text-rose-600 font-bold px-6 py-3 hover:translate-y-[-2px] transition">{txt.buttons.cv}</a>
+        </div>
+      </header>
+
+      {/* About */}
+      <section id="about" className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-indigo-900 text-center mb-10">{txt.about.heading}</h2>
+        <div className="grid md:grid-cols-[260px_1fr] gap-8 items-start bg-white rounded-2xl p-6 shadow">
+          <img src="https://picsum.photos/seed/profileSG/500/500" alt="Profile" className="w-52 h-52 md:w-64 md:h-64 object-cover rounded-full shadow"/>
+          <div className="space-y-4 leading-relaxed">
+            <p>{txt.about.p1}</p>
+            <p>{txt.about.p2}</p>
+            <p>{txt.about.p3}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section id="gallery" className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-indigo-900 text-center mb-10">{txt.gallery}</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {gallery.map((g, i) => (
+            <div key={i} className="rounded-2xl overflow-hidden shadow hover:shadow-lg transition bg-white">
+              <img src={g.src} alt={g.title} className="w-full h-48 object-cover"/>
+              <div className="p-4">
+                <h4 className="font-semibold">{g.title}</h4>
+                <p className="text-sm opacity-80">{g.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Awards / Skills / Publications / Contact sections can be added similarly using same Tailwind + cards pattern */}
+
+      <style>{`
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
+    </div>
+  );
 }
-setInterval(updateDateTime,1000);
-updateDateTime();
-
-// Multilingual toggle
-let currentLang = 'en';
-function toggleLanguage(){
-  currentLang = currentLang === 'en' ? 'sa' : 'en';
-  document.querySelectorAll('[data-en]').forEach(el=>{ el.innerText = el.getAttribute(`data-${currentLang}`); });
-}
-</script>
-
-</body>
-</html>
