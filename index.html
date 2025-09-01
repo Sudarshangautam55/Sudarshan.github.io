@@ -190,6 +190,29 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
   .nav-links.show { display:flex; }
   .hamburger { display:flex; }
 }
+ /* --- Lightbox CSS --- */
+.lightbox-overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  display:none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.lightbox-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from {opacity:0; transform: scale(0.9);}
+  to {opacity:1; transform: scale(1);}
+}
+ 
 </style>
 </head>
 <body>
@@ -392,42 +415,92 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 </section>
 
 <!-- Gallery -->
-<!-- Gallery -->
 <section id="gallery" class="gallery">
   <h2 data-en="Gallery" data-sa="दर्शनीयानि">Gallery</h2>
   <div class="gallery-grid">
     <div>
-      <img src="image1.jpg" alt="Random Image 1">
+      <a href="image1.jpg" class="gallery-link">
+        <img src="image1.jpg" alt="Random Image 1">
+      </a>
       <h3>Prayagaraj</h3>
       <p>Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</p>
     </div>
     <div>
-      <img src="image2.jpg" alt="Random Image 2">
+      <a href="image2.jpg" class="gallery-link">
+        <img src="image2.jpg" alt="Random Image 2">
+      </a>
       <h3>Varanasi</h3>
       <p>त्रिदिवसीया अन्ताराष्ट्रीया शास्त्रार्थसभा, काशी हिन्दू विश्वविद्यालय, वाराणसी (2024)</p>
     </div>
     <div>
-      <img src="image3.jpg" alt="Random Image 3">
+      <a href="image3.jpg" class="gallery-link">
+        <img src="image3.jpg" alt="Random Image 3">
+      </a>
       <h3>Prayagaraj 3</h3>
       <p>Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</p>
     </div>
     <div>
-      <img src="IIIT1.jpg" alt="IIIT Image 1">
+      <a href="IIIT1.jpg" class="gallery-link">
+        <img src="IIIT1.jpg" alt="IIIT Image 1">
+      </a>
       <h3>IIIT Hyderabad 1</h3>
       <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition, IIIT Hyderabad (2023)</p>
     </div>
     <div>
-      <img src="IIIT2.jpg" alt="IIIT Image 2">
+      <a href="IIIT2.jpg" class="gallery-link">
+        <img src="IIIT2.jpg" alt="IIIT Image 2">
+      </a>
       <h3>IIIT Hyderabad 2</h3>
       <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition, IIIT Hyderabad (2023)</p>
     </div>
     <div>
-      <img src="prayag1.jpg" alt="Prayag Image 1">
+      <a href="prayag1.jpg" class="gallery-link">
+        <img src="prayag1.jpg" alt="Prayag Image 1">
+      </a>
       <h3>महाकुम्भ, प्रयागराज</h3>
       <p>शास्त्रार्थसभा, महाकुम्भ, प्रयागराज (2025)</p>
     </div>
   </div>
 </section>
+
+  <!-- Lightbox overlay -->
+<div class="lightbox-overlay" id="lightbox">
+  <img src="" alt="Enlarged Image">
+</div>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Sort gallery cards A–Z
+  const grid = document.querySelector(".gallery-grid");
+  if (grid) {
+    const cards = Array.from(grid.children);
+    cards.sort((a, b) => {
+      const titleA = a.querySelector("h3").innerText.toLowerCase();
+      const titleB = b.querySelector("h3").innerText.toLowerCase();
+      return titleA.localeCompare(titleB);
+    });
+    cards.forEach(card => grid.appendChild(card));
+  }
+
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('.gallery-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      lightboxImg.src = this.href;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  lightbox.addEventListener('click', function() {
+    lightbox.style.display = 'none';
+  });
+});
+</script>
+
+  
 
 <!-- Contact -->
 <section id="contact" class="contact">
