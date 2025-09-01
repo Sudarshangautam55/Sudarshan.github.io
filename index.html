@@ -392,6 +392,7 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 </section>
 
 <!-- Gallery -->
+<!-- Gallery -->
 <section id="gallery" class="gallery">
   <h2 data-en="Gallery" data-sa="दर्शनीयानि">Gallery</h2>
   <div class="gallery-grid">
@@ -408,23 +409,23 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
     <div>
       <img src="image3.jpg" alt="Random Image 3">
       <h3>Prayagaraj 3</h3>
-      <p>Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023) 3</p>
+      <p>Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</p>
     </div>
-  </div>
+    <div>
       <img src="IIIT1.jpg" alt="IIIT Image 1">
-      <h3> International Institute of Information Technology (IIIT), Hyderabad </h3> 
-      <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition,IIIT, Hyderabad (2023)</p>
-  </div>
-  </div>
+      <h3>IIIT Hyderabad 1</h3>
+      <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition, IIIT Hyderabad (2023)</p>
+    </div>
+    <div>
       <img src="IIIT2.jpg" alt="IIIT Image 2">
-      <h3> International Institute of Information Technology (IIIT), Hyderabad </h3> 
-      <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition,IIIT, Hyderabad (2023)</p>
-  </div>
-  </div>
-  <img src="prayag1.jpg" alt="prayag Image 1">
-      <h3> महाकुम्भ, प्रयागराज </h3> 
-      <p> शास्त्रार्थसभा, महाकुम्भ, प्रयागराज (2025)</p>
-  </div>
+      <h3>IIIT Hyderabad 2</h3>
+      <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition, IIIT Hyderabad (2023)</p>
+    </div>
+    <div>
+      <img src="prayag1.jpg" alt="Prayag Image 1">
+      <h3>महाकुम्भ, प्रयागराज</h3>
+      <p>शास्त्रार्थसभा, महाकुम्भ, प्रयागराज (2025)</p>
+    </div>
   </div>
 </section>
 
@@ -496,6 +497,21 @@ function updateDateTime() {
 setInterval(updateDateTime,1000);
 updateDateTime();
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const grid = document.querySelector(".gallery-grid");
+  if (!grid) return;
 
+  const cards = Array.from(grid.children);
+
+  cards.sort((a, b) => {
+    const titleA = a.querySelector("h3").innerText.toLowerCase();
+    const titleB = b.querySelector("h3").innerText.toLowerCase();
+    return titleA.localeCompare(titleB); // Sort A–Z
+  });
+
+  cards.forEach(card => grid.appendChild(card));
+});
+</script>
 </body>
 </html>
