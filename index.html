@@ -9,98 +9,83 @@
 <style>
 /* Base Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-body { font-family:'Roboto', sans-serif; background:#121212; color:#e0e0e0; }
+html { scroll-behavior: smooth; scroll-padding-top:90px; }
+body { font-family:'Roboto', sans-serif; background:#121212; color:#eee; line-height:1.6; }
 
 /* Top Bar */
-#topbar { text-align:center; background:#1f1f1f; color:#fff; padding:5px; font-weight:bold; position:relative; border-bottom:1px solid #333; }
+#topbar { text-align:center; background:#1b1b1b; color:#fff; padding:6px; font-weight:bold; position:relative; }
+#datetime { font-size:0.9em; }
 #lang-toggle { position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold; }
 
 /* Header */
-header { 
-  height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background: linear-gradient(-45deg, #ff6b6b, #6bc1ff, #a8ff78, #ffdd57);
-  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
-}
+header { height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
+  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff; }
 @keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-header h1 { font-family:'Pacifico', cursive; font-size:3.5em; text-shadow:0 2px 10px rgba(0,0,0,0.6); margin-bottom:15px; }
-header p { font-size:1.5em; margin-bottom:25px; text-shadow:0 2px 8px rgba(0,0,0,0.4); }
+header h1 { font-family:'Pacifico', cursive; font-size:3.5em; text-shadow:0 2px 5px rgba(0,0,0,0.7); margin-bottom:15px; }
+header p { font-size:1.4em; margin-bottom:25px; color:#ddd; }
 
 /* Navigation */
-nav { position:sticky; top:35px; background:#1f1f1f; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; }
+nav { position:sticky; top:0; background:#1b1b1b; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; }
 .nav-links { display:flex; gap:15px; }
-.nav-links a { color:#e0e0e0; text-decoration:none; font-weight:bold; transition:0.3s; }
-.nav-links a:hover { color:#ffdd57; }
+.nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
+.nav-links a:hover { color:#ff6b6b; }
 .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
 .hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
 
 /* Sections */
-section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; background:#1f1f1f; box-shadow:0 8px 20px rgba(0,0,0,0.6); opacity:0; transform:translateY(50px); transition:0.6s; scroll-margin-top:90px; }
-section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#ffdd57; }
+section { padding:60px 20px; max-width:1100px; margin:0 auto 50px auto; border-radius:15px; background:#1e1e1e; box-shadow:0 8px 20px rgba(0,0,0,0.5); opacity:0; transform:translateY(50px); transition:0.6s; }
+section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#ff6b6b; }
 .show { opacity:1; transform:translateY(0); }
 
 /* About */
-.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#2c2c2c; padding:40px; }
-.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.7); }
-.about div p { margin-bottom:15px; line-height:1.6; }
+.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; }
+.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(255,107,107,0.4); }
+.about div p { margin-bottom:15px; line-height:1.6; color:#ddd; }
 .btn { display:inline-block; padding:12px 30px; background:#ff6b6b; color:#fff; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
-.btn:hover { background:#ff4c4c; transform:translateY(-3px); }
+.btn:hover { background:#ff4d4d; transform:translateY(-3px); }
 
-/* Achievements */
-.achievements { background:#292929; padding:40px; }
-.achievements ul { list-style:none; padding:0; }
-.achievements li { background:#1f1f1f; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
-.achievements li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.7); }
-
-/* Skills */
-.skills { background:#292929; padding:40px; }
+/* Achievements & Skills */
+.achievements li, .skills li { background:#2a2a2a; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
+.achievements li:hover, .skills li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.7); }
 .skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
-.skills li { background:#3a3a3a; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; color:#ffdd57; }
+.skills li { flex:1 1 200px; text-align:center; font-weight:bold; }
 
-/* Projects */
-.projects { background:#2c2c2c; padding:40px; }
-.projects ul { list-style:none; padding:0; }
-.projects li { background:#1f1f1f; padding:20px; margin-bottom:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.6); }
-
-/* Workshops & Training */
-.workshops { background:#292929; padding:40px; }
+/* Tabs */
 .tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
-.tablinks { padding:10px 25px; cursor:pointer; background:#1f1f1f; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
-.tablinks:hover { background:#3b82f6; }
+.tablinks { padding:10px 25px; cursor:pointer; background:#333; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
+.tablinks:hover { background:#ff6b6b; }
 .tablinks.active { background:#ff6b6b; }
 .tabcontent { display:none; }
 .tabcontent ul { list-style:none; padding:0; }
-.tabcontent li { background:#1f1f1f; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.7); }
+.tabcontent li { background:#2a2a2a; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); }
 
 /* Gallery */
-.gallery { background:#2c2c2c; padding:40px; }
 .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.gallery-grid div { background:#1f1f1f; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.7); padding:10px; text-align:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; display:flex; flex-direction:column; justify-content:space-between; min-height:350px; }
-.gallery-grid div:hover { transform: translateY(-8px); box-shadow:0 10px 20px rgba(0,0,0,0.9); }
+.gallery-grid div { background:#2a2a2a; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.7); padding:10px; text-align:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; display:flex; flex-direction:column; justify-content:space-between; min-height:350px; }
+.gallery-grid div:hover { transform: translateY(-8px); box-shadow:0 10px 20px rgba(255,107,107,0.7); }
 .gallery-grid img { width:100%; height:200px; object-fit: cover; border-radius:15px; transition: transform 0.3s ease; flex-shrink:0; }
 .gallery-grid img:hover { transform:scale(1.05); }
-.gallery-grid h3 { margin-top:10px; color:#ffdd57; flex-grow:0; }
+.gallery-grid h3 { margin-top:10px; color:#ff6b6b; flex-grow:0; }
 .gallery-grid p { font-size:0.9em; color:#ccc; margin-top:5px; flex-grow:1; display:flex; align-items:flex-start; }
 
 /* Lightbox */
-.lightbox-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
-.lightbox-overlay img { max-width:90%; max-height:90%; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.9); animation: fadeIn 0.3s ease; }
+.lightbox-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
+.lightbox-overlay img { max-width:90%; max-height:90%; border-radius:15px; box-shadow:0 10px 25px rgba(255,107,107,0.7); animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
 
-/* Contact */
-.contact { background:#292929; text-align:center; padding:40px; }
+/* Contact & Footer */
+.contact { text-align:center; padding:40px; }
 .contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#ff6b6b; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
-.contact a:hover { background:#ff4c4c; transform:translateY(-3px); }
-
-/* Footer */
-footer { text-align:center; padding:30px 20px; background:#1f1f1f; color:#fff; border-top:1px solid #333; font-size:0.9em; }
+.contact a:hover { background:#ff4d4d; transform:translateY(-3px); }
+footer { text-align:center; padding:30px 20px; background:#1b1b1b; color:#fff; }
 
 /* Responsive */
 @media(max-width:768px){
   .about { flex-direction:column; text-align:center; }
   .about img { margin-bottom:20px; }
   .gallery-grid { grid-template-columns:1fr; }
-  .nav-links { display:none; flex-direction:column; background:#1f1f1f; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
+  .nav-links { display:none; flex-direction:column; background:#1b1b1b; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
   .nav-links.show { display:flex; }
   .hamburger { display:flex; }
 }
@@ -108,175 +93,186 @@ footer { text-align:center; padding:30px 20px; background:#1f1f1f; color:#fff; b
 </head>
 <body>
 
-<!-- Top Bar with Live Date & Time -->
+<!-- Top bar -->
 <div id="topbar">
-  <span id="datetime"></span>
-  <button id="lang-toggle">संस्कृत</button>
+  <span id="datetime">Loading Date & Time...</span>
+  <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
 </div>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo" style="color:#ff6b6b; font-weight:bold;">Sudarshan Gautam</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#skills">Skills</a>
+    <a href="#publications">Publications</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</nav>
 
 <!-- Header -->
 <header>
   <h1>Sudarshan Gautam</h1>
-  <p>Ph.D. Scholar | Sanskrit & Humanistic Studies | IIT(BHU), Varanasi</p>
-  <a href="#contact" class="btn">Contact Me</a>
+  <p>PhD Scholar | Sanskrit & Humanistic Studies | IIT(BHU), Varanasi</p>
+  <a href="https://github.com/YourUsername/CV.pdf" target="_blank" class="btn">Download CV</a>
 </header>
 
-<!-- Navigation -->
-<nav>
-  <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
-  <div class="nav-links" id="navlinks">
-    <a href="#about">About</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#workshops">Workshops</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<!-- About Section -->
-<section id="about" class="about show">
-  <img src="profile.jpg" alt="Sudarshan Gautam">
-  <div>
-    <p>I am a Ph.D. Scholar at IIT(BHU), Varanasi, deeply interested in Sanskrit, Nyaya, Vedanta, and Vedic rituals. I have trained in Gurukul tradition and actively participate in scholarly debates.</p>
-    <p>My research explores Pāṇinian grammar, the Ṣaṣṭhī case, and universal semantic representation, combining traditional and modern linguistic methodologies.</p>
+<!-- About -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about">
+    <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/profile.jpg" alt="Profile Photo">
+    <div>
+      <p>I am a dedicated scholar specializing in Sanskrit, Indian grammatical tradition, and humanistic studies. Currently pursuing PhD at IIT(BHU), Varanasi.</p>
+      <p>My research focuses on Pāṇinian grammar, Universal Semantic Representation, and the application of traditional knowledge to modern linguistics.</p>
+      <p><a href="https://github.com/YourUsername/CV.pdf" class="btn" target="_blank">View CV</a></p>
+    </div>
   </div>
 </section>
 
 <!-- Achievements -->
-<section id="achievements" class="achievements show">
+<section id="achievements">
   <h2>Achievements</h2>
-  <ul>
-    <li>Published research articles in international linguistic journals.</li>
-    <li>Presented papers in multiple national and international conferences.</li>
-    <li>Recipient of academic excellence awards in Sanskrit and Vedic studies.</li>
+  <ul class="achievements">
+    <li>Presented papers in National and International Shastrartha Sabhas.</li>
+    <li>Published research in reputed linguistics and Sanskrit journals.</li>
+    <li>Participated in supreme Vedic Shrauta Yagyas and traditional Gurukul studies.</li>
+    <li>Recipient of multiple academic awards and recognitions in Sanskrit grammar studies.</li>
   </ul>
 </section>
 
 <!-- Skills -->
-<section id="skills" class="skills show">
+<section id="skills">
   <h2>Skills</h2>
-  <ul>
-    <li>Sanskrit Grammar & Nyaya</li>
-    <li>Vedic Rituals & Shrauta Studies</li>
+  <ul class="skills">
+    <li>Sanskrit Grammar & Pāṇinian Analysis</li>
     <li>Research & Academic Writing</li>
-    <li>Semantic Representation</li>
-    <li>Teaching & Mentorship</li>
+    <li>Editing & Proofreading Scholarly Articles</li>
+    <li>Teaching & Mentoring Online/Offline</li>
+    <li>Digital Documentation & Publishing</li>
   </ul>
 </section>
 
-<!-- Projects -->
-<section id="projects" class="projects show">
-  <h2>Projects</h2>
-  <ul>
-    <li>Exploring the Ṣaṣṭhī Case in Pāṇinian Grammar</li>
-    <li>Creating Concept Dictionary for Indian/Foreign Languages</li>
-    <li>Application of Compounding Principles for Semantic Representation</li>
-  </ul>
-</section>
-
-<!-- Workshops & Seminars -->
-<section id="workshops" class="workshops show">
-  <h2>Workshops & Seminars</h2>
+<!-- Publications -->
+<section id="publications">
+  <h2>Publications</h2>
   <div class="tabs">
-    <button class="tablinks active" onclick="openTab(event,'workshop')">Workshops</button>
-    <button class="tablinks" onclick="openTab(event,'seminar')">Seminars</button>
+    <button class="tablinks active" onclick="openTab(event,'Journal')">Journal Papers</button>
+    <button class="tablinks" onclick="openTab(event,'Conferences')">Conference Papers</button>
+    <button class="tablinks" onclick="openTab(event,'Books')">Books / Chapters</button>
   </div>
-  <div id="workshop" class="tabcontent" style="display:block;">
+
+  <div id="Journal" class="tabcontent" style="display:block;">
     <ul>
-      <li>Workshop on Pāṇinian Grammar at IIT(BHU)</li>
-      <li>Training in Vedic Shrauta Rituals</li>
+      <li>“The Saṣṭhī Case and the Relation of Proximity: A Pāṇinian Inquiry” – De Gruyter Mouton</li>
+      <li>“Applying Principles of Compounding from Indian Grammatical Tradition for Universal Semantic Representation” – Russian Journal of Linguistics</li>
     </ul>
   </div>
-  <div id="seminar" class="tabcontent">
+
+  <div id="Conferences" class="tabcontent">
     <ul>
-      <li>Seminar on Semantic Representation in Indian Languages</li>
-      <li>Conference on Sanskrit Grammar and Modern Linguistics</li>
+      <li>Paper presented at Shastrartha Sabha, Kashi on Sanskrit semantics.</li>
+      <li>International Workshop on Universal Semantic Representation, Varanasi.</li>
+    </ul>
+  </div>
+
+  <div id="Books" class="tabcontent">
+    <ul>
+      <li>Contributor, Nyāyadarśanam (Vātsyāyanabhāṣyasahitam), 7th ed., Chowkhamba Sanskrit Bhavan.</li>
     </ul>
   </div>
 </section>
 
 <!-- Gallery -->
-<section id="gallery" class="gallery show">
+<section id="gallery">
   <h2>Gallery</h2>
   <div class="gallery-grid">
-    <div onclick="openLightbox(this)"><img src="gallery1.jpg" alt=""><h3>Vedic Yajna</h3><p>Participated in Shrauta Yajnas.</p></div>
-    <div onclick="openLightbox(this)"><img src="gallery2.jpg" alt=""><h3>Conference Talk</h3><p>Presented research on Pāṇinian Grammar.</p></div>
-    <div onclick="openLightbox(this)"><img src="gallery3.jpg" alt=""><h3>Teaching Sanskrit</h3><p>Interactive lecture with students.</p></div>
+    <div onclick="openLightbox('https://raw.githubusercontent.com/YourUsername/RepoName/main/image1.jpg')">
+      <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image1.jpg" alt="Workshop Image">
+      <h3>Workshop</h3>
+      <p>Attended Vedic grammar workshop.</p>
+    </div>
+    <div onclick="openLightbox('https://raw.githubusercontent.com/YourUsername/RepoName/main/image2.jpg')">
+      <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image2.jpg" alt="Lecture Image">
+      <h3>Lecture</h3>
+      <p>Delivered lecture on Pāṇinian grammar.</p>
+    </div>
+    <div onclick="openLightbox('https://raw.githubusercontent.com/YourUsername/RepoName/main/image3.jpg')">
+      <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image3.jpg" alt="Shrauta Yagya">
+      <h3>Shrauta Yagya</h3>
+      <p>Participated in traditional Vedic ritual.</p>
+    </div>
   </div>
 </section>
 
+<div class="lightbox-overlay" onclick="closeLightbox()">
+  <img src="" alt="Lightbox Image">
+</div>
+
 <!-- Contact -->
-<section id="contact" class="contact show">
+<section id="contact">
   <h2>Contact</h2>
-  <a href="mailto:sudarshan@example.com">Email Me</a>
-  <a href="tel:+919876543210">Call Me</a>
+  <div class="contact">
+    <a href="mailto:your.email@example.com">Email</a>
+    <a href="https://github.com/YourUsername" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/YourLinkedIn" target="_blank">LinkedIn</a>
+  </div>
 </section>
 
-<!-- Lightbox -->
-<div class="lightbox-overlay" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
-
-<!-- Footer -->
 <footer>
-  <p>© 2025 Sudarshan Gautam | IIT(BHU), Varanasi</p>
+  &copy; 2025 Sudarshan Gautam. All rights reserved.
 </footer>
 
 <script>
-// Toggle Nav Menu
-function toggleMenu(){ document.getElementById('navlinks').classList.toggle('show'); }
+// Dark menu toggle
+function toggleMenu(){document.querySelector('.nav-links').classList.toggle('show');}
 
-// Live Date & Time
-let lang = 'en';
-document.getElementById('lang-toggle').addEventListener('click',()=>{
-  lang = (lang==='en')?'sa':'en'; updateDateTime();
-});
-
+// Date and Time
 function updateDateTime(){
-  const now = new Date();
-  let dateStr = '';
-  if(lang==='en'){
-    dateStr = now.toLocaleString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  }else{
-    const saWeek = ['आदि','सोम','मङ्गल','बुध','गुरु','शुक्र','शनैः'];
-    const saMonth = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
-    const d = now.getDay(), day = now.getDate(), mo = now.getMonth(), yr = now.getFullYear();
-    let hr = now.getHours(), min = now.getMinutes(), sec = now.getSeconds();
-    hr = hr.toString().padStart(2,'0'); min = min.toString().padStart(2,'0'); sec = sec.toString().padStart(2,'0');
-    dateStr = `${saWeek[d]} ${day} ${saMonth[mo]} ${yr}, ${hr}:${min}:${sec}`;
-  }
-  document.getElementById('datetime').textContent = dateStr;
+  const dt = new Date();
+  document.getElementById('datetime').innerText = dt.toLocaleString();
 }
 setInterval(updateDateTime,1000);
 updateDateTime();
 
 // Tabs
 function openTab(evt, tabName){
-  const tabcontent = document.getElementsByClassName("tabcontent");
-  for(let i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
-  const tablinks = document.getElementsByClassName("tablinks");
-  for(let i=0;i<tablinks.length;i++){ tablinks[i].className = tablinks[i].className.replace(" active",""); }
-  document.getElementById(tabName).style.display="block";
-  evt.currentTarget.className+=" active";
+  document.querySelectorAll('.tabcontent').forEach(tc=>tc.style.display='none');
+  document.querySelectorAll('.tablinks').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tabName).style.display='block';
+  evt.currentTarget.classList.add('active');
 }
 
+// Scroll animations
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top < window.innerHeight-100){ sec.classList.add('show'); }
+  });
+});
+
 // Lightbox
-function openLightbox(elem){
-  document.getElementById('lightbox-img').src = elem.querySelector('img').src;
-  document.querySelector('.lightbox-overlay').style.display='flex';
+function openLightbox(src){
+  const overlay = document.querySelector('.lightbox-overlay');
+  overlay.style.display='flex';
+  overlay.querySelector('img').src=src;
 }
 function closeLightbox(){ document.querySelector('.lightbox-overlay').style.display='none'; }
 
-// Scroll reveal
-window.addEventListener('scroll',()=>{
-  const sections = document.querySelectorAll('section');
-  const triggerBottom = window.innerHeight * 0.85;
-  sections.forEach(sec=>{
-    const secTop = sec.getBoundingClientRect().top;
-    if(secTop < triggerBottom) sec.classList.add('show');
-  });
-});
+// Language toggle (simplified example)
+let lang='en';
+function toggleLanguage(){
+  lang=(lang==='en')?'sa':'en';
+  alert("Language toggled to: "+((lang==='en')?'English':'Sanskrit'));
+}
 </script>
-
 </body>
 </html>
