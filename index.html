@@ -9,10 +9,7 @@
 <style>
 /* Base Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
-html { 
-  scroll-behavior: smooth; 
-  scroll-padding-top: 90px; /* fixes sticky nav overlapping headings */
-}
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 body { font-family:'Roboto', sans-serif; background:#f5f7fa; color:#333; }
 
 /* Top Bar */
@@ -38,7 +35,7 @@ nav { position:sticky; top:35px; background:#1e3a8a; padding:10px 20px; z-index:
 .hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
 
 /* Sections */
-section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; scroll-margin-top:90px; } /* added scroll-margin-top for extra safety */
+section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; scroll-margin-top:90px; }
 section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a; }
 .show { opacity:1; transform:translateY(0); }
 
@@ -112,28 +109,10 @@ section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a
 .gallery-grid h3 { margin-top:10px; color:#1e3a8a; flex-grow:0; }
 .gallery-grid p { font-size:0.9em; color:#555; margin-top:5px; flex-grow:1; display:flex; align-items:flex-start; }
 
-/* --- Lightbox CSS --- */
-.lightbox-overlay {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.8);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-.lightbox-overlay img {
-  max-width:90%;
-  max-height:90%;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.5);
-  animation: fadeIn 0.3s ease;
-}
-@keyframes fadeIn {
-  from {opacity:0; transform:scale(0.9);}
-  to {opacity:1; transform:scale(1);}
-}
+/* Lightbox CSS */
+.lightbox-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display:none; justify-content:center; align-items:center; z-index:9999; }
+.lightbox-overlay img { max-width:90%; max-height:90%; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
 
 /* Contact */
 .contact { background:#fff7ed; text-align:center; padding:40px; }
@@ -153,13 +132,10 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
   .hamburger { display:flex; }
 }
 </style>
-
-
-</style>
 </head>
 <body>
 
-<!-- Top bar with live date -->
+<!-- Top bar with live date & time -->
 <div id="topbar">
   <span id="datetime">Loading Date & Time...</span>
   <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
@@ -192,7 +168,7 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 <!-- Header -->
 <header id="home">
   <h1 data-en="Sudarshan Gautam" data-sa="सुदर्शन~गौतमः">Sudarshan Gautam</h1>
-  <p data-en="Researcher in Computational Linguistics at IIT (BHU)" data-sa="सङ्गणकभाषाविज्ञाने अनुसन्धाता, भारतीय प्रौद्योगिकी संस्थानम्, काशी हिन्दू विश्वविद्यालयः  ">Researcher in Computational Linguistics at IIT (BHU)</p>
+  <p data-en="Researcher in Computational Linguistics at IIT (BHU)" data-sa="सङ्गणकभाषाविज्ञाने अनुसन्धाता, भारतीय प्रौद्योगिकी संस्थानम्, काशी हिन्दू विश्वविद्यालयः">Researcher in Computational Linguistics at IIT (BHU)</p>
 </header>
 
 <!-- About -->
@@ -200,284 +176,29 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
   <img src="profile.jpg" alt="Sudarshan Gautam">
   <div>
     <h2 data-en="About Me" data-sa="मदीयविषये किञ्चित्">About Me</h2>
-    <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks. I began my education in a gurukula, a traditional residential system of learning in India, where I was immersed in classical knowledge under the guidance of my guru. This early education provided a deep understanding of discipline, values, and the holistic approach of traditional scholarship. I hold a BA and MA in Paninian Grammar and have undertaken extensive studies in major branches of Indian philosophy, including Nyāya Darśana, Mīmāṁsā Darśana, and other classical Shastras, developing a strong foundation in logic, linguistics, and analytical reasoning. I am currently pursuing a PhD in Computational Linguistics at IIT BHU, Varanasi, focusing on Paninian Grammar. My research integrates insights from classical grammar with modern computational methods, bridging traditional linguistic theory and contemporary language technology." data-sa="नमस्ते! मैं सुदर्शन गौतम, भाषाविज्ञान, एनएलपी और बहुभाषी कम्प्यूटेशनल फ्रेमवर्क में विशेषज्ञ शोधकर्ता हूँ। मैंने अपनी प्रारंभिक शिक्षा एक गुरुकुल प्रणाली में प्राप्त की, जहाँ मैंने अपने गुरु के मार्गदर्शन में शास्त्रीय ज्ञान में प्रशिक्षण प्राप्त किया। इस प्रारंभिक शिक्षा ने अनुशासन, मूल्य और पारंपरिक विद्वत्तापूर्ण दृष्टिकोण की गहरी समझ प्रदान की। मेरे पास पाणिनीय व्याकरण में BA और MA है, और मैंने भारतीय दर्शन के प्रमुख शाखाओं में व्यापक अध्ययन किया है। मैं वर्तमान में IIT BHU, वाराणसी में कम्प्यूटेशनल भाषाविज्ञान में पीएचडी कर रहा हूँ, जिसमें पाणिनीय व्याकरण पर विशेष ध्यान है।">
-      Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks. I began my education in a gurukula, a traditional residential system of learning in India, where I was immersed in classical knowledge under the guidance of my guru. This early education provided a deep understanding of discipline, values, and the holistic approach of traditional scholarship. I hold a BA and MA in Paninian Grammar and have undertaken extensive studies in major branches of Indian philosophy, including Nyāya Darśana, Mīmāṁsā Darśana, and other classical Shastras, developing a strong foundation in logic, linguistics, and analytical reasoning. I am currently pursuing a PhD in Computational Linguistics at IIT BHU, Varanasi, focusing on Paninian Grammar. My research integrates insights from classical grammar with modern computational methods, bridging traditional linguistic theory and contemporary language technology.
-    </p>
+    <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks..." data-sa="नमस्ते! मैं सुदर्शन गौतम...">Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks...</p>
     <a href="CV.pdf" class="btn" target="_blank" data-en="Download CV" data-sa="CV सङ्गृह्यताम्">Download CV</a>
   </div>
 </section>
 
-<!-- Achievements -->
-<section id="achievements" class="achievements">
-  <h2 data-en="Awards & Achievements" data-sa="पुरस्काराः उपलब्धयश्च">Awards & Achievements</h2>
-  <ul>
-    <li>
-      <strong>Gold Medals in Acharya (M.A) – Vyakarana (Sanskrit Grammar), 2021</strong>
-      <ul>
-        <li>Sampurnanand Sanskrit University Gold Medal</li>
-        <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
-        <li>Shri Vimal Kumar Poddar Gold Medal</li>
-        <li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
-        <li>Mahanta Rameshwar Puri Gold Medal</li>
-      </ul>
-    </li>
-    <li>UGC NET JRF Award (2022)</li>
-    <li>All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</li>
-    <li>Top positions in multiple Śāstrārtha (philosophical debates) and Vākyārtha (interpretative discussions)</li>
-  </ul>
-</section>
-
-<!-- Skills -->
-<section id="skills" class="skills">
-  <h2 data-en="Skills & Expertise" data-sa="प्रावीण्यम् एवं विशेषज्ञता">Skills & Expertise</h2>
-  <ul>
-    <li>Paninian Grammar</li>
-    <li>Semantics</li>
-    <li>Syntax</li>
-    <li>Nyāya Darśana</li>
-    <li>Mīmāṁsā Darśana</li>
-    <li>Śrauta Yajña</li>
-    <li>Indian Knowledge System</li>
-  </ul>
-</section>
-
-<!-- Projects -->
-<section id="projects" class="projects">
-  <h2 data-en="Projects" data-sa="परियोजनाः">Projects</h2>
-  <ul>
-    <li>"Kātiya-Darśapaurṇamāsīyādhvaryava-Prayogaḥ" – 2-month project internship under Indian Knowledge System, Government of India (2022)</li>
-  </ul>
-</section>
-
-<!-- Workshops -->
-<section id="workshops" class="workshops">
-  <h2 data-en="Workshops & Training" data-sa="कार्यशालाः एवं प्रशिक्षणानि">Workshops & Training</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'WorkshopInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'WorkshopNational')">National</button>
-  </div>
-  <div id="WorkshopInternational" class="tabcontent">
-    <ul>
-      <li>International Workshop Example 1 – 2023</li>
-      <li>International Workshop Example 2 – 2024</li>
-    </ul>
-  </div>
-  <div id="WorkshopNational" class="tabcontent">
-    <ul>
-      <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – BHU, Varanasi (2024)</li>
-      <li>National Workshop Example 2 – 2023</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Seminars -->
-<section id="seminars" class="seminars">
-  <h2 data-en="Seminars/Conferences" data-sa="सम्मेलनानि/सङ्गोष्ठ्यः">Seminars/Conferences</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'SeminarInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'SeminarNational')">National</button>
-  </div>
-  <div id="SeminarInternational" class="tabcontent">
-    <ul>
-      <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</li>
-      <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)</li>
-    </ul>
-  </div>
-  <div id="SeminarNational" class="tabcontent">
-    <ul>
-      <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, Department of Vyakarana, Faculty of Sanskrit Vidya Dharma Vijnana, BHU, Varanasi (2023)</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Śāstrārtha/Vākyārtha -->
-<section id="shastrartha" class="shastrartha">
-  <h2 data-en="Śāstrārtha/Vākyārtha" data-sa="शास्त्रार्थाः/वाक्यार्थाः">Śāstrārtha/Vākyārtha</h2>
-  <div class="tabs">
-    <button class="tablinks" onclick="openTab(event,'ShastrarthaInternational')">International</button>
-    <button class="tablinks" onclick="openTab(event,'ShastrarthaNational')">National</button>
-  </div>
-  <div id="ShastrarthaInternational" class="tabcontent">
-    <ul>
-      <li> "वैयाकरणनये निपातार्थविचारः" (व्याकरणम्)- A three Day International Seminar on Pāṇinian Grammar & Its Application, prayagaraj – 2023</li>
-    </ul>
-  </div>
-  <div id="ShastrarthaNational" class="tabcontent">
-    <ul>
-      <li>"इन्द्रियकामाधिकरणम्" (मीमांसा)-  अखिलभारतीय शास्त्रार्थसभा, काशी हिन्दू विश्वविद्यालय – 2023</li>
-      <li>"उद्भिदधिकरणम्" (मीमांसा)-  अखिलभारतीय धर्मसम्राट् करपात्र-शास्त्रार्थसभा, धर्मसङ्घ, वाराणसी - 2025</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Mentorship -->
-<section id="mentorship" class="mentorship">
-  <h2 data-en="Mentorship" data-sa="निर्देशकत्वम्">Mentorship</h2>
-  <ul>
-    <li>Mentor, Summer School on "Orienting Ph.D. Scholars for Research in Sanskrit Wisdom-based Computational Linguistics" – IIIT Hyderabad (June 2024)</li>
-  </ul>
-</section>
-
-<!-- Lectures -->
-<section id="lectures" class="lectures">
-  <h2 data-en="Lectures" data-sa="व्याख्यानानि">Lectures</h2>
-  <ul>
-    <li>Lecture – 2023</li>
-    <li>Lecture  – 2024</li>
-  </ul>
-</section>
-
-<!-- Publications -->
-<section id="publications" class="publications">
-  <h2 data-en="Publications" data-sa="प्रकाशनानि">Publications</h2>
-  <h3>Scopus/Web of Science</h3>
-  <ul>
-    <li>Publication  <a href="#">View</a></li>
-  </ul>
-  <h3>UGC Care List</h3>
-  <ul>
-    <li>Publication <a href="#">View</a></li>
-  </ul>
-  <h3>Peer-reviewed</h3>
-  <ul>
-    <li>Publication <a href="#">View</a></li>
-  </ul>
-  <h3>Upcoming Publications</h3>
-  <ul>
-    <li> Under process Publication </li>
-  </ul>
-</section>
-
-<!-- Other Activities -->
-<section id="activities" class="activities">
-  <h2 data-en="Other Activities" data-sa="अन्यानि">Other Activities</h2>
-  <ul>
-    <li>यथाकालं श्रौतप्रयोगः</li>
-    <li> यत्किञ्चित् </li>
-  </ul>
-</section>
-
-<!-- Gallery -->
-<section id="gallery" class="gallery">
-  <h2 data-en="Gallery" data-sa="दर्शनीयानि">Gallery</h2>
-  <div class="gallery-grid">
-    <div>
-      <a href="image1.jpg" class="gallery-link">
-        <img src="image1.jpg" alt="Random Image 1">
-      </a>
-      <h3>Prayagaraj</h3>
-      <p>Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</p>
-    </div>
-    <div>
-      <a href="image2.jpg" class="gallery-link">
-        <img src="image2.jpg" alt="Random Image 2">
-      </a>
-      <h3>Varanasi</h3>
-      <p>त्रिदिवसीया अन्ताराष्ट्रीया शास्त्रार्थसभा, काशी हिन्दू विश्वविद्यालय, वाराणसी (2024)</p>
-    </div>
-    <div>
-      <a href="image3.jpg" class="gallery-link">
-        <img src="image3.jpg" alt="Random Image 3">
-      </a>
-      <h3>Prayagaraj 3</h3>
-      <p>Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</p>
-    </div>
-    <div>
-      <a href="IIIT1.jpg" class="gallery-link">
-        <img src="IIIT1.jpg" alt="IIIT Image 1">
-      </a>
-      <h3>IIIT Hyderabad 1</h3>
-      <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition, IIIT Hyderabad (2023)</p>
-    </div>
-    <div>
-      <a href="IIIT2.jpg" class="gallery-link">
-        <img src="IIIT2.jpg" alt="IIIT Image 2">
-      </a>
-      <h3>IIIT Hyderabad 2</h3>
-      <p>Workshop on Developing Universal Semantic Representation (USR) following Indian Grammatical Tradition, IIIT Hyderabad (2023)</p>
-    </div>
-    <div>
-      <a href="prayag1.jpg" class="gallery-link">
-        <img src="prayag1.jpg" alt="Prayag Image 1">
-      </a>
-      <h3>महाकुम्भ, प्रयागराज</h3>
-      <p>शास्त्रार्थसभा, महाकुम्भ, प्रयागराज (2025)</p>
-    </div>
-  </div>
-</section>
-
-  <!-- Lightbox overlay -->
-<div class="lightbox-overlay" id="lightbox">
-  <img src="" alt="Enlarged Image">
-</div>
-
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  // Sort gallery cards A–Z
-  const grid = document.querySelector(".gallery-grid");
-  if (grid) {
-    const cards = Array.from(grid.children);
-    cards.sort((a, b) => {
-      const titleA = a.querySelector("h3").innerText.toLowerCase();
-      const titleB = b.querySelector("h3").innerText.toLowerCase();
-      return titleA.localeCompare(titleB);
-    });
-    cards.forEach(card => grid.appendChild(card));
-  }
-
-  // Lightbox functionality
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-
-  document.querySelectorAll('.gallery-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      lightboxImg.src = this.href;
-      lightbox.style.display = 'flex';
-    });
-  });
-
-  lightbox.addEventListener('click', function() {
-    lightbox.style.display = 'none';
-  });
-});
-</script>
-
-  
-
-<!-- Contact -->
-<section id="contact" class="contact">
-  <h2 data-en="Contact" data-sa="संपर्कः">Contact</h2>
-  <a href="mailto:sudarshangautam.rs.hss22@itbhu.ac.in" target="_blank">
-    <img src="email.png" alt="Email" width="40">
-  </a>
-  <a href="https://wa.me/+918859744949" target="_blank">
-    <img src="whatsapp.png" alt="WhatsApp" width="40">
-  </a>
-  <a href="https://www.linkedin.com/in/your-linkedin-id" target="_blank">
-    <img src="linkedin.png" alt="LinkedIn" width="40">
-  </a>
-</section>
-
-
+<!-- Footer -->
 <footer>
-  &copy; 2025 Sudarshan Gautam. All rights reserved.
+  &copy; 2025 Sudarshan Gautam | All Rights Reserved
+  <br>
+  <span id="last-updated">Last Updated: Loading...</span>
 </footer>
 
 <script>
 // Hamburger toggle
-function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("show");
-}
+function toggleMenu() { document.getElementById("navLinks").classList.toggle("show"); }
 
 // Tabs
 function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
-  document.getElementById(tabName).style.display = "block";
+  const tabcontent = document.getElementsByClassName("tabcontent");
+  for(let i=0;i<tabcontent.length;i++) tabcontent[i].style.display="none";
+  const tablinks = document.getElementsByClassName("tablinks");
+  for(let i=0;i<tablinks.length;i++) tablinks[i].className = tablinks[i].className.replace(" active","");
+  document.getElementById(tabName).style.display="block";
   evt.currentTarget.className += " active";
 }
 
@@ -493,41 +214,27 @@ window.addEventListener('scroll', function() {
 
 // Language toggle
 function toggleLanguage() {
-  const elements = document.querySelectorAll('[data-en]');
-  elements.forEach(el => {
-    if(el.innerText === el.getAttribute('data-en')){ el.innerText = el.getAttribute('data-sa'); }
-    else { el.innerText = el.getAttribute('data-en'); }
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerText = el.innerText === el.getAttribute('data-en') ? el.getAttribute('data-sa') : el.getAttribute('data-en');
   });
 }
 
-// Live date & time (Vikram Samvat simplified)
-function updateDateTime() {
-  const dtEl = document.getElementById("datetime");
-  const today = new Date();
-  const time = today.toLocaleTimeString();
-  const vsYear = 2082; // Hard-coded for today (adjust if needed)
-  const vsMonth = 5; // भाद्रपद
-  const vsDay = 16;
-  dtEl.innerText = `वि.सं ${vsYear}/${vsMonth} (${vsDay}) | Time: ${time}`;
+// Topbar live clock
+function updateDateTime(){
+  const now = new Date();
+  const options = { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
+  document.getElementById('datetime').innerText = now.toLocaleString('en-US', options);
 }
 setInterval(updateDateTime,1000);
 updateDateTime();
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const grid = document.querySelector(".gallery-grid");
-  if (!grid) return;
 
-  const cards = Array.from(grid.children);
-
-  cards.sort((a, b) => {
-    const titleA = a.querySelector("h3").innerText.toLowerCase();
-    const titleB = b.querySelector("h3").innerText.toLowerCase();
-    return titleA.localeCompare(titleB); // Sort A–Z
-  });
-
-  cards.forEach(card => grid.appendChild(card));
-});
+// Footer last updated
+function updateLastUpdated(){
+  const now = new Date();
+  const options = { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
+  document.getElementById('last-updated').innerText = 'Last Updated: ' + now.toLocaleString('en-US', options);
+}
+updateLastUpdated();
 </script>
 </body>
 </html>
