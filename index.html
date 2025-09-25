@@ -10,124 +10,97 @@
 /* Base Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-body { font-family:'Roboto', sans-serif; background:#f5f7fa; color:#333; }
+body { font-family:'Roboto', sans-serif; background:#121212; color:#e0e0e0; }
 
 /* Top Bar */
-#topbar { text-align:center; background:#1e3a8a; color:#fff; padding:5px; font-weight:bold; position:relative; }
+#topbar { text-align:center; background:#1f1f1f; color:#fff; padding:5px; font-weight:bold; position:relative; border-bottom:1px solid #333; }
 #lang-toggle { position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold; }
 
 /* Header */
 header { 
   height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background: linear-gradient(-45deg, #ff6b6b, #f8e16c, #6bc1ff, #a8ff78);
+  background: linear-gradient(-45deg, #ff6b6b, #6bc1ff, #a8ff78, #ffdd57);
   background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff;
 }
 @keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-header h1 { font-family:'Pacifico', cursive; font-size:3.5em; text-shadow:0 2px 5px rgba(0,0,0,0.3); margin-bottom:15px; }
-header p { font-size:1.5em; margin-bottom:25px; }
+header h1 { font-family:'Pacifico', cursive; font-size:3.5em; text-shadow:0 2px 10px rgba(0,0,0,0.6); margin-bottom:15px; }
+header p { font-size:1.5em; margin-bottom:25px; text-shadow:0 2px 8px rgba(0,0,0,0.4); }
 
 /* Navigation */
-nav { position:sticky; top:35px; background:#1e3a8a; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
+nav { position:sticky; top:35px; background:#1f1f1f; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; }
 .nav-links { display:flex; gap:15px; }
-.nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
+.nav-links a { color:#e0e0e0; text-decoration:none; font-weight:bold; transition:0.3s; }
 .nav-links a:hover { color:#ffdd57; }
 .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
 .hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
 
 /* Sections */
-section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; box-shadow:0 8px 20px rgba(0,0,0,0.05); opacity:0; transform:translateY(50px); transition:0.6s; scroll-margin-top:90px; }
-section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#1e3a8a; }
+section { padding:60px 20px; max-width:1100px; margin:0 auto; border-radius:15px; margin-bottom:50px; background:#1f1f1f; box-shadow:0 8px 20px rgba(0,0,0,0.6); opacity:0; transform:translateY(50px); transition:0.6s; scroll-margin-top:90px; }
+section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#ffdd57; }
 .show { opacity:1; transform:translateY(0); }
 
 /* About */
-.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#fff8f0; padding:40px; }
-.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; background:#2c2c2c; padding:40px; }
+.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,0.7); }
 .about div p { margin-bottom:15px; line-height:1.6; }
-.btn { display:inline-block; padding:12px 30px; background:#fff; color:#ff6b6b; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
-.btn:hover { background:#ffecec; transform:translateY(-3px); }
+.btn { display:inline-block; padding:12px 30px; background:#ff6b6b; color:#fff; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
+.btn:hover { background:#ff4c4c; transform:translateY(-3px); }
 
 /* Achievements */
-.achievements { background:#f0f4f8; padding:40px; }
+.achievements { background:#292929; padding:40px; }
 .achievements ul { list-style:none; padding:0; }
-.achievements li { background:#ffefef; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
-.achievements li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.1); }
+.achievements li { background:#1f1f1f; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
+.achievements li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.7); }
 
 /* Skills */
-.skills { background:#f0fff4; padding:40px; }
+.skills { background:#292929; padding:40px; }
 .skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
-.skills li { background:#dcfce7; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; }
+.skills li { background:#3a3a3a; padding:15px 20px; border-radius:15px; flex:1 1 200px; text-align:center; font-weight:bold; color:#ffdd57; }
 
 /* Projects */
-.projects { background:#fff7ed; padding:40px; }
+.projects { background:#2c2c2c; padding:40px; }
 .projects ul { list-style:none; padding:0; }
-.projects li { background:#fef0f0; padding:20px; margin-bottom:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
+.projects li { background:#1f1f1f; padding:20px; margin-bottom:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.6); }
 
 /* Workshops & Training */
-.workshops { background:#fefaf0; padding:40px; }
+.workshops { background:#292929; padding:40px; }
 .tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
-.tablinks { padding:10px 25px; cursor:pointer; background:#1e3a8a; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
+.tablinks { padding:10px 25px; cursor:pointer; background:#1f1f1f; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
 .tablinks:hover { background:#3b82f6; }
 .tablinks.active { background:#ff6b6b; }
 .tabcontent { display:none; }
 .tabcontent ul { list-style:none; padding:0; }
-.tabcontent li { background:#f3f4f6; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
-
-/* Seminars/Conferences */
-.seminars { background:#fef9ff; padding:40px; }
-
-/* Śāstrārtha/Vākyārtha */
-.shastrartha { background:#f0f7ff; padding:40px; }
-
-/* Mentorship */
-.mentorship { background:#f5fff0; padding:40px; }
-
-/* Lectures */
-.lectures { background:#f9fff0; padding:40px; }
-
-/* Publications */
-.publications { background:#fff8f8; padding:40px; }
-.publications h3 { color:#1e3a8a; margin-top:15px; margin-bottom:10px; text-align:left; }
-.publications ul { list-style:none; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:0; }
-.publications li { background:#ffecec; padding:25px; border-radius:15px; flex:1 1 300px; transition:0.3s; }
-.publications li:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.publications a { display:inline-block; margin-top:10px; font-weight:bold; color:#ff4d4d; }
-
-/* Other Activities */
-.activities { background:#f5f5f5; padding:40px; }
+.tabcontent li { background:#1f1f1f; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.7); }
 
 /* Gallery */
-.gallery { background:#f0f0ff; padding:40px; }
+.gallery { background:#2c2c2c; padding:40px; }
 .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.gallery-grid div { 
-  background:#fff; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1); 
-  padding:10px; text-align:center; transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor:pointer; display:flex; flex-direction:column; justify-content:space-between; min-height:350px;
-}
-.gallery-grid div:hover { transform: translateY(-8px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+.gallery-grid div { background:#1f1f1f; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.7); padding:10px; text-align:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; display:flex; flex-direction:column; justify-content:space-between; min-height:350px; }
+.gallery-grid div:hover { transform: translateY(-8px); box-shadow:0 10px 20px rgba(0,0,0,0.9); }
 .gallery-grid img { width:100%; height:200px; object-fit: cover; border-radius:15px; transition: transform 0.3s ease; flex-shrink:0; }
 .gallery-grid img:hover { transform:scale(1.05); }
-.gallery-grid h3 { margin-top:10px; color:#1e3a8a; flex-grow:0; }
-.gallery-grid p { font-size:0.9em; color:#555; margin-top:5px; flex-grow:1; display:flex; align-items:flex-start; }
+.gallery-grid h3 { margin-top:10px; color:#ffdd57; flex-grow:0; }
+.gallery-grid p { font-size:0.9em; color:#ccc; margin-top:5px; flex-grow:1; display:flex; align-items:flex-start; }
 
-/* Lightbox CSS */
-.lightbox-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display:none; justify-content:center; align-items:center; z-index:9999; }
-.lightbox-overlay img { max-width:90%; max-height:90%; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
+/* Lightbox */
+.lightbox-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
+.lightbox-overlay img { max-width:90%; max-height:90%; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.9); animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
 
 /* Contact */
-.contact { background:#fff7ed; text-align:center; padding:40px; }
-.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#d97706; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
-.contact a:hover { background:#b45309; transform:translateY(-3px); }
+.contact { background:#292929; text-align:center; padding:40px; }
+.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#ff6b6b; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
+.contact a:hover { background:#ff4c4c; transform:translateY(-3px); }
 
 /* Footer */
-footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
+footer { text-align:center; padding:30px 20px; background:#1f1f1f; color:#fff; border-top:1px solid #333; font-size:0.9em; }
 
 /* Responsive */
 @media(max-width:768px){
   .about { flex-direction:column; text-align:center; }
   .about img { margin-bottom:20px; }
   .gallery-grid { grid-template-columns:1fr; }
-  .nav-links { display:none; flex-direction:column; background:#1e3a8a; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
+  .nav-links { display:none; flex-direction:column; background:#1f1f1f; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
   .nav-links.show { display:flex; }
   .hamburger { display:flex; }
 }
@@ -135,106 +108,175 @@ footer { text-align:center; padding:30px 20px; background:#1e3a8a; color:#fff; }
 </head>
 <body>
 
-<!-- Top bar with live date & time -->
+<!-- Top Bar with Live Date & Time -->
 <div id="topbar">
-  <span id="datetime">Loading Date & Time...</span>
-  <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
+  <span id="datetime"></span>
+  <button id="lang-toggle">संस्कृत</button>
 </div>
+
+<!-- Header -->
+<header>
+  <h1>Sudarshan Gautam</h1>
+  <p>Ph.D. Scholar | Sanskrit & Humanistic Studies | IIT(BHU), Varanasi</p>
+  <a href="#contact" class="btn">Contact Me</a>
+</header>
 
 <!-- Navigation -->
 <nav>
-  <div class="logo" style="color:#fff; font-weight:bold;">Sudarshan Gautam</div>
-  <div class="nav-links" id="navLinks">
-    <a href="#home" data-en="Home" data-sa="मुख्यपृष्ठम्">Home</a>
-    <a href="#about" data-en="About Me" data-sa="मदीयविषये किञ्चित्">About Me</a>
-    <a href="#achievements" data-en="Awards & Achievements" data-sa="पुरस्काराः उपलब्धयश्च ">Awards & Achievements</a>
-    <a href="#skills" data-en="Skills & Expertise" data-sa="प्रावीण्यम् एवं विशेषज्ञता">Skills & Expertise</a>
-    <a href="#projects" data-en="Projects" data-sa="परियोजनाः">Projects</a>
-    <a href="#workshops" data-en="Workshops & Training" data-sa="कार्यशालाः">Workshops</a>
-    <a href="#seminars" data-en="Seminars/Conferences" data-sa="सम्मेलनानि/सङ्गोष्ठ्यः">Seminars/Conferences</a>
-    <a href="#shastrartha" data-en="Śāstrārtha/Vākyārtha" data-sa="शास्त्रार्थाः/वाक्यार्थाः">Śāstrārtha/Vākyārtha</a>
-    <a href="#mentorship" data-en="Mentorship" data-sa="निर्देशकत्वम्">Mentorship</a>
-    <a href="#lectures" data-en="Lectures" data-sa="व्याख्यानानि">Lectures</a>
-    <a href="#publications" data-en="Publications" data-sa="प्रकाशनानि">Publications</a>
-    <a href="#activities" data-en="Other Activities" data-sa="अन्यानि">Other Activities</a>
-    <a href="#gallery" data-en="Gallery" data-sa="दर्शनीयानि">Gallery</a>
-    <a href="#contact" data-en="Contact" data-sa="संपर्कः">Contact</a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div><div></div><div></div>
+  <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+  <div class="nav-links" id="navlinks">
+    <a href="#about">About</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#workshops">Workshops</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- Header -->
-<header id="home">
-  <h1 data-en="Sudarshan Gautam" data-sa="सुदर्शन~गौतमः">Sudarshan Gautam</h1>
-  <p data-en="Researcher in Computational Linguistics at IIT (BHU)" data-sa="सङ्गणकभाषाविज्ञाने अनुसन्धाता, भारतीय प्रौद्योगिकी संस्थानम्, काशी हिन्दू विश्वविद्यालयः">Researcher in Computational Linguistics at IIT (BHU)</p>
-</header>
-
-<!-- About -->
-<section id="about" class="about">
+<!-- About Section -->
+<section id="about" class="about show">
   <img src="profile.jpg" alt="Sudarshan Gautam">
   <div>
-    <h2 data-en="About Me" data-sa="मदीयविषये किञ्चित्">About Me</h2>
-    <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks..." data-sa="नमस्ते! मैं सुदर्शन गौतम...">Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks...</p>
-    <a href="CV.pdf" class="btn" target="_blank" data-en="Download CV" data-sa="CV सङ्गृह्यताम्">Download CV</a>
+    <p>I am a Ph.D. Scholar at IIT(BHU), Varanasi, deeply interested in Sanskrit, Nyaya, Vedanta, and Vedic rituals. I have trained in Gurukul tradition and actively participate in scholarly debates.</p>
+    <p>My research explores Pāṇinian grammar, the Ṣaṣṭhī case, and universal semantic representation, combining traditional and modern linguistic methodologies.</p>
   </div>
 </section>
 
+<!-- Achievements -->
+<section id="achievements" class="achievements show">
+  <h2>Achievements</h2>
+  <ul>
+    <li>Published research articles in international linguistic journals.</li>
+    <li>Presented papers in multiple national and international conferences.</li>
+    <li>Recipient of academic excellence awards in Sanskrit and Vedic studies.</li>
+  </ul>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="skills show">
+  <h2>Skills</h2>
+  <ul>
+    <li>Sanskrit Grammar & Nyaya</li>
+    <li>Vedic Rituals & Shrauta Studies</li>
+    <li>Research & Academic Writing</li>
+    <li>Semantic Representation</li>
+    <li>Teaching & Mentorship</li>
+  </ul>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="projects show">
+  <h2>Projects</h2>
+  <ul>
+    <li>Exploring the Ṣaṣṭhī Case in Pāṇinian Grammar</li>
+    <li>Creating Concept Dictionary for Indian/Foreign Languages</li>
+    <li>Application of Compounding Principles for Semantic Representation</li>
+  </ul>
+</section>
+
+<!-- Workshops & Seminars -->
+<section id="workshops" class="workshops show">
+  <h2>Workshops & Seminars</h2>
+  <div class="tabs">
+    <button class="tablinks active" onclick="openTab(event,'workshop')">Workshops</button>
+    <button class="tablinks" onclick="openTab(event,'seminar')">Seminars</button>
+  </div>
+  <div id="workshop" class="tabcontent" style="display:block;">
+    <ul>
+      <li>Workshop on Pāṇinian Grammar at IIT(BHU)</li>
+      <li>Training in Vedic Shrauta Rituals</li>
+    </ul>
+  </div>
+  <div id="seminar" class="tabcontent">
+    <ul>
+      <li>Seminar on Semantic Representation in Indian Languages</li>
+      <li>Conference on Sanskrit Grammar and Modern Linguistics</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="gallery show">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <div onclick="openLightbox(this)"><img src="gallery1.jpg" alt=""><h3>Vedic Yajna</h3><p>Participated in Shrauta Yajnas.</p></div>
+    <div onclick="openLightbox(this)"><img src="gallery2.jpg" alt=""><h3>Conference Talk</h3><p>Presented research on Pāṇinian Grammar.</p></div>
+    <div onclick="openLightbox(this)"><img src="gallery3.jpg" alt=""><h3>Teaching Sanskrit</h3><p>Interactive lecture with students.</p></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact show">
+  <h2>Contact</h2>
+  <a href="mailto:sudarshan@example.com">Email Me</a>
+  <a href="tel:+919876543210">Call Me</a>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
+
 <!-- Footer -->
 <footer>
-  &copy; 2025 Sudarshan Gautam | All Rights Reserved
-  <br>
-  <span id="last-updated">Last Updated: Loading...</span>
+  <p>© 2025 Sudarshan Gautam | IIT(BHU), Varanasi</p>
 </footer>
 
 <script>
-// Hamburger toggle
-function toggleMenu() { document.getElementById("navLinks").classList.toggle("show"); }
+// Toggle Nav Menu
+function toggleMenu(){ document.getElementById('navlinks').classList.toggle('show'); }
 
-// Tabs
-function openTab(evt, tabName) {
-  const tabcontent = document.getElementsByClassName("tabcontent");
-  for(let i=0;i<tabcontent.length;i++) tabcontent[i].style.display="none";
-  const tablinks = document.getElementsByClassName("tablinks");
-  for(let i=0;i<tablinks.length;i++) tablinks[i].className = tablinks[i].className.replace(" active","");
-  document.getElementById(tabName).style.display="block";
-  evt.currentTarget.className += " active";
-}
-
-// Scroll animations
-window.addEventListener('scroll', function() {
-  const sections = document.querySelectorAll('section');
-  const triggerBottom = window.innerHeight / 5 * 4;
-  sections.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    if(sectionTop < triggerBottom){ section.classList.add('show'); }
-  });
+// Live Date & Time
+let lang = 'en';
+document.getElementById('lang-toggle').addEventListener('click',()=>{
+  lang = (lang==='en')?'sa':'en'; updateDateTime();
 });
 
-// Language toggle
-function toggleLanguage() {
-  document.querySelectorAll('[data-en]').forEach(el => {
-    el.innerText = el.innerText === el.getAttribute('data-en') ? el.getAttribute('data-sa') : el.getAttribute('data-en');
-  });
-}
-
-// Topbar live clock
 function updateDateTime(){
   const now = new Date();
-  const options = { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
-  document.getElementById('datetime').innerText = now.toLocaleString('en-US', options);
+  let dateStr = '';
+  if(lang==='en'){
+    dateStr = now.toLocaleString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  }else{
+    const saWeek = ['आदि','सोम','मङ्गल','बुध','गुरु','शुक्र','शनैः'];
+    const saMonth = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
+    const d = now.getDay(), day = now.getDate(), mo = now.getMonth(), yr = now.getFullYear();
+    let hr = now.getHours(), min = now.getMinutes(), sec = now.getSeconds();
+    hr = hr.toString().padStart(2,'0'); min = min.toString().padStart(2,'0'); sec = sec.toString().padStart(2,'0');
+    dateStr = `${saWeek[d]} ${day} ${saMonth[mo]} ${yr}, ${hr}:${min}:${sec}`;
+  }
+  document.getElementById('datetime').textContent = dateStr;
 }
 setInterval(updateDateTime,1000);
 updateDateTime();
 
-// Footer last updated
-function updateLastUpdated(){
-  const now = new Date();
-  const options = { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
-  document.getElementById('last-updated').innerText = 'Last Updated: ' + now.toLocaleString('en-US', options);
+// Tabs
+function openTab(evt, tabName){
+  const tabcontent = document.getElementsByClassName("tabcontent");
+  for(let i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
+  const tablinks = document.getElementsByClassName("tablinks");
+  for(let i=0;i<tablinks.length;i++){ tablinks[i].className = tablinks[i].className.replace(" active",""); }
+  document.getElementById(tabName).style.display="block";
+  evt.currentTarget.className+=" active";
 }
-updateLastUpdated();
+
+// Lightbox
+function openLightbox(elem){
+  document.getElementById('lightbox-img').src = elem.querySelector('img').src;
+  document.querySelector('.lightbox-overlay').style.display='flex';
+}
+function closeLightbox(){ document.querySelector('.lightbox-overlay').style.display='none'; }
+
+// Scroll reveal
+window.addEventListener('scroll',()=>{
+  const sections = document.querySelectorAll('section');
+  const triggerBottom = window.innerHeight * 0.85;
+  sections.forEach(sec=>{
+    const secTop = sec.getBoundingClientRect().top;
+    if(secTop < triggerBottom) sec.classList.add('show');
+  });
+});
 </script>
+
 </body>
 </html>
