@@ -4,11 +4,517 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudarshan Gautam | Academic Portfolio</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base Styles & Reset --- */
+        :root {
+            --color-primary: #1e3a8a;
+            --color-secondary: #ff6b6b;
+            --color-light: #f5f7fa;
+            --color-dark: #2c3e50;
+            --color-text: #333;
+            --color-white: #fff;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Merriweather', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-light);
+            line-height: 1.6;
+        }
+
+        /* --- Utility Classes --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section--light { background: var(--color-light); }
+        .section--dark { background: var(--color-dark); color: var(--color-white); }
+        .section--dark .section__heading { color: var(--color-white); }
+        .section--dark .publications__heading, .section--dark h3 { color: var(--color-white); }
+        .section__heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            font-family: var(--font-heading);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .section__heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--color-secondary);
+            margin: 15px auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn--primary {
+            background: var(--color-secondary);
+            color: var(--color-white);
+        }
+
+        .btn--secondary {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--color-white);
+            background: linear-gradient(-45deg, #1e3a8a, #0056b3, #ff6b6b, #ff4d4d);
+            background-size: 400% 400%;
+            animation: gradient 20s ease infinite;
+            position: relative;
+            padding-top: 80px;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero__content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Language Toggle --- */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+        }
+        .language-toggle button {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--color-white);
+            border: 2px solid var(--color-white);
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .language-toggle button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar__logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-white);
+            text-decoration: none;
+        }
+
+        .navbar__links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar__links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar__links a:hover {
+            color: var(--color-secondary);
+        }
+
+        .navbar__mobile-toggle {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .navbar__mobile-toggle div {
+            width: 25px;
+            height: 3px;
+            background: var(--color-white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* --- About Section --- */
+        .about__content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .about__image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 5px solid var(--color-primary);
+        }
+
+        /* --- Card Grid Layouts --- */
+        .card-grid, .publications__grid, .gallery__grid, .tag-list {
+            display: grid;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .card-grid li {
+            background: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-grid li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-grid h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+        }
+        .card-grid ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .card-grid ul li::before {
+            content: '•';
+            color: var(--color-secondary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .tag-list {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .tag-list li {
+            background: #e0f2fe;
+            color: #0c4a6e;
+            padding: 15px 20px;
+            border-radius: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* --- Tabs --- */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .tablinks {
+            padding: 10px 25px;
+            cursor: pointer;
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .tablinks:hover {
+            background: #3b82f6;
+        }
+        .tablinks.active {
+            background: var(--color-secondary);
+        }
+        .tabcontent {
+            display: none;
+            background: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .tabcontent ul {
+            list-style: none;
+            padding: 0;
+        }
+        .tabcontent li {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 5px solid var(--color-secondary);
+            background: #e9f5ff;
+            border-radius: 5px;
+        }
+
+
+        /* --- Publications Section --- */
+        .publications__grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .publications__grid > div {
+            background: var(--color-white);
+            color: var(--color-text);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .publications__grid ul {
+            list-style: none;
+            padding: 0;
+        }
+        .publications__grid a {
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery__grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .gallery__item {
+            background: var(--color-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery__item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery__link img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery__item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery__item h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+            margin: 15px 15px 5px;
+        }
+
+        .gallery__item p {
+            font-size: 0.9em;
+            color: #555;
+            padding: 0 15px 15px;
+            flex-grow: 1;
+        }
+
+        /* --- Contact Section --- */
+        .contact__content {
+            text-align: center;
+        }
+
+        .contact__links img {
+            width: 45px;
+            height: auto;
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact__links img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background: var(--color-dark);
+            color: var(--color-white);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+        }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox__image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox__close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--color-white);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .lightbox__close:hover {
+            color: var(--color-secondary);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .about__content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about__image {
+                margin-bottom: 20px;
+            }
+
+            .navbar__links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--color-primary);
+                padding: 20px 0;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+            .navbar__links.active {
+                display: flex;
+            }
+
+            .navbar__mobile-toggle {
+                display: flex;
+            }
+            .navbar__mobile-toggle.active div:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+            .navbar__mobile-toggle.active div:nth-child(2) { opacity: 0; }
+            .navbar__mobile-toggle.active div:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.1rem; }
+            .section__heading { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Top bar with live date -->
+    <div id="topbar" style="text-align:center; background:#1e3a8a; color:#fff; padding:5px; font-weight:bold; position:relative;">
+        <span id="datetime">Loading Date & Time...</span>
+        <button id="lang-toggle" onclick="toggleLanguage()" style="position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold;">संस्कृत / English</button>
+    </div>
+
+    <!-- Header Section -->
     <header id="home" class="hero">
         <nav class="navbar">
             <div class="container navbar__content">
@@ -17,7 +523,15 @@
                     <li><a href="#about" data-en="About" data-sa="मदीयविषये">About</a></li>
                     <li><a href="#achievements" data-en="Awards" data-sa="पुरस्काराः">Awards</a></li>
                     <li><a href="#skills" data-en="Skills" data-sa="प्रावीण्यम्">Skills</a></li>
+                    <li><a href="#projects" data-en="Projects" data-sa="परियोजनाः">Projects</a></li>
+                    <li><a href="#workshops" data-en="Workshops" data-sa="कार्यशालाः">Workshops</a></li>
+                    <li><a href="#seminars" data-en="Seminars/Conferences" data-sa="सम्मेलनानि/सङ्गोष्ठ्यः">Seminars</a></li>
+                    <li><a href="#shastrartha" data-en="Śāstrārtha/Vākyārtha" data-sa="शास्त्रार्थाः/वाक्यार्थाः">Śāstrārtha</a></li>
+                    <li><a href="#mentorship" data-en="Mentorship" data-sa="निर्देशकत्वम्">Mentorship</a></li>
+                    <li><a href="#lectures" data-en="Lectures" data-sa="व्याख्यानानि">Lectures</a></li>
                     <li><a href="#publications" data-en="Publications" data-sa="प्रकाशनानि">Publications</a></li>
+                    <li><a href="#activities" data-en="Other Activities" data-sa="अन्यानि">Activities</a></li>
+                    <li><a href="#gallery" data-en="Gallery" data-sa="दर्शनीयानि">Gallery</a></li>
                     <li><a href="#contact" data-en="Contact" data-sa="संपर्कः">Contact</a></li>
                 </ul>
                 <div class="navbar__mobile-toggle" onclick="toggleMenu()">
@@ -35,23 +549,21 @@
         </div>
     </header>
 
-    <div class="language-toggle">
-        <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
-    </div>
-
+    <!-- About Section -->
     <section id="about" class="section section--light">
         <div class="container about__content">
-            <img src="profile.jpg" alt="Sudarshan Gautam" class="about__image">
+            <img src="images/profile.jpg" alt="Sudarshan Gautam" class="about__image">
             <div class="about__text">
                 <h2 class="section__heading" data-en="About Me" data-sa="मदीयविषये किञ्चित्">About Me</h2>
                 <p data-en="Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks. I began my education in a gurukula, a traditional residential system of learning in India, where I was immersed in classical knowledge under the guidance of my guru. This early education provided a deep understanding of discipline, values, and the holistic approach of traditional scholarship. I hold a BA and MA in Paninian Grammar and have undertaken extensive studies in major branches of Indian philosophy, including Nyāya Darśana, Mīmāṁsā Darśana, and other classical Shastras, developing a strong foundation in logic, linguistics, and analytical reasoning. I am currently pursuing a PhD in Computational Linguistics at IIT BHU, Varanasi, focusing on Paninian Grammar. My research integrates insights from classical grammar with modern computational methods, bridging traditional linguistic theory and contemporary language technology." data-sa="नमस्ते! मैं सुदर्शन गौतम, भाषाविज्ञान, एनएलपी और बहुभाषी कम्प्यूटेशनल फ्रेमवर्क में विशेषज्ञ शोधकर्ता हूँ। मैंने अपनी प्रारंभिक शिक्षा एक गुरुकुल प्रणाली में प्राप्त की, जहाँ मैंने अपने गुरु के मार्गदर्शन में शास्त्रीय ज्ञान में प्रशिक्षण प्राप्त किया। इस प्रारंभिक शिक्षा ने अनुशासन, मूल्य और पारंपरिक विद्वत्तापूर्ण दृष्टिकोण की गहरी समझ प्रदान की। मेरे पास पाणिनीय व्याकरण में BA और MA है, और मैंने भारतीय दर्शन के प्रमुख शाखाओं में व्यापक अध्ययन किया है। मैं वर्तमान में IIT BHU, वाराणसी में कम्प्यूटेशनल भाषाविज्ञान में पीएचडी कर रहा हूँ, जिसमें पाणिनीय व्याकरण पर विशेष ध्यान है।">
                     Hello! I am Sudarshan Gautam, a researcher specializing in Linguistics, NLP, and multilingual computational frameworks. I began my education in a gurukula, a traditional residential system of learning in India, where I was immersed in classical knowledge under the guidance of my guru. This early education provided a deep understanding of discipline, values, and the holistic approach of traditional scholarship. I hold a BA and MA in Paninian Grammar and have undertaken extensive studies in major branches of Indian philosophy, including Nyāya Darśana, Mīmāṁsā Darśana, and other classical Shastras, developing a strong foundation in logic, linguistics, and analytical reasoning. I am currently pursuing a PhD in Computational Linguistics at IIT BHU, Varanasi, focusing on Paninian Grammar. My research integrates insights from classical grammar with modern computational methods, bridging traditional linguistic theory and contemporary language technology.
                 </p>
-                <a href="CV.pdf" class="btn btn--secondary" target="_blank" data-en="Download CV" data-sa="CV सङ्गृह्यताम्">Download CV</a>
+                <a href="docs/CV.pdf" class="btn btn--secondary" target="_blank" data-en="Download CV" data-sa="CV सङ्गृह्यताम्">Download CV</a>
             </div>
         </div>
     </section>
 
+    <!-- Achievements Section -->
     <section id="achievements" class="section section--dark">
         <div class="container">
             <h2 class="section__heading" data-en="Awards & Achievements" data-sa="पुरस्काराः उपलब्धयश्च">Awards & Achievements</h2>
@@ -62,6 +574,8 @@
                         <li>Sampurnanand Sanskrit University Gold Medal</li>
                         <li>Pt. Brahmadatta Dwivedi Gold Medal</li>
                         <li>Shri Vimal Kumar Poddar Gold Medal</li>
+                        <li>Mahamandaleshwar Pavahari Swami Balakrishna Yati Ji Maharaj Gold Medal</li>
+                        <li>Mahanta Rameshwar Puri Gold Medal</li>
                     </ul>
                 </li>
                 <li>
@@ -70,10 +584,14 @@
                 <li>
                     <h3 data-en="All India Shalaka Competition" data-sa="अखिल भारतीय शलाका प्रतियोगिता">All India Shalaka Competition Gold Medals in Mīmāṁsā (2019 & 2022)</h3>
                 </li>
+                 <li>
+                    <h3 data-en="Śāstrārtha/Vākyārtha" data-sa="शास्त्रार्थाः/वाक्यार्थाः">Top positions in multiple Śāstrārtha (philosophical debates) and Vākyārtha (interpretative discussions)</h3>
+                </li>
             </ul>
         </div>
     </section>
 
+    <!-- Skills Section -->
     <section id="skills" class="section section--light">
         <div class="container">
             <h2 class="section__heading" data-en="Skills & Expertise" data-sa="प्रावीण्यम् एवं विशेषज्ञता">Skills & Expertise</h2>
@@ -89,36 +607,166 @@
         </div>
     </section>
 
-    <section id="publications" class="section section--dark">
+    <!-- Projects Section -->
+    <section id="projects" class="section section--light">
+        <div class="container">
+            <h2 class="section__heading" data-en="Projects" data-sa="परियोजनाः">Projects</h2>
+            <ul class="card-grid">
+                <li>
+                    <h3>"Kātiya-Darśapaurṇamāsīyādhvaryava-Prayogaḥ"</h3>
+                    <p>2-month project internship under Indian Knowledge System, Government of India (2022)</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Workshops & Training -->
+    <section id="workshops" class="section section--light">
+        <div class="container">
+            <h2 class="section__heading" data-en="Workshops & Training" data-sa="कार्यशालाः एवं प्रशिक्षणानि">Workshops & Training</h2>
+            <div class="tabs">
+                <button class="tablinks" onclick="openTab(event,'WorkshopInternational')">International</button>
+                <button class="tablinks" onclick="openTab(event,'WorkshopNational')">National</button>
+            </div>
+            <div id="WorkshopInternational" class="tabcontent">
+                <ul>
+                    <li>International Workshop Example 1 – 2023</li>
+                    <li>International Workshop Example 2 – 2024</li>
+                </ul>
+            </div>
+            <div id="WorkshopNational" class="tabcontent">
+                <ul>
+                    <li>National Workshop on "Various Dimensions of Sanskrit and Computer Science" – BHU, Varanasi (2024)</li>
+                    <li>National Workshop Example 2 – 2023</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seminars & Conferences -->
+    <section id="seminars" class="section section--light">
+        <div class="container">
+            <h2 class="section__heading" data-en="Seminars/Conferences" data-sa="सम्मेलनानि/सङ्गोष्ठ्यः">Seminars/Conferences</h2>
+            <div class="tabs">
+                <button class="tablinks" onclick="openTab(event,'SeminarInternational')">International</button>
+                <button class="tablinks" onclick="openTab(event,'SeminarNational')">National</button>
+            </div>
+            <div id="SeminarInternational" class="tabcontent">
+                <ul>
+                    <li>"Śrauta-Yajñeṣu Pāṇinīyopakāraḥ" – Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</li>
+                    <li>International Conference on "Āyurveda, Dhanurveda, Arthaśāstra, and Śāstravākyārtha in Gurukula Education" – Sampurnanand Sanskrit University, Varanasi (2019)</li>
+                </ul>
+            </div>
+            <div id="SeminarNational" class="tabcontent">
+                <ul>
+                    <li>"Pāṇinīya-Samāsa-Siddhānta-Vimarśaḥ" – All India Patanjali Seminar, Department of Vyakarana, Faculty of Sanskrit Vidya Dharma Vijnana, BHU, Varanasi (2023)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Śāstrārtha/Vākyārtha -->
+    <section id="shastrartha" class="section section--light">
+        <div class="container">
+            <h2 class="section__heading" data-en="Śāstrārtha/Vākyārtha" data-sa="शास्त्रार्थाः/वाक्यार्थाः">Śāstrārtha/Vākyārtha</h2>
+            <div class="tabs">
+                <button class="tablinks" onclick="openTab(event,'ShastrarthaInternational')">International</button>
+                <button class="tablinks" onclick="openTab(event,'ShastrarthaNational')">National</button>
+            </div>
+            <div id="ShastrarthaInternational" class="tabcontent">
+                <ul>
+                    <li> "वैयाकरणनये निपातार्थविचारः" (व्याकरणम्)- A three Day International Seminar on Pāṇinian Grammar & Its Application, prayagaraj – 2023</li>
+                </ul>
+            </div>
+            <div id="ShastrarthaNational" class="tabcontent">
+                <ul>
+                    <li>"इन्द्रियकामाधिकरणम्" (मीमांसा)- अखिलभारतीय शास्त्रार्थसभा, काशी हिन्दू विश्वविद्यालय – 2023</li>
+                    <li>"उद्भिदधिकरणम्" (मीमांसा)- अखिलभारतीय धर्मसम्राट् करपात्र-शास्त्रार्थसभा, धर्मसङ्घ, वाराणसी - 2025</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section id="mentorship" class="section section--light">
+        <div class="container">
+            <h2 class="section__heading" data-en="Mentorship" data-sa="निर्देशकत्वम्">Mentorship</h2>
+            <ul class="card-grid">
+                <li>
+                    <h3>Summer School Mentor</h3>
+                    <p>Mentor, Summer School on "Orienting Ph.D. Scholars for Research in Sanskrit Wisdom-based Computational Linguistics" – IIIT Hyderabad (June 2024)</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Lectures Section -->
+    <section id="lectures" class="section section--light">
+        <div class="container">
+            <h2 class="section__heading" data-en="Lectures" data-sa="व्याख्यानानि">Lectures</h2>
+            <ul class="card-grid">
+                <li>
+                    <h3>Lecture – 2023</h3>
+                    <p>Details about the lecture here.</p>
+                </li>
+                <li>
+                    <h3>Lecture – 2024</h3>
+                    <p>Details about the lecture here.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section section--light">
         <div class="container">
             <h2 class="section__heading" data-en="Publications" data-sa="प्रकाशनानि">Publications</h2>
             <div class="publications__grid">
                 <div>
                     <h3 class="publications__heading">Scopus/Web of Science</h3>
                     <ul>
-                        <li>Publication 1 <a href="#">View</a></li>
-                        <li>Publication 2 <a href="#">View</a></li>
+                        <li>Publication <a href="#">(See)</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="publications__heading">UGC Care List</h3>
                     <ul>
-                        <li>Publication 1 <a href="#">View</a></li>
-                        <li>Publication 2 <a href="#">View</a></li>
+                        <li>Publication <a href="#">(See)</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="publications__heading">Peer-reviewed</h3>
                     <ul>
-                        <li>Publication 1 <a href="#">View</a></li>
-                        <li>Publication 2 <a href="#">View</a></li>
+                        <li>Publication <a href="#">(See)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="publications__heading">Upcoming Publications</h3>
+                    <ul>
+                        <li>Under process Publication</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="gallery" class="section section--light">
+    <!-- Other Activities Section -->
+    <section id="activities" class="section section--light">
+        <div class="container">
+            <h2 class="section__heading" data-en="Other Activities" data-sa="अन्यानि">Other Activities</h2>
+            <ul class="card-grid">
+                <li>
+                    <h3>यथाकालं श्रौतप्रयोगः</h3>
+                </li>
+                <li>
+                    <h3>यत्किञ्चित्</h3>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section section--dark">
         <div class="container">
             <h2 class="section__heading" data-en="Gallery" data-sa="दर्शनीयानि">Gallery</h2>
             <div class="gallery__grid">
@@ -137,17 +785,39 @@
                     <p>त्रिदिवसीया अन्ताराष्ट्रीया शास्त्रार्थसभा, काशी हिन्दू विश्वविद्यालय (2024)</p>
                 </div>
                 <div class="gallery__item">
+                    <a href="images/image3.jpg" class="gallery__link">
+                        <img src="images/image3.jpg" alt="Prayagaraj 3">
+                    </a>
+                    <h3>Prayagaraj 3</h3>
+                    <p>Paninian Grammar and Its Application, Three-Day International Seminar, Central Sanskrit University, Prayagraj, India (2023)</p>
+                </div>
+                <div class="gallery__item">
                     <a href="images/IIIT1.jpg" class="gallery__link">
                         <img src="images/IIIT1.jpg" alt="IIIT Hyderabad">
                     </a>
-                    <h3>IIIT Hyderabad</h3>
+                    <h3>IIIT Hyderabad 1</h3>
                     <p>Workshop on Universal Semantic Representation (USR), IIIT Hyderabad (2023)</p>
+                </div>
+                <div class="gallery__item">
+                    <a href="images/IIIT2.jpg" class="gallery__link">
+                        <img src="images/IIIT2.jpg" alt="IIIT Hyderabad">
+                    </a>
+                    <h3>IIIT Hyderabad 2</h3>
+                    <p>Workshop on Universal Semantic Representation (USR), IIIT Hyderabad (2023)</p>
+                </div>
+                <div class="gallery__item">
+                    <a href="images/prayag1.jpg" class="gallery__link">
+                        <img src="images/prayag1.jpg" alt="Prayag">
+                    </a>
+                    <h3>महाकुम्भ, प्रयागराज</h3>
+                    <p>शास्त्रार्थसभा, महाकुम्भ, प्रयागराज (2025)</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section section--dark">
+    <!-- Contact Section -->
+    <section id="contact" class="section section--light">
         <div class="container contact__content">
             <h2 class="section__heading" data-en="Contact" data-sa="संपर्कः">Contact</h2>
             <div class="contact__links">
@@ -164,551 +834,133 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Sudarshan Gautam. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox__close">&times;</span>
         <img class="lightbox__image" src="" alt="Enlarged Image">
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Scroll animation for sections
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
 
-/* --- Base Styles & Reset --- */
-:root {
-    --color-primary: #1e3a8a;
-    --color-secondary: #ff6b6b;
-    --color-light: #f5f7fa;
-    --color-dark: #2c3e50;
-    --color-text: #333;
-    --color-white: #fff;
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Merriweather', serif;
-}
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+            sections.forEach(section => {
+                observer.observe(section);
+            });
 
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-}
+            // Language toggle functionality
+            const langToggleBtn = document.getElementById('lang-toggle');
+            const elementsToTranslate = document.querySelectorAll('[data-en]');
 
-body {
-    font-family: var(--font-body);
-    color: var(--color-text);
-    background: var(--color-light);
-    line-height: 1.6;
-}
+            langToggleBtn.addEventListener('click', () => {
+                elementsToTranslate.forEach(el => {
+                    const currentText = el.innerText.trim();
+                    const englishText = el.getAttribute('data-en').trim();
+                    const sanskritText = el.getAttribute('data-sa').trim();
 
-/* --- Utility Classes --- */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+                    if (currentText === englishText) {
+                        el.innerText = sanskritText;
+                    } else {
+                        el.innerText = englishText;
+                    }
+                });
+            });
 
-.section {
-    padding: 80px 0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
+            // Hamburger menu toggle
+            const hamburger = document.querySelector('.navbar__mobile-toggle');
+            const navLinks = document.getElementById('navLinks');
 
-.section.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.section--light { background: var(--color-light); }
-.section--dark { background: var(--color-dark); color: var(--color-white); }
-.section--dark .section__heading { color: var(--color-white); }
-.section--dark .publications__heading, .section--dark h3 { color: var(--color-white); }
-.section__heading {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    font-family: var(--font-heading);
-    margin-bottom: 50px;
-    position: relative;
-}
-.section__heading::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--color-secondary);
-    margin: 15px auto 0;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    font-weight: bold;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn--primary {
-    background: var(--color-secondary);
-    color: var(--color-white);
-}
-
-.btn--secondary {
-    background: var(--color-primary);
-    color: var(--color-white);
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* --- Hero Section --- */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--color-white);
-    background: linear-gradient(-45deg, #1e3a8a, #0056b3, #ff6b6b, #ff4d4d);
-    background-size: 400% 400%;
-    animation: gradient 20s ease infinite;
-    position: relative;
-    padding-top: 80px;
-}
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.hero__content {
-    max-width: 800px;
-}
-
-.hero h1 {
-    font-family: var(--font-heading);
-    font-size: 4rem;
-    margin-bottom: 10px;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.hero p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* --- Language Toggle --- */
-.language-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 2000;
-}
-.language-toggle button {
-    background: rgba(255, 255, 255, 0.2);
-    color: var(--color-white);
-    border: 2px solid var(--color-white);
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-.language-toggle button:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-/* --- Navigation Bar --- */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--color-primary);
-    color: var(--color-white);
-    padding: 10px 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.navbar__content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar__logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--color-white);
-    text-decoration: none;
-}
-
-.navbar__links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-.navbar__links a {
-    color: var(--color-white);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.navbar__links a:hover {
-    color: var(--color-secondary);
-}
-
-.navbar__mobile-toggle {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.navbar__mobile-toggle div {
-    width: 25px;
-    height: 3px;
-    background: var(--color-white);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* --- About Section --- */
-.about__content {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    background: var(--color-white);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.about__image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    border: 5px solid var(--color-primary);
-}
-
-/* --- Card Grid Layouts --- */
-.card-grid, .publications__grid, .gallery__grid, .tag-list {
-    display: grid;
-    gap: 30px;
-    list-style: none;
-    padding: 0;
-}
-
-.card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.card-grid li {
-    background: var(--color-white);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card-grid li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.card-grid h3 {
-    color: var(--color-primary);
-    margin-bottom: 15px;
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-}
-.card-grid ul {
-    list-style: none;
-    padding-left: 20px;
-}
-.card-grid ul li::before {
-    content: '•';
-    color: var(--color-secondary);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
-.tag-list {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-.tag-list li {
-    background: #e0f2fe;
-    color: #0c4a6e;
-    padding: 15px 20px;
-    border-radius: 25px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* --- Publications Section --- */
-.publications__grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-.publications__grid > div {
-    background: #3b5998;
-    color: var(--color-white);
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-.publications__grid ul {
-    list-style: none;
-    padding: 0;
-}
-.publications__grid a {
-    color: #b7e4c7;
-    font-weight: bold;
-}
-
-/* --- Gallery Section --- */
-.gallery__grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.gallery__item {
-    background: var(--color-white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.gallery__item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.gallery__link img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.gallery__item:hover img {
-    transform: scale(1.1);
-}
-
-.gallery__item h3 {
-    font-family: var(--font-heading);
-    color: var(--color-primary);
-    margin: 15px 15px 5px;
-}
-
-.gallery__item p {
-    font-size: 0.9em;
-    color: #555;
-    padding: 0 15px 15px;
-    flex-grow: 1;
-}
-
-/* --- Contact Section --- */
-.contact__content {
-    text-align: center;
-}
-
-.contact__links img {
-    width: 45px;
-    height: auto;
-    margin: 0 15px;
-    transition: transform 0.3s ease;
-}
-
-.contact__links img:hover {
-    transform: scale(1.1);
-}
-
-/* --- Footer --- */
-.footer {
-    background: var(--color-dark);
-    color: var(--color-white);
-    text-align: center;
-    padding: 30px 0;
-    font-size: 0.9em;
-}
-
-/* --- Lightbox --- */
-.lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox__image {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-    animation: fadeIn 0.3s ease;
-}
-
-.lightbox__close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: var(--color-white);
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-.lightbox__close:hover {
-    color: var(--color-secondary);
-}
-
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .about__content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .about__image {
-        margin-bottom: 20px;
-    }
-
-    .navbar__links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: var(--color-primary);
-        padding: 20px 0;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    }
-    .navbar__links.active {
-        display: flex;
-    }
-
-    .navbar__mobile-toggle {
-        display: flex;
-    }
-    .navbar__mobile-toggle.active div:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
-    .navbar__mobile-toggle.active div:nth-child(2) { opacity: 0; }
-    .navbar__mobile-toggle.active div:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-}
-
-@media (max-width: 480px) {
-    .hero h1 { font-size: 3rem; }
-    .hero p { font-size: 1.1rem; }
-    .section__heading { font-size: 2rem; }
-}
-document.addEventListener("DOMContentLoaded", () => {
-    // Scroll animation for sections
-    const sections = document.querySelectorAll('.section');
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                observer.unobserve(entry.target);
+            function toggleMenu() {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
             }
-        });
-    }, observerOptions);
+            hamburger.addEventListener('click', toggleMenu);
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+            document.querySelectorAll('.navbar__links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
 
-    // Language toggle functionality
-    const langToggleBtn = document.getElementById('lang-toggle');
-    const elementsToTranslate = document.querySelectorAll('[data-en]');
-
-    langToggleBtn.addEventListener('click', () => {
-        elementsToTranslate.forEach(el => {
-            const currentText = el.innerText.trim();
-            const englishText = el.getAttribute('data-en').trim();
-            const sanskritText = el.getAttribute('data-sa').trim();
-
-            if (currentText === englishText) {
-                el.innerText = sanskritText;
-            } else {
-                el.innerText = englishText;
+            // Tab functionality
+            function openTab(evt, tabName) {
+                let i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].classList.remove("active");
+                }
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.classList.add("active");
             }
-        });
-    });
 
-    // Hamburger menu toggle
-    const hamburger = document.querySelector('.navbar__mobile-toggle');
-    const navLinks = document.getElementById('navLinks');
+            // Set default active tab
+            document.querySelectorAll('.tabs').forEach(tabContainer => {
+                const firstTab = tabContainer.querySelector('.tablinks');
+                if (firstTab) {
+                    const firstTabContentId = firstTab.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    firstTab.classList.add('active');
+                    document.getElementById(firstTabContentId).style.display = 'block';
+                }
+            });
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.querySelector('.lightbox__image');
+            const closeBtn = document.querySelector('.lightbox__close');
 
-    document.querySelectorAll('.navbar__links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
+            document.querySelectorAll('.gallery__link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    lightboxImg.src = link.href;
+                    lightbox.classList.add('active');
+                });
+            });
 
-    // Lightbox functionality
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.querySelector('.lightbox__image');
-    const closeBtn = document.querySelector('.lightbox__close');
+            closeBtn.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+            });
 
-    document.querySelectorAll('.gallery__link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            lightboxImg.src = link.href;
-            lightbox.classList.add('active');
-        });
-    });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
 
-    closeBtn.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-    });
-
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-        }
-    });
-});
+            // Live date & time (Vikram Samvat simplified)
+            function updateDateTime() {
+                const dtEl = document.getElementById("datetime");
+                const today = new Date();
+                const time = today.toLocaleTimeString();
+                const vsYear = 2082; // Hard-coded for today (adjust if needed)
+                const vsMonth = 5; // भाद्रपद
+                const vsDay = 16;
+                dtEl.innerText = `वि.सं ${vsYear}/${vsMonth} (${vsDay}) | Time: ${time}`;
+            }
+            setInterval(updateDateTime,1000);
