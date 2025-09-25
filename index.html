@@ -7,101 +7,73 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <style>
-/* Base Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; scroll-padding-top:90px; }
-body { font-family:'Roboto', sans-serif; background:#121212; color:#eee; line-height:1.6; }
-
-/* Top Bar */
-#topbar { text-align:center; background:#1b1b1b; color:#fff; padding:6px; font-weight:bold; position:relative; }
-#datetime { font-size:0.9em; }
-#lang-toggle { position:absolute; top:5px; right:10px; background:#ff6b6b; color:#fff; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; font-weight:bold; }
-
-/* Header */
-header { height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
-  background-size: 400% 400%; animation: gradient 20s ease infinite; color:#fff; }
-@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-header h1 { font-family:'Pacifico', cursive; font-size:3.5em; text-shadow:0 2px 5px rgba(0,0,0,0.7); margin-bottom:15px; }
-header p { font-size:1.4em; margin-bottom:25px; color:#ddd; }
-
-/* Navigation */
-nav { position:sticky; top:0; background:#1b1b1b; padding:10px 20px; z-index:1000; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; }
-.nav-links { display:flex; gap:15px; }
-.nav-links a { color:#fff; text-decoration:none; font-weight:bold; transition:0.3s; }
-.nav-links a:hover { color:#ff6b6b; }
-.hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
-.hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; }
-
-/* Sections */
-section { padding:60px 20px; max-width:1100px; margin:0 auto 50px auto; border-radius:15px; background:#1e1e1e; box-shadow:0 8px 20px rgba(0,0,0,0.5); opacity:0; transform:translateY(50px); transition:0.6s; }
-section h2 { text-align:center; font-size:2em; margin-bottom:40px; color:#ff6b6b; }
-.show { opacity:1; transform:translateY(0); }
-
-/* About */
-.about { display:flex; flex-wrap:wrap; align-items:center; gap:30px; }
-.about img { width:250px; height:250px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 15px rgba(255,107,107,0.4); }
-.about div p { margin-bottom:15px; line-height:1.6; color:#ddd; }
-.btn { display:inline-block; padding:12px 30px; background:#ff6b6b; color:#fff; font-weight:bold; border-radius:30px; transition:0.3s; text-decoration:none; }
-.btn:hover { background:#ff4d4d; transform:translateY(-3px); }
-
-/* Achievements & Skills */
-.achievements li, .skills li { background:#2a2a2a; padding:20px; margin-bottom:15px; border-left:5px solid #ff6b6b; border-radius:10px; transition:0.3s; }
-.achievements li:hover, .skills li:hover { transform:translateX(5px); box-shadow:0 8px 15px rgba(0,0,0,0.7); }
-.skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:15px; padding:0; }
-.skills li { flex:1 1 200px; text-align:center; font-weight:bold; }
-
-/* Tabs */
-.tabs { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
-.tablinks { padding:10px 25px; cursor:pointer; background:#333; color:#fff; border:none; border-radius:30px; font-weight:bold; transition:0.3s; }
-.tablinks:hover { background:#ff6b6b; }
-.tablinks.active { background:#ff6b6b; }
-.tabcontent { display:none; }
-.tabcontent ul { list-style:none; padding:0; }
-.tabcontent li { background:#2a2a2a; margin-bottom:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); }
-
-/* Gallery */
-.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.gallery-grid div { background:#2a2a2a; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.7); padding:10px; text-align:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; display:flex; flex-direction:column; justify-content:space-between; min-height:350px; }
-.gallery-grid div:hover { transform: translateY(-8px); box-shadow:0 10px 20px rgba(255,107,107,0.7); }
-.gallery-grid img { width:100%; height:200px; object-fit: cover; border-radius:15px; transition: transform 0.3s ease; flex-shrink:0; }
-.gallery-grid img:hover { transform:scale(1.05); }
-.gallery-grid h3 { margin-top:10px; color:#ff6b6b; flex-grow:0; }
-.gallery-grid p { font-size:0.9em; color:#ccc; margin-top:5px; flex-grow:1; display:flex; align-items:flex-start; }
-
-/* Lightbox */
-.lightbox-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
-.lightbox-overlay img { max-width:90%; max-height:90%; border-radius:15px; box-shadow:0 10px 25px rgba(255,107,107,0.7); animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
-
-/* Contact & Footer */
-.contact { text-align:center; padding:40px; }
-.contact a { display:inline-block; margin:10px 15px; padding:12px 25px; background:#ff6b6b; color:#fff; border-radius:30px; font-weight:bold; transition:0.3s; text-decoration:none; }
-.contact a:hover { background:#ff4d4d; transform:translateY(-3px); }
-footer { text-align:center; padding:30px 20px; background:#1b1b1b; color:#fff; }
-
-/* Responsive */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Roboto',sans-serif;background:#121212;color:#eee;line-height:1.6;}
+#topbar{text-align:center;background:#1b1b1b;color:#fff;padding:6px;font-weight:bold;position:relative;}
+#datetime{font-size:0.9em;}
+#lang-toggle{position:absolute;top:5px;right:10px;background:#ff6b6b;color:#fff;border:none;padding:5px 12px;border-radius:5px;cursor:pointer;font-weight:bold;}
+header{height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(-45deg,#1f1c2c,#928dab,#1f1c2c,#928dab);background-size:400% 400%;animation:gradient 20s ease infinite;color:#fff;}
+@keyframes gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+header h1{font-family:'Pacifico',cursive;font-size:3.5em;text-shadow:0 2px 5px rgba(0,0,0,0.7);margin-bottom:15px;}
+header p{font-size:1.4em;margin-bottom:25px;color:#ddd;}
+nav{position:sticky;top:0;background:#1b1b1b;padding:10px 20px;z-index:1000;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;}
+.nav-links{display:flex;gap:15px;}
+.nav-links a{color:#fff;text-decoration:none;font-weight:bold;transition:0.3s;}
+.nav-links a:hover{color:#ff6b6b;}
+.hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px;}
+.hamburger div{width:25px;height:3px;background:#fff;border-radius:2px;}
+section{padding:60px 20px;max-width:1100px;margin:0 auto 50px auto;border-radius:15px;background:#1e1e1e;box-shadow:0 8px 20px rgba(0,0,0,0.5);opacity:0;transform:translateY(50px);transition:0.6s;}
+section h2{text-align:center;font-size:2em;margin-bottom:40px;color:#ff6b6b;}
+.show{opacity:1;transform:translateY(0);}
+.about{display:flex;flex-wrap:wrap;align-items:center;gap:30px;}
+.about img{width:250px;height:250px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 4px 15px rgba(255,107,107,0.4);}
+.about div p{margin-bottom:15px;line-height:1.6;color:#ddd;}
+.btn{display:inline-block;padding:12px 30px;background:#ff6b6b;color:#fff;font-weight:bold;border-radius:30px;transition:0.3s;text-decoration:none;}
+.btn:hover{background:#ff4d4d;transform:translateY(-3px);}
+.achievements li,.skills li{background:#2a2a2a;padding:20px;margin-bottom:15px;border-left:5px solid #ff6b6b;border-radius:10px;transition:0.3s;}
+.achievements li:hover,.skills li:hover{transform:translateX(5px);box-shadow:0 8px 15px rgba(0,0,0,0.7);}
+.skills ul{list-style:none;display:flex;flex-wrap:wrap;gap:15px;padding:0;}
+.skills li{flex:1 1 200px;text-align:center;font-weight:bold;}
+.tabs{display:flex;justify-content:center;gap:15px;margin-bottom:30px;flex-wrap:wrap;}
+.tablinks{padding:10px 25px;cursor:pointer;background:#333;color:#fff;border:none;border-radius:30px;font-weight:bold;transition:0.3s;}
+.tablinks:hover{background:#ff6b6b;}
+.tablinks.active{background:#ff6b6b;}
+.tabcontent{display:none;}
+.tabcontent ul{list-style:none;padding:0;}
+.tabcontent li{background:#2a2a2a;margin-bottom:15px;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.5);}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.gallery-grid div{background:#2a2a2a;border-radius:15px;box-shadow:0 6px 15px rgba(0,0,0,0.7);padding:10px;text-align:center;transition: transform 0.3s ease, box-shadow 0.3s ease;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;min-height:350px;}
+.gallery-grid div:hover{transform: translateY(-8px);box-shadow:0 10px 20px rgba(255,107,107,0.7);}
+.gallery-grid img{width:100%;height:200px;object-fit: cover;border-radius:15px;transition: transform 0.3s ease;flex-shrink:0;}
+.gallery-grid img:hover{transform:scale(1.05);}
+.gallery-grid h3{margin-top:10px;color:#ff6b6b;flex-grow:0;}
+.gallery-grid p{font-size:0.9em;color:#ccc;margin-top:5px;flex-grow:1;display:flex;align-items:flex-start;}
+.lightbox-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;justify-content:center;align-items:center;z-index:9999;}
+.lightbox-overlay img{max-width:90%;max-height:90%;border-radius:15px;box-shadow:0 10px 25px rgba(255,107,107,0.7);animation: fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.9);}to{opacity:1;transform:scale(1);}}
+.contact{text-align:center;padding:40px;}
+.contact a{display:inline-block;margin:10px 15px;padding:12px 25px;background:#ff6b6b;color:#fff;border-radius:30px;font-weight:bold;transition:0.3s;text-decoration:none;}
+.contact a:hover{background:#ff4d4d;transform:translateY(-3px);}
+footer{text-align:center;padding:30px 20px;background:#1b1b1b;color:#fff;}
 @media(max-width:768px){
-  .about { flex-direction:column; text-align:center; }
-  .about img { margin-bottom:20px; }
-  .gallery-grid { grid-template-columns:1fr; }
-  .nav-links { display:none; flex-direction:column; background:#1b1b1b; position:absolute; top:50px; right:0; width:200px; padding:20px; border-radius:10px; }
-  .nav-links.show { display:flex; }
-  .hamburger { display:flex; }
+  .about{flex-direction:column;text-align:center;}
+  .about img{margin-bottom:20px;}
+  .gallery-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;flex-direction:column;background:#1b1b1b;position:absolute;top:50px;right:0;width:200px;padding:20px;border-radius:10px;}
+  .nav-links.show{display:flex;}
+  .hamburger{display:flex;}
 }
 </style>
 </head>
 <body>
 
-<!-- Top bar -->
 <div id="topbar">
   <span id="datetime">Loading Date & Time...</span>
   <button id="lang-toggle" onclick="toggleLanguage()">संस्कृत / English</button>
 </div>
 
-<!-- Navigation -->
 <nav>
-  <div class="logo" style="color:#ff6b6b; font-weight:bold;">Sudarshan Gautam</div>
+  <div class="logo" style="color:#ff6b6b;font-weight:bold;">Sudarshan Gautam</div>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#achievements">Achievements</a>
@@ -110,45 +82,37 @@ footer { text-align:center; padding:30px 20px; background:#1b1b1b; color:#fff; }
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+  <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
 </nav>
 
-<!-- Header -->
 <header>
   <h1>Sudarshan Gautam</h1>
   <p>PhD Scholar | Sanskrit & Humanistic Studies | IIT(BHU), Varanasi</p>
-  <a href="https://github.com/YourUsername/CV.pdf" target="_blank" class="btn">Download CV</a>
+  <a href="https://github.com/YourUsername/RepoName/main/CV.pdf" target="_blank" class="btn">Download CV</a>
 </header>
 
-<!-- About -->
 <section id="about">
   <h2>About Me</h2>
   <div class="about">
     <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/profile.jpg" alt="Profile Photo">
     <div>
-      <p>I am a dedicated scholar specializing in Sanskrit, Indian grammatical tradition, and humanistic studies. Currently pursuing PhD at IIT(BHU), Varanasi.</p>
-      <p>My research focuses on Pāṇinian grammar, Universal Semantic Representation, and the application of traditional knowledge to modern linguistics.</p>
-      <p><a href="https://github.com/YourUsername/CV.pdf" class="btn" target="_blank">View CV</a></p>
+      <p>Dedicated scholar in Sanskrit and Indian grammatical tradition, pursuing PhD at IIT(BHU), Varanasi.</p>
+      <p>Research includes Pāṇinian grammar, Universal Semantic Representation, and application of traditional knowledge to modern linguistics.</p>
+      <p><a href="https://github.com/YourUsername/RepoName/main/CV.pdf" class="btn" target="_blank">View CV</a></p>
     </div>
   </div>
 </section>
 
-<!-- Achievements -->
 <section id="achievements">
   <h2>Achievements</h2>
   <ul class="achievements">
     <li>Presented papers in National and International Shastrartha Sabhas.</li>
     <li>Published research in reputed linguistics and Sanskrit journals.</li>
     <li>Participated in supreme Vedic Shrauta Yagyas and traditional Gurukul studies.</li>
-    <li>Recipient of multiple academic awards and recognitions in Sanskrit grammar studies.</li>
+    <li>Recipient of multiple academic awards in Sanskrit grammar studies.</li>
   </ul>
 </section>
 
-<!-- Skills -->
 <section id="skills">
   <h2>Skills</h2>
   <ul class="skills">
@@ -160,7 +124,6 @@ footer { text-align:center; padding:30px 20px; background:#1b1b1b; color:#fff; }
   </ul>
 </section>
 
-<!-- Publications -->
 <section id="publications">
   <h2>Publications</h2>
   <div class="tabs">
@@ -190,24 +153,23 @@ footer { text-align:center; padding:30px 20px; background:#1b1b1b; color:#fff; }
   </div>
 </section>
 
-<!-- Gallery -->
 <section id="gallery">
   <h2>Gallery</h2>
   <div class="gallery-grid">
     <div onclick="openLightbox('https://raw.githubusercontent.com/YourUsername/RepoName/main/image1.jpg')">
-      <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image1.jpg" alt="Workshop Image">
+      <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image1.jpg" alt="Workshop">
       <h3>Workshop</h3>
-      <p>Attended Vedic grammar workshop.</p>
+      <p>Vedic grammar workshop participation.</p>
     </div>
     <div onclick="openLightbox('https://raw.githubusercontent.com/YourUsername/RepoName/main/image2.jpg')">
-      <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image2.jpg" alt="Lecture Image">
+      <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image2.jpg" alt="Lecture">
       <h3>Lecture</h3>
       <p>Delivered lecture on Pāṇinian grammar.</p>
     </div>
     <div onclick="openLightbox('https://raw.githubusercontent.com/YourUsername/RepoName/main/image3.jpg')">
       <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/image3.jpg" alt="Shrauta Yagya">
       <h3>Shrauta Yagya</h3>
-      <p>Participated in traditional Vedic ritual.</p>
+      <p>Participation in traditional Vedic ritual.</p>
     </div>
   </div>
 </section>
@@ -216,7 +178,6 @@ footer { text-align:center; padding:30px 20px; background:#1b1b1b; color:#fff; }
   <img src="" alt="Lightbox Image">
 </div>
 
-<!-- Contact -->
 <section id="contact">
   <h2>Contact</h2>
   <div class="contact">
@@ -231,48 +192,15 @@ footer { text-align:center; padding:30px 20px; background:#1b1b1b; color:#fff; }
 </footer>
 
 <script>
-// Dark menu toggle
 function toggleMenu(){document.querySelector('.nav-links').classList.toggle('show');}
-
-// Date and Time
-function updateDateTime(){
-  const dt = new Date();
-  document.getElementById('datetime').innerText = dt.toLocaleString();
-}
-setInterval(updateDateTime,1000);
-updateDateTime();
-
-// Tabs
-function openTab(evt, tabName){
-  document.querySelectorAll('.tabcontent').forEach(tc=>tc.style.display='none');
-  document.querySelectorAll('.tablinks').forEach(t=>t.classList.remove('active'));
-  document.getElementById(tabName).style.display='block';
-  evt.currentTarget.classList.add('active');
-}
-
-// Scroll animations
-const sections = document.querySelectorAll('section');
-window.addEventListener('scroll', () => {
-  sections.forEach(sec=>{
-    const rect = sec.getBoundingClientRect();
-    if(rect.top < window.innerHeight-100){ sec.classList.add('show'); }
-  });
-});
-
-// Lightbox
-function openLightbox(src){
-  const overlay = document.querySelector('.lightbox-overlay');
-  overlay.style.display='flex';
-  overlay.querySelector('img').src=src;
-}
-function closeLightbox(){ document.querySelector('.lightbox-overlay').style.display='none'; }
-
-// Language toggle (simplified example)
-let lang='en';
-function toggleLanguage(){
-  lang=(lang==='en')?'sa':'en';
-  alert("Language toggled to: "+((lang==='en')?'English':'Sanskrit'));
-}
+function updateDateTime(){const dt=new Date();document.getElementById('datetime').innerText=dt.toLocaleString();}
+setInterval(updateDateTime,1000);updateDateTime();
+function openTab(evt,tabName){document.querySelectorAll('.tabcontent').forEach(tc=>tc.style.display='none');document.querySelectorAll('.tablinks').forEach(t=>t.classList.remove('active'));document.getElementById(tabName).style.display='block';evt.currentTarget.classList.add('active');}
+const sections=document.querySelectorAll('section');window.addEventListener('scroll',()=>{sections.forEach(sec=>{const rect=sec.getBoundingClientRect();if(rect.top<window.innerHeight-100){sec.classList.add('show');}});});
+function openLightbox(src){const overlay=document.querySelector('.lightbox-overlay');overlay.style.display='flex';overlay.querySelector('img').src=src;}
+function closeLightbox(){document.querySelector('.lightbox-overlay').style.display='none';}
+let lang='en';function toggleLanguage(){lang=(lang==='en')?'sa':'en';alert("Language toggled to: "+((lang==='en')?'English':'Sanskrit'));}
 </script>
+
 </body>
 </html>
